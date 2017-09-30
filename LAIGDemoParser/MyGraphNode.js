@@ -11,7 +11,7 @@ function MyGraphNode(graph, nodeID) {
     // IDs of child nodes.
     this.children = [];
 
-    // IDs of child nodes.
+    // IDs of child leaves.
     this.leaves = [];
 
     // The material ID.
@@ -19,6 +19,8 @@ function MyGraphNode(graph, nodeID) {
 
     // The texture ID.
     this.textureID = null ;
+
+    this.idLeaf = false;
 
     this.transformMatrix = mat4.create();
     mat4.identity(this.transformMatrix);

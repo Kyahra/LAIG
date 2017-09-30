@@ -21,6 +21,7 @@ function MySceneGraph(filename, scene) {
     scene.graph = this;
 
     this.nodes = [];
+    this.nodesIDs =[];
 
     this.idRoot = null;                    // The id of the root element.
 
@@ -223,6 +224,7 @@ MySceneGraph.prototype.parseInitials = function(initialsNode) {
     var scalingIndex = nodeNames.indexOf("scale");
 
     // Checks if the indices are valid and in the expected order.
+
     // Translation.
     this.initialTransforms = mat4.create();
     mat4.identity(this.initialTransforms);
@@ -264,6 +266,8 @@ MySceneGraph.prototype.parseInitials = function(initialsNode) {
             this.onXMLMinorError("initial translation out of order; result may not be as expected");
 
         mat4.translate(this.initialTransforms, this.initialTransforms, [tx, ty, tz]);
+
+
     }
 
     // Rotations.
@@ -1191,8 +1195,13 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
             this.log("Processing node "+nodeID);
 
+            this.nodesIDs.push(nodeID);
+
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
+
+
+
 
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
@@ -1371,6 +1380,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
     }
 
     console.log("Parsed nodes");
+
+
+
     return null ;
 }
 
@@ -1431,9 +1443,8 @@ MySceneGraph.generateRandomString = function(length) {
  */
 MySceneGraph.prototype.displayScene = function() {
 
-  this.floor = new MyRectangle(this.scene,0,4,5,0);
 
-  this.floor.initBuffers();
+  
 
-  this.floor.display();
+
 }
