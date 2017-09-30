@@ -7,7 +7,7 @@ function MyGraphNode(graph, nodeID) {
     this.graph = graph;
 
     this.nodeID = nodeID;
-    
+
     // IDs of child nodes.
     this.children = [];
 
@@ -34,8 +34,13 @@ MyGraphNode.prototype.addChild = function(nodeID) {
 /**
  * Adds a leaf to this node's leaves array.
  */
+ MyGraphNode.prototype.addLeaf = function(leaf) {
+     this.leaves.push(leaf);
+ }
+
+ /*
 MyGraphNode.prototype.addChild = function(leaf) {
     this.leaves.push(leaf);
 }
 
-
+*/
