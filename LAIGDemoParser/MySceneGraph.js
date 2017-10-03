@@ -21,7 +21,7 @@ function MySceneGraph(filename, scene) {
     scene.graph = this;
 
     this.nodes = [];
-    this.nodesIDs =[];
+  
 
     this.idRoot = null;                    // The id of the root element.
 
@@ -1195,12 +1195,10 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
             this.log("Processing node "+nodeID);
 
-            this.nodesIDs.push(nodeID);
+            
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
-
-
 
 
             // Gathers child nodes.
@@ -1349,6 +1347,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
+						
 						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
 
 						if (type != null)
@@ -1357,19 +1356,19 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 							this.warn("Error in leaf type");
 
 
-              var args = this.reader.getString(descendants[j],'args');
+						var args = this.reader.getString(descendants[j],'args');
 
-              if(args!=null)
-                this.log("   Leaf: "+ args);
-              else
-                this.warn("Error in leaf args");
+						 if(args!=null)
+							this.log("   Leaf: "+ args);
+						 else
+							this.warn("Error in leaf args");
 
 
-            this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
+						this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
                         sizeChildren++;
-					}
-					else
-						this.onXMLMinorError("unknown tag <" + descendants[j].nodeName + ">");
+						}
+						else
+							this.onXMLMinorError("unknown tag <" + descendants[j].nodeName + ">");
 
             }
             if (sizeChildren == 0)
@@ -1438,13 +1437,51 @@ MySceneGraph.generateRandomString = function(length) {
     return String.fromCharCode.apply(null, numbers);
 }
 
+
+
+
+
+
 /**
  * Displays the scene, processing each node, starting in the root node.
  */
 MySceneGraph.prototype.displayScene = function() {
 
+	var rootNode = this.nodes[this.idRoot];
+	
+	if(rootNode == null)
+		return "there is not root node";
+	
+	
+	
+	this.displayAux(rootNode.children);
 
-  
+	
 
 
 }
+
+MySceneGraph.prototype.displayAux = function(children){
+
+	for(var i =0;i< children.length;i++){
+		
+	
+		
+		if(children[i] instanceof MyGraphLeaf){
+			
+			
+			if(children[i].type == 'sphere'){
+		
+				children[i].display();
+			
+			}
+		}else{
+			this.displayAux(this.nodes[children[i]].children);
+			
+		}
+		
+		
+	}
+	
+}
+
