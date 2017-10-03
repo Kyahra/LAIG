@@ -21,7 +21,7 @@ function MySceneGraph(filename, scene) {
     scene.graph = this;
 
     this.nodes = [];
-  
+
 
     this.idRoot = null;                    // The id of the root element.
 
@@ -1195,7 +1195,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
             this.log("Processing node "+nodeID);
 
-            
+
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
@@ -1347,7 +1347,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
-						
+
 						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
 
 						if (type != null)
@@ -1448,15 +1448,15 @@ MySceneGraph.generateRandomString = function(length) {
 MySceneGraph.prototype.displayScene = function() {
 
 	var rootNode = this.nodes[this.idRoot];
-	
+
 	if(rootNode == null)
 		return "there is not root node";
-	
-	
-	
+
+
+
 	this.displayAux(rootNode.children);
 
-	
+
 
 
 }
@@ -1464,24 +1464,38 @@ MySceneGraph.prototype.displayScene = function() {
 MySceneGraph.prototype.displayAux = function(children){
 
 	for(var i =0;i< children.length;i++){
-		
-	
-		
-		if(children[i] instanceof MyGraphLeaf){
-			
-			
-			if(children[i].type == 'sphere'){
-		
-				children[i].display();
-			
-			}
-		}else{
-			this.displayAux(this.nodes[children[i]].children);
-			
-		}
-		
-		
-	}
-	
-}
 
+
+		if(children[i] instanceof MyGraphLeaf){
+
+				children[i].display();
+
+		}else{
+
+      var node = this.nodes[children[i]];
+
+      if (node.textureID != 'null')
+        for (var j = 0; j < this.textures.length; j++)
+          if (node.textureID == this.texture)
+            tex = j;
+
+
+      if (node.materialID != 'null')
+        for (var j = 0; j < this.materials.length; j++)
+          if (node.materialID == this.material)
+            mat = j;
+
+      this.scene.pushMatrix();
+
+      this.scene.multMatrix(node.transformMatrix);
+
+      this.displayAux(node.children);
+
+      this.scene.popMatrix();
+
+		}
+	}
+
+
+
+}
