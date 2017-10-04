@@ -1,4 +1,4 @@
-function MyCylinder(scene, base, top, height, slices, stacks) {
+function MyCylinder(scene,height ,  base,top , stacks , slices) {
     CGFobject.call(this, scene);
 
     //if slices not define, set to 6
