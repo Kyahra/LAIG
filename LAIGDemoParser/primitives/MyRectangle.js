@@ -44,3 +44,21 @@ MyRectangle.prototype.initBuffers = function () {
 
 	this.initGLBuffers();
 };
+
+
+MyRectangle.prototype.setAmpSAmpT = function (ampS, ampT) {
+
+	this.ampS = ampS;
+	this.ampT = ampT;
+
+	this.texCoords = [
+		0, (this.y0 - this.y1) / this.ampT,
+		(this.x1- this.x0) / this.ampS, (this.y0 - this.y1) / this.ampT,
+		0, 0,
+		(this.x1- this.x0) / this.ampS, 0,
+	];
+
+	this.setTex = true;
+
+	this.updateTexCoordsGLBuffers();
+};

@@ -1454,42 +1454,61 @@ MySceneGraph.prototype.displayScene = function() {
 
 
 
-	this.displayAux(rootNode.children);
+	this.displayAux(rootNode.children,-1,-1);
 
 
 
 
 }
 
-MySceneGraph.prototype.displayAux = function(children){
+MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
+
+
 
 	for(var i =0;i< children.length;i++){
 
 
 		if(children[i] instanceof MyGraphLeaf){
 
-				children[i].display();
+
+        var material = this.materials[materialID];
+        var texture = this.textures[textureID];
+
+
+        if(texture != null){
+      	   material.setTexture(texture[0]);
+           children[i].setAmpSAmpT(texture[1],texture[2]);
+          
+
+
+         }
+
+        material.apply();
+
+
+
+
+        children[i].display();
 
 		}else{
 
       var node = this.nodes[children[i]];
 
-      if (node.textureID != 'null')
-        for (var j = 0; j < this.textures.length; j++)
-          if (node.textureID == this.texture)
-            tex = j;
+      if (node.textureID != 'null'){
+        textureID = node.textureID;
+      }
 
 
-      if (node.materialID != 'null')
-        for (var j = 0; j < this.materials.length; j++)
-          if (node.materialID == this.material)
-            mat = j;
+      if (node.materialID != 'null'){
+        materialID =node.materialID;
+      }
+
 
       this.scene.pushMatrix();
 
       this.scene.multMatrix(node.transformMatrix);
 
-      this.displayAux(node.children);
+      this.displayAux(node.children,materialID,textureID);
 
       this.scene.popMatrix();
 

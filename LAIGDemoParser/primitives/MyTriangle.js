@@ -49,3 +49,42 @@ function MyTriangle(scene, x0, y0, z0, x1, y1, z1, x2, y2, z2) {
  	this.initGLBuffers();
  };
 
+/**
+ * Function to set the amplif factor of a determined texture
+ * @method setAmpSAmpT
+ * @param      ampS
+ * @param      ampT
+ */
+ MyTriangle.prototype.setAmpSAmpT = function (ampS, ampT) {
+ 	this.ampS = ampS;
+	this.ampT = ampT;
+
+	var p1 = this.p1;
+	var p2 = this.p2;
+	var p3 = this.p3;
+
+	this.b = Math.sqrt((p1[0] - p3[0]) * (p1[0] - p3[0]) +
+			 		   (p1[1] - p3[1]) * (p1[1] - p3[1]) +
+			 		   (p1[2] - p3[2]) * (p1[2] - p3[2]));
+
+	this.c = Math.sqrt((p2[0] - p1[0]) * (p2[0] - p1[0]) +
+			 		   (p2[1] - p1[1]) * (p2[1] - p1[1]) +
+			 		   (p2[2] - p1[2]) * (p2[2] - p1[2]));
+
+	this.a = Math.sqrt((p3[0] - p2[0]) * (p3[0] - p2[0]) +
+			 		   (p3[1] - p2[1]) * (p3[1] - p2[1]) +
+			 		   (p3[2] - p2[2]) * (p3[2] - p2[2]));
+
+	this.cosBeta =  ( this.a*this.a - this.b*this.b + this.c * this.c) / (2 * this.a * this.c);
+
+	this.beta = Math.acos(this.cosBeta);
+
+	this.texCoords = [
+	  0, 0,
+	  this.c / this.ampS, 0,
+	  (this.c - this.a * Math.cos(this.beta)) / this.ampS, (this.a*Math.sin(this.beta)) / this.ampT,
+    ];
+
+	this.setTex = true;
+	this.updateTexCoordsGLBuffers();
+}

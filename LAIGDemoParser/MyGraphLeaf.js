@@ -32,3 +32,10 @@ function MyGraphLeaf(graph, xmlelem) {
 MyGraphLeaf.prototype.display = function(){
 	this.primitive.display();
 }
+
+
+MyGraphLeaf.prototype.setAmpSAmpT = function(amplifFactorS,amplifFactorT){
+
+	if(this.type == 'rectangle' || this.type == 'triangle')
+		this.primitive.setAmpSAmpT(amplifFactorS,amplifFactorT);
+}

@@ -41,7 +41,9 @@ MyCylinder.prototype.initBuffers = function() {
     var yCoord = 0;
 
 
-    for (var q = 0; q < this.stacks + 1; q++) {
+
+
+    for (var q = 0; q < this.stacks+1 ; q++) {
 
         var z = (q * this.deltaHeight / this.stacks);
         var inc = (q * this.delta) + this.base;
@@ -49,9 +51,16 @@ MyCylinder.prototype.initBuffers = function() {
         for (var i = 0; i < sides; i++) {
             this.vertices.push(inc * Math.cos(i * n), inc * Math.sin(i * n), q * this.deltaHeight);
             this.normals.push(Math.cos(i * n), Math.sin(i * n), 0);
+
             this.texCoords.push(xCoord, yCoord);
+
+
             xCoord += patchLengthx;
+
+
         }
+
+
         xCoord = 0;
         yCoord += patchLengthy;
 
@@ -69,6 +78,8 @@ MyCylinder.prototype.initBuffers = function() {
                 this.indices.push(this.slices * q, this.slices * q + i + 1, this.slices * q + i);
                 this.indices.push(this.slices * q + i + 1, this.slices * q, this.slices * q + i);
             }
+
+
 
 
         }
