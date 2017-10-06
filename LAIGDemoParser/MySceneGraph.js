@@ -1470,23 +1470,24 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 		if(children[i] instanceof MyGraphLeaf){
 
-
-        var material = this.materials[materialID];
+        if(materialID != null && materialID !=-1)
+          var material = this.materials[materialID];
+        else {
+          var material = new CGFappearance(this.scene);
+        }
         var texture = this.textures[textureID];
+
 
 
         if(texture != null){
       	   material.setTexture(texture[0]);
            children[i].setAmpSAmpT(texture[1],texture[2]);
-          
-
 
          }
 
-        material.apply();
-
-
-
+         if(material != null){
+             material.apply();
+         }
 
         children[i].display();
 
