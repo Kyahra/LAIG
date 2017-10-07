@@ -1453,8 +1453,7 @@ MySceneGraph.prototype.displayScene = function() {
 		return "there is not root node";
 
 
-
-	this.displayAux(rootNode.children,-1,-1);
+	this.displayAux(rootNode.children,this.defaultMaterialID,"null");
 
 
 
@@ -1515,6 +1514,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 		}
 	}
+
 
 
 
