@@ -59,7 +59,7 @@
 <TEXTURES>
     <TEXTURE id="water">
       <file path="images/water.jpg" />
-      <amplif_factor s="2" t="2" />
+      <amplif_factor s="0.5" t="0.5" />
     </TEXTURE>
 
 	<!-- Tree trunk -->
@@ -106,10 +106,10 @@
     </MATERIAL>
 
 	<!-- Tree leaves material -->
-	<MATERIAL id="leavesTreeMaterial">
-        <shininess value="1" />
-        <specular r="0.2" g="0.2" b="0.2" a="1" />
-        <diffuse r="0.0" g="0.207" b="0.0" a="1" />
+	<MATERIAL id="waterMaterial">
+        <shininess value="10" />
+        <specular r="0.5" g="0.5" b="0.5" a="1" />
+        <diffuse r="0.3" g="0.3" b="0.3" a="1" />
         <ambient r="0.1" g="0.1" b="0.1" a="1" />
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
@@ -183,8 +183,8 @@
         <MATERIAL id="null" />
         <TEXTURE id="tiles" />
 
-        <TRANSLATION x="38" y="-7" z="33"/>
-        <SCALE sx="20" sy="7" sz="25"/>
+        <TRANSLATION x="38.5" y="-7" z="34.5"/>
+        <SCALE sx="20" sy="7" sz="30"/>
 
         <DESCENDANTS>
           <NODEREF id="face1"/>
@@ -202,7 +202,7 @@
     </NODE>
 
     <NODE id="water">
-        <MATERIAL id="null" />
+        <MATERIAL id="waterMaterial" />
         <TEXTURE id="water" />
 
         <TRANSLATION x="0" y="0.71" z="1" />
@@ -582,6 +582,8 @@
         <DESCENDANTS>
           <NODEREF id ="grass1"/>
           <NODEREF id ="grass2"/>
+          <NODEREF id ="grass3"/>
+          <NODEREF id ="grass4"/>
         </DESCENDANTS>
 
     </NODE>
@@ -590,8 +592,8 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <SCALE sx="35" sy="1" sz="40" />
-        <TRANSLATION x="0" y="0" z="1.62" />
+        <TRANSLATION x="0" y="0" z="70" />
+        <SCALE sx="35" sy="1" sz="45" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
@@ -604,8 +606,8 @@
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-        <SCALE sx="25" sy="1" sz="30" />
-        <TRANSLATION x="1.4" y="0" z="1" />
+        <TRANSLATION x="35" y="0" z="32" />
+        <SCALE sx="30" sy="1" sz="32" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
@@ -613,6 +615,35 @@
         </DESCENDANTS>
 
     </NODE>
+
+    <NODE id="grass3">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="35" y="0" z="70" />
+        <SCALE sx="30" sy="1" sz="7" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="grass4">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="56" y="0" z="63" />
+        <SCALE sx="9" sy="1" sz="31" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+
+    </NODE>
+
 
 
     <!-- Beer Pong table -->
