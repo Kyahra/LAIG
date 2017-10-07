@@ -92,6 +92,12 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+    <!-- Poll ball -->
+    <TEXTURE id="pink">
+        <file path="images/pink.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
 </TEXTURES>
 
 
@@ -174,6 +180,7 @@
             <NODEREF id="floor" />
             <NODEREF id="cups"/>
             <NODEREF id="pool"/>
+            <NODEREF id="ball_water"/>
 
         </DESCENDANTS>
 
@@ -540,6 +547,20 @@
 
         <TRANSLATION x="13" y="5.75" z="17" />
         <SCALE sx="0.25" sy="0.25" sz="0.25" />
+
+        <DESCENDANTS>
+          <LEAF  type="sphere" args="1 20 20" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
+   <NODE id="ball_water">
+        <MATERIAL id="lightMaterial" />
+        <TEXTURE id="pink" />
+
+        <TRANSLATION x="50" y="-1.1" z="60" />
+        <SCALE sx="2" sy="2" sz="2" />
 
         <DESCENDANTS>
           <LEAF  type="sphere" args="1 20 20" />
