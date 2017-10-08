@@ -825,7 +825,6 @@
 
 
     <!-- Lounges -->
-
     <NODE id="lounges">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
@@ -839,7 +838,6 @@
     </NODE>
 
     <!-- Lounge chair-->
-
     <NODE id="lounge_chair2">
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
@@ -857,10 +855,7 @@
     </NODE>
 
 
-
-
     <!-- Lounge chair-->
-
     <NODE id="lounge_chair1">
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
@@ -896,23 +891,6 @@
     </NODE>
 
 
-
-    <!-- Beer Pong table -->
-    <NODE id="table">
-        <MATERIAL id="null" />
-        <TEXTURE id="wood" />
-
-        <TRANSLATION x="12" y="0.1" z="18" />
-        <SCALE sx="1.3" sy="1" sz="1" />
-
-        <DESCENDANTS>
-          <NODEREF id="top" />
-          <NODEREF id="legs"/>
-        </DESCENDANTS>
-
-    </NODE>
-
-
     <!-- Lounge chair top ajustable -->
     <NODE id="top_ajustable">
         <MATERIAL id="null" />
@@ -929,6 +907,22 @@
           <NODEREF id="cubeFace4" />
           <NODEREF id="cubeFace5" />
           <NODEREF id="cubeFace6" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
+    <!-- Beer Pong table -->
+    <NODE id="table">
+        <MATERIAL id="null" />
+        <TEXTURE id="wood" />
+
+        <TRANSLATION x="12" y="0.1" z="18" />
+        <SCALE sx="1.3" sy="1" sz="1" />
+
+        <DESCENDANTS>
+          <NODEREF id="top" />
+          <NODEREF id="legs"/>
         </DESCENDANTS>
 
     </NODE>
