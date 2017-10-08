@@ -120,12 +120,6 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="towel2">
-        <file path="images/towel2.jpg" />
-        <amplif_factor s="1" t="1" />
-    </TEXTURE>
-
-
 </TEXTURES>
 
 
@@ -210,54 +204,18 @@
             <NODEREF id="cups"/>
             <NODEREF id="pool"/>
             <NODEREF id="ball_water"/>
-            <NODEREF id="towels"/>
-            <NODEREF id="lounges"/>
+            <NODEREF id="towel"/>
+            <NODEREF id="lounge"/>
         </DESCENDANTS>
 
     </NODE>
 
-    <NODE id="towels">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
 
-        <DESCENDANTS>
-            <NODEREF id="towel1"/>
-            <NODEREF id="towel2"/>
-
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="towel1">
+    <NODE id="towel">
         <MATERIAL id="null" />
         <TEXTURE id="towel1" />
 
         <TRANSLATION x="13.5" y="0.1" z="63.5"/>
-        <ROTATION axis="y" angle="4" />
-
-        <DESCENDANTS>
-            <NODEREF id="towel"/>
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="towel2">
-        <MATERIAL id="null" />
-        <TEXTURE id="towel2" />
-
-        <TRANSLATION x="10" y="0.1" z="41"/>
-        <ROTATION axis="y" angle="-5" />
-
-        <DESCENDANTS>
-            <NODEREF id="towel"/>
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="towel">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
-
         <SCALE sx="14" sy="1" sz="7"/>
         <ROTATION axis="x" angle="-90" />
 
@@ -824,45 +782,17 @@
     </NODE>
 
 
-    <!-- Lounges -->
-    <NODE id="lounges">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
-
-        <DESCENDANTS>
-            <NODEREF id="lounge_chair1"/>
-            <NODEREF id="lounge_chair2"/>
-
-        </DESCENDANTS>
-
-    </NODE>
 
     <!-- Lounge chair-->
-    <NODE id="lounge_chair2">
+    <NODE id="lounge">
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
 
-        <TRANSLATION x="57" y="-2.5" z="10" />
-        <ROTATION axis="y" angle="-90" />
-        <SCALE sx="1.3" sy="1" sz="1" />
-
-        <DESCENDANTS>
-          <NODEREF id="top" />
-          <NODEREF id="lounge_legs"/>
-          <NODEREF id="top_ajustable"/>
-        </DESCENDANTS>
-
-    </NODE>
+        <TRANSLATION x="15" y="0.1" z="43"/>
+        <SCALE sx="0.8" sy="0.8" sz="0.6" />
+         <ROTATION axis="y" angle="-5" />
 
 
-    <!-- Lounge chair-->
-    <NODE id="lounge_chair1">
-        <MATERIAL id="null" />
-        <TEXTURE id="ball" />
-
-        <TRANSLATION x="43" y="-2.5" z="10" />
-        <ROTATION axis="y" angle="-90" />
-        <SCALE sx="1.3" sy="1" sz="1" />
 
         <DESCENDANTS>
           <NODEREF id="top" />
@@ -880,6 +810,7 @@
 
         <TRANSLATION x="0" y="2.5" z="0" />
         <SCALE sx="1" sy="0.5" sz="1" />
+
 
         <DESCENDANTS>
           <NODEREF id="leg1" />
