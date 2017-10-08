@@ -59,7 +59,7 @@ MyBaselessCylinder.prototype.initBuffers = function() {
 
     }
 
-    console.log(this.vertices);
+
 
 
     for (var q = 0; q < this.stacks; q++) {

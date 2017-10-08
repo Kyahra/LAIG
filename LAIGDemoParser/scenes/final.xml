@@ -23,7 +23,7 @@
 <LIGHTS>
 	<LIGHT id="light0">
         <enable value ="1" />
-        <position  x="5" y="15" z="5" w="1" />
+        <position  x="2.5" y="15" z="1.5" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -31,7 +31,7 @@
 
 	<LIGHT id="light1">
         <enable value ="1" />
-        <position x="55" y="15" z="5" w="1" />
+        <position x="70" y="15" z="1.5" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -39,7 +39,7 @@
 
 	<LIGHT id="light2">
         <enable value ="1" />
-        <position x="5" y="15" z="45" w="1" />
+        <position x="2.5" y="15" z="75" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -47,10 +47,10 @@
 
     <LIGHT id="light3">
         <enable value ="1" />
-        <position x="55" y="15" z="45" w="1" />
+        <position x="70" y="15" z="75" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
-        <specular r="0.6" g="0.6" b="0.6" a="1.0" />
+        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
     </LIGHT>
 
 </LIGHTS>
@@ -74,6 +74,13 @@
         <amplif_factor s="0.2" t="0.2" />
     </TEXTURE>
 
+    <TEXTURE id="floor">
+        <file path="images/floor.jpg" />
+        <amplif_factor s="0.4" t="0.4" />
+    </TEXTURE>
+
+
+
     <!-- Rocks -->
     <TEXTURE id="grass">
         <file path="images/grass.jpg" />
@@ -95,8 +102,29 @@
     <!-- Poll ball -->
     <TEXTURE id="pink">
         <file path="images/pink.jpg" />
+        <amplif_factor s="0.5" t="0.5" />
+    </TEXTURE>
+
+    <TEXTURE id="straw">
+        <file path="images/straw.jpg" />
+        <amplif_factor s="0.5" t="0.5" />
+    </TEXTURE>
+
+    <TEXTURE id="stick">
+        <file path="images/stick.jpg" />
+        <amplif_factor s="0.5" t="0.5" />
+    </TEXTURE>
+
+    <TEXTURE id="towel1">
+        <file path="images/towel1.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
+
+    <TEXTURE id="towel2">
+        <file path="images/towel2.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
 
 </TEXTURES>
 
@@ -114,17 +142,17 @@
 	<!-- Tree leaves material -->
 	<MATERIAL id="waterMaterial">
         <shininess value="10" />
-        <specular r="0.5" g="0.5" b="0.5" a="1" />
+        <specular r="0.7" g="0.7" b="0.7" a="1" />
         <diffuse r="0.3" g="0.3" b="0.3" a="1" />
         <ambient r="0.1" g="0.1" b="0.1" a="1" />
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
 
 	<!-- Tree trunk material -->
-	<MATERIAL id="trunkTreeMaterial">
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />
-        <diffuse r="0.6" g="0.298" b="0.0" a="1" />
+	<MATERIAL id="plasticMaterial">
+        <shininess value="70" />
+        <specular r="0.5" g="0.5" b="0.5" a="1" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1" />
         <ambient r="0.1" g="0.1" b="0.1" a="1" />
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
@@ -175,13 +203,142 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
+            <NODEREF id="umbrellas"/>
             <NODEREF id="table"/>
             <NODEREF id="ball" />
             <NODEREF id="floor" />
             <NODEREF id="cups"/>
             <NODEREF id="pool"/>
             <NODEREF id="ball_water"/>
+            <NODEREF id="towels"/>
+        </DESCENDANTS>
 
+    </NODE>
+
+    <NODE id="towels">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="towel1"/>
+            <NODEREF id="towel2"/>
+
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="towel1">
+        <MATERIAL id="null" />
+        <TEXTURE id="towel1" />
+
+        <TRANSLATION x="13.5" y="0.1" z="63.5"/>
+        <ROTATION axis="y" angle="4" />
+
+        <DESCENDANTS>
+            <NODEREF id="towel"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="towel2">
+        <MATERIAL id="null" />
+        <TEXTURE id="towel2" />
+
+        <TRANSLATION x="10" y="0.1" z="41"/>
+        <ROTATION axis="y" angle="-5" />
+
+        <DESCENDANTS>
+            <NODEREF id="towel"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="towel">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <SCALE sx="14" sy="1" sz="7"/>
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF  type="rectangle" args="0 1 1 0" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrellas">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="umbrella1"/>
+            <NODEREF id="umbrella2"/>
+
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrella1">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="15" y="0" z="65"/>
+        <ROTATION axis="x" angle="8" />
+        <ROTATION axis="z" angle="5" />
+
+        <DESCENDANTS>
+            <NODEREF id="umbrella"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrella2">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <TRANSLATION x="12" y="0" z="43"/>
+        <ROTATION axis="x" angle="-3" />
+        <ROTATION axis="z" angle="9" />
+
+        <DESCENDANTS>
+            <NODEREF id="umbrella"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrella">
+        <MATERIAL id="null" />
+        <TEXTURE id="straw" />
+
+        <DESCENDANTS>
+            <NODEREF id="umbrellaTop"/>
+            <NODEREF id="umbrellaBot"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrellaTop">
+        <MATERIAL id="null" />
+        <TEXTURE id="straw" />
+
+        <TRANSLATION x="0" y="9" z="0"/>
+        <SCALE sx="1.2" sy="1.2" sz="1.2"/>
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+            <LEAF  type="cylinder" args="3 5.5 0.2 20 20 1 0" />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="umbrellaBot">
+        <MATERIAL id="waterMaterial" />
+        <TEXTURE id="stick" />
+
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
         </DESCENDANTS>
 
     </NODE>
@@ -556,7 +713,7 @@
 
 
    <NODE id="ball_water">
-        <MATERIAL id="lightMaterial" />
+        <MATERIAL id="plasticMaterial" />
         <TEXTURE id="pink" />
 
         <TRANSLATION x="50" y="-1.1" z="60" />
@@ -584,7 +741,7 @@
 
     <NODE id="tiles">
         <MATERIAL id="null" />
-        <TEXTURE id="tiles" />
+        <TEXTURE id="floor" />
 
         <SCALE sx="35" sy="1" sz="25" />
         <TRANSLATION x="0" y="0" z="1" />
