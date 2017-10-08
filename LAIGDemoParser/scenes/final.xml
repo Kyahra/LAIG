@@ -211,6 +211,7 @@
             <NODEREF id="pool"/>
             <NODEREF id="ball_water"/>
             <NODEREF id="towels"/>
+            <NODEREF id="lounges"/>
         </DESCENDANTS>
 
     </NODE>
@@ -823,6 +824,78 @@
     </NODE>
 
 
+    <!-- Lounges -->
+
+    <NODE id="lounges">
+        <MATERIAL id="null" />
+        <TEXTURE id="null" />
+
+        <DESCENDANTS>
+            <NODEREF id="lounge_chair1"/>
+            <NODEREF id="lounge_chair2"/>
+
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- Lounge chair-->
+
+    <NODE id="lounge_chair2">
+        <MATERIAL id="null" />
+        <TEXTURE id="ball" />
+
+        <TRANSLATION x="57" y="-2.5" z="10" />
+        <ROTATION axis="y" angle="-90" />
+        <SCALE sx="1.3" sy="1" sz="1" />
+
+        <DESCENDANTS>
+          <NODEREF id="top" />
+          <NODEREF id="lounge_legs"/>
+          <NODEREF id="top_ajustable"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+
+
+
+    <!-- Lounge chair-->
+
+    <NODE id="lounge_chair1">
+        <MATERIAL id="null" />
+        <TEXTURE id="ball" />
+
+        <TRANSLATION x="43" y="-2.5" z="10" />
+        <ROTATION axis="y" angle="-90" />
+        <SCALE sx="1.3" sy="1" sz="1" />
+
+        <DESCENDANTS>
+          <NODEREF id="top" />
+          <NODEREF id="lounge_legs"/>
+          <NODEREF id="top_ajustable"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+
+    <!-- Lounge chair legs -->
+    <NODE id="lounge_legs">
+        <MATERIAL id="null" />
+        <TEXTURE id="stick" />
+
+        <TRANSLATION x="0" y="2.5" z="0" />
+        <SCALE sx="1" sy="0.5" sz="1" />
+
+        <DESCENDANTS>
+          <NODEREF id="leg1" />
+          <NODEREF id="leg2" />
+          <NODEREF id="leg3" />
+          <NODEREF id="leg4" />
+        </DESCENDANTS>
+
+    </NODE>
+
+
 
     <!-- Beer Pong table -->
     <NODE id="table">
@@ -835,6 +908,27 @@
         <DESCENDANTS>
           <NODEREF id="top" />
           <NODEREF id="legs"/>
+        </DESCENDANTS>
+
+    </NODE>
+
+
+    <!-- Lounge chair top ajustable -->
+    <NODE id="top_ajustable">
+        <MATERIAL id="null" />
+        <TEXTURE id="ball" />
+
+        <TRANSLATION x="-2" y="8.7" z="0" />
+        <ROTATION axis="z" angle="-45" />
+        <SCALE sx="5" sy="0.4" sz="8" />
+
+        <DESCENDANTS>
+          <NODEREF id="cubeFace1" />
+          <NODEREF id="cubeFace2" />
+          <NODEREF id="cubeFace3" />
+          <NODEREF id="cubeFace4" />
+          <NODEREF id="cubeFace5" />
+          <NODEREF id="cubeFace6" />
         </DESCENDANTS>
 
     </NODE>
