@@ -788,9 +788,9 @@
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
 
-        <TRANSLATION x="15" y="0.1" z="43"/>
-        <SCALE sx="0.8" sy="0.8" sz="0.6" />
-         <ROTATION axis="y" angle="-5" />
+        <TRANSLATION x="15" y="-2" z="40"/>
+        <SCALE sx="1" sy="0.8" sz="0.6" />
+         <ROTATION axis="y" angle="-10" />
 
 
 
