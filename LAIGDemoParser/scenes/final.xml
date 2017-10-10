@@ -100,8 +100,8 @@
     </TEXTURE>
 
     <!-- Poll ball -->
-    <TEXTURE id="pink">
-        <file path="images/pink.jpg" />
+    <TEXTURE id="red">
+        <file path="images/red.png" />
         <amplif_factor s="0.5" t="0.5" />
     </TEXTURE>
 
@@ -206,14 +206,15 @@
             <NODEREF id="ball_water"/>
             <NODEREF id="towel"/>
             <NODEREF id="lounge"/>
+		
         </DESCENDANTS>
 
     </NODE>
-
-
+	
+	
     <NODE id="towel">
         <MATERIAL id="null" />
-        <TEXTURE id="towel1" />
+        <TEXTURE id="null" />
 
         <TRANSLATION x="13.5" y="0.1" z="63.5"/>
         <SCALE sx="14" sy="1" sz="7"/>
@@ -673,7 +674,7 @@
 
    <NODE id="ball_water">
         <MATERIAL id="plasticMaterial" />
-        <TEXTURE id="pink" />
+        <TEXTURE id="red" />
 
         <TRANSLATION x="50" y="-1.1" z="60" />
         <SCALE sx="2" sy="2" sz="2" />
