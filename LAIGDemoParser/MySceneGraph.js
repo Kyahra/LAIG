@@ -1347,25 +1347,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
-
-						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
-
-						if (type != null)
-							this.log("   Leaf: "+ type);
-						else
-							this.warn("Error in leaf type");
-
-
-						var args = this.reader.getString(descendants[j],'args');
-
-						 if(args!=null)
-							this.log("   Leaf: "+ args);
-						 else
-							this.warn("Error in leaf args");
-
-
+						this.parseLeaf(descendants[j],nodeID);
 						this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
-                        sizeChildren++;
+						sizeChildren++;
 						}
 						else
 							this.onXMLMinorError("unknown tag <" + descendants[j].nodeName + ">");
@@ -1383,6 +1367,27 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
 
     return null ;
+}
+
+MySceneGraph.prototype.parseLeaf = function(leaf,nodeID) {
+	var type=this.reader.getItem(leaf, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
+
+	if (type != null)
+		this.log("   Leaf: "+ type);
+	else
+		this.warn("Error in leaf type");
+
+
+	var args = this.reader.getString(leaf,'args');
+
+	if(args!=null)
+		this.log("   Leaf: "+ args);
+	else
+		this.warn("Error in leaf args");
+
+
+	
+     
 }
 
 /*
