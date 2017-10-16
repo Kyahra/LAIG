@@ -1461,11 +1461,9 @@ MySceneGraph.prototype.displayScene = function() {
 }
 
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
-
-
+	
 
 	for(var i =0;i< children.length;i++){
-
 
 		if(children[i] instanceof MyGraphLeaf){
 
@@ -1477,11 +1475,9 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         var texture = this.textures[textureID];
 
 
-
         if(texture != null){
       	   material.setTexture(texture[0]);
            children[i].setAmpSAmpT(texture[1],texture[2]);
-
          }
 
          if(material != null){
@@ -1491,24 +1487,30 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         children[i].display();
 
 		}else{
+			
+	  var tex;
+	  var mat;
 
       var node = this.nodes[children[i]];
 
       if (node.textureID != 'null'){
-        textureID = node.textureID;
-      }
-
+        tex = node.textureID;
+      }else
+		tex = textureID;
+		  
+		  
 
       if (node.materialID != 'null'){
-        materialID =node.materialID;
-      }
+        mat =node.materialID;
+      }else
+		 mat = materialID;
 
 
       this.scene.pushMatrix();
 
       this.scene.multMatrix(node.transformMatrix);
 
-      this.displayAux(node.children,materialID,textureID);
+      this.displayAux(node.children,mat,tex);
 
       this.scene.popMatrix();
 
