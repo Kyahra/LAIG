@@ -206,9 +206,34 @@
             <NODEREF id="ball_water"/>
             <NODEREF id="towel"/>
             <NODEREF id="lounge"/>
+			<NODEREF id="test"/>
 		
         </DESCENDANTS>
+    </NODE>
 
+	
+	<NODE id="test">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="floor" />
+
+        <SCALE sx="50" sy="50" sz="50" />
+        
+        <DESCENDANTS>
+			<LEAF type="patch" args="20 10">
+				<CPLINE>
+					<CPOINT xx="-1.5" yy="-1.5" zz="0" ww="1" />
+					<CPOINT xx="-1.5" yy="1.5" zz="0" ww="1" />
+				</CPLINE>
+				<CPLINE>
+					<CPOINT xx="0" yy="-1.5" zz="3" ww="1" />
+					<CPOINT xx="0" yy="1.5" zz="3" ww="1" />
+				</CPLINE>
+				<CPLINE>
+					<CPOINT xx="1.5" yy="-1.5" zz="0" ww="1" />
+					<CPOINT xx="1.5" yy="1.5" zz="0" ww="1" />
+				</CPLINE>
+			</LEAF>
+		</DESCENDANTS>
     </NODE>
 
 	 <NODE id="ball_water">

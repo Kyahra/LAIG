@@ -1347,8 +1347,27 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 else
 					if (descendants[j].nodeName == "LEAF")
 					{
-						this.parseLeaf(descendants[j],nodeID);
-						this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
+						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
+
+						if (type != null)
+							this.log("   Leaf: "+ type);
+						else
+						this.warn("Error in leaf type");
+	
+
+						var args = this.reader.getString(descendants[j],'args');
+
+						if(args!=null)
+							this.log("   Leaf: "+ args);
+						else
+							this.warn("Error in leaf args");
+											
+						
+						if(type == 'patch')
+							this.nodes[nodeID].addLeaf(new MyPatch(this,descendants[j]));
+						else
+							this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
+						
 						sizeChildren++;
 						}
 						else
@@ -1368,28 +1387,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
     return null ;
 }
-
-MySceneGraph.prototype.parseLeaf = function(leaf,nodeID) {
-	var type=this.reader.getItem(leaf, 'type', ['rectangle', 'cylinder', 'sphere', 'triangle']);
-
-	if (type != null)
-		this.log("   Leaf: "+ type);
-	else
-		this.warn("Error in leaf type");
-
-
-	var args = this.reader.getString(leaf,'args');
-
-	if(args!=null)
-		this.log("   Leaf: "+ args);
-	else
-		this.warn("Error in leaf args");
-
-
-	
-     
-}
-
 /*
  * Callback to be executed on any read error
  */
