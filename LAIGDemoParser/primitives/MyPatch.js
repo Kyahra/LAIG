@@ -16,7 +16,7 @@ function MyPatch(graph, xmlelem,degree1,degree2,controlVertexes) {
 		controlPointsList.push(tmp);
 }
 
-		console.log(controlPointsList);
+
 
 	var nurbsSurface = new CGFnurbsSurface(degree1, degree2, knots1, knots2, controlPointsList);
 
@@ -24,11 +24,8 @@ function MyPatch(graph, xmlelem,degree1,degree2,controlVertexes) {
 		return nurbsSurface.getPoint(u, v);
 	};
 
-	console.log(this.args[0]);
-		console.log(this.args[1]);
 
 	this.primitive = new CGFnurbsObject(graph.scene, getSurfacePoint,20 ,20);
-
 
 	}
 
