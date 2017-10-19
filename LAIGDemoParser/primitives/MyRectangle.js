@@ -13,8 +13,6 @@ function MyRectangle(scene, x0, y0, x1, y1) {
 
 
 MyRectangle.prototype = Object.create(CGFobject.prototype);
-
-
 MyRectangle.prototype.constructor=MyRectangle;
 
 

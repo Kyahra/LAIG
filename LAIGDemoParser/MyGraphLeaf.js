@@ -24,9 +24,6 @@ function MyGraphLeaf(graph, xmlelem) {
 
 	if(this.type == 'cylinder')
 			this.primitive = new MyCylinder(graph.scene,this.args[0],this.args[1],this.args[2],this.args[3],this.args[4],this.args[5],this.args[6]);
-		
-	
-			
 
 }
 
@@ -34,7 +31,6 @@ function MyGraphLeaf(graph, xmlelem) {
 MyGraphLeaf.prototype.display = function(){
 	this.primitive.display();
 }
-
 
 MyGraphLeaf.prototype.setAmpSAmpT = function(amplifFactorS,amplifFactorT){
 

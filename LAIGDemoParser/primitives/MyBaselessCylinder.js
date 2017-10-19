@@ -19,7 +19,7 @@ MyBaselessCylinder.prototype.constructor = MyBaselessCylinder;
 MyBaselessCylinder.prototype.initBuffers = function() {
 
     //Sets the number os sides;
- 
+
     var stacks = this.stacks;
 
     var n = -2 * Math.PI / this.slices;
@@ -28,7 +28,7 @@ MyBaselessCylinder.prototype.initBuffers = function() {
     this.normals = [];
     this.indices = [];
     this.texCoords = [];
- 
+
 
     var patchLengthx = 1 / this.slices;
     var patchLengthy = 1 / this.stacks;
@@ -43,13 +43,11 @@ MyBaselessCylinder.prototype.initBuffers = function() {
 
 
         for (var i = 0; i <= this.slices; i++) {
-			
-			
+
+
             this.vertices.push(inc * Math.cos(i * n), inc * Math.sin(i * n), q * this.deltaHeight);
             this.normals.push(Math.cos(i * n), Math.sin(i * n), 0);
-			
-		
-			
+
             this.texCoords.push(xCoord, yCoord);
 
 
@@ -63,27 +61,24 @@ MyBaselessCylinder.prototype.initBuffers = function() {
 
     }
 	
-	yCoord =0;
-	
-
 
 	var sides = this.slices +1;
 
-	
+
     for (var q = 0; q < this.stacks; q++) {
         for (var i = 0; i < this.slices; i++) {
-          
+
 			this.indices.push(sides*q+i, sides*(q+1)+i, sides*q+i+1);
 			this.indices.push(sides*q+i+1, sides*(q+1)+i, sides*(q+1)+i+1);
-			
+
 			this.indices.push(sides*q+i, sides*q+i+1, sides*(q+1)+i);
 			this.indices.push(sides*q+i+1, sides*(q+1)+i+1, sides*(q+1)+i);
-			
+
         }
 
     }
-	
-	
+
+
 
 
     this.primitiveType = this.scene.gl.TRIANGLES;

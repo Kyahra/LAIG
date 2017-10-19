@@ -1345,15 +1345,15 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     }
                 }
                 else
-					if (descendants[j].nodeName == "LEAF")
-					{
+					if (descendants[j].nodeName == "LEAF"){
+
 						var type=this.reader.getItem(descendants[j], 'type', ['rectangle', 'cylinder', 'sphere', 'triangle', 'patch']);
 
 						if (type != null)
 							this.log("   Leaf: "+ type);
 						else
 						this.warn("Error in leaf type");
-	
+
 
 						var args = this.reader.getString(descendants[j],'args');
 
@@ -1361,14 +1361,90 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 							this.log("   Leaf: "+ args);
 						else
 							this.warn("Error in leaf args");
-											
-						
-						if(type == 'patch')
-							this.nodes[nodeID].addLeaf(new MyPatch(this,descendants[j]));
-						else
-							this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
-						
-						sizeChildren++;
+
+
+            if(type == 'patch'){
+
+              var degree1;
+              var degree2;
+              var controlvertexes =[];
+
+              var cpLines = descendants[j].children;
+              var CPLINEIndex = cpLines[0].nodeName.indexOf("CPLINE");
+                  if (CPLINEIndex == -1)
+                      return "a patch type leaf must have controlpoint line";
+
+                for(var l=0; l<cpLines.length; l++){
+
+                  var cPoints = descendants[j].children[CPLINEIndex+l].children;
+
+
+              		for (var k = 0; k < cPoints.length; k++) {
+
+
+              			if(cPoints[k].nodeName == "CPOINT"){
+
+                    var x = this.reader.getFloat(cPoints[k], 'xx');
+                            if (x == null ) {
+                                this.onXMLMinorError("unable to parse x component of control point");
+                				        break;
+                            }
+                          else if (isNaN(x))
+                              return "non-numeric value for x component of control point (node ID = " + nodeID + ")";
+
+
+              			var y = this.reader.getFloat(cPoints[k], 'yy');
+              			if (y== null ) {
+                              this.onXMLMinorError("unable to parse y component of control point");
+                              break;
+                           }
+                          else if (isNaN(y))
+                              return "non-numeric value for y component of control point (node ID = " + nodeID + ")";
+
+
+              			var z = this.reader.getFloat(cPoints[k], 'zz');
+                          if (z == null ) {
+                              this.onXMLMinorError("unable to parse z component of control point");
+                              break;
+                          }
+                          else if (isNaN(z))
+                              return "non-numeric value for z component of control point (node ID = " + nodeID + ")";
+
+
+              			var w = this.reader.getFloat(cPoints[k], 'ww');
+                          if (w == null ) {
+                              this.onXMLMinorError("unable to parse w component of control point");
+                              break;
+                          }
+                          else if (isNaN(w))
+                              return "non-numeric value for w component of control point (node ID = " + nodeID + ")";
+
+              			console.log("   CP  x: " + x);
+              			console.log("   CP  y: " + y);
+              			console.log("   CP  z: " + z);
+              			console.log("   CP  w: " + w);
+
+                    controlvertexes.push([x,y,z,w]);
+
+
+                }else{
+                    return "no control points defined for node with ID = " + nodeID;
+                  }
+               }
+              }
+
+              degree1= cpLines.length-1;
+              degree2= cPoints.length-1;
+              console.log("   degree  U: " + degree1);
+              console.log("   degree  V: " + degree2);
+
+              this.nodes[nodeID].addLeaf(new MyPatch(this,descendants[j],degree1,degree2,controlvertexes))
+
+            }else
+              this.nodes[nodeID].addLeaf(new MyGraphLeaf(this,descendants[j]));
+
+              sizeChildren++;
+
 						}
 						else
 							this.onXMLMinorError("unknown tag <" + descendants[j].nodeName + ">");
@@ -1376,8 +1452,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             }
             if (sizeChildren == 0)
                 return "at least one descendant must be defined for each intermediate node";
-        }
-        else
+        }else
             this.onXMLMinorError("unknown tag name <" + nodeName);
     }
 
@@ -1463,11 +1538,11 @@ MySceneGraph.prototype.displayScene = function() {
 }
 
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
-	
+
 
 	for(var i =0;i< children.length;i++){
 
-		if(children[i] instanceof MyGraphLeaf){
+		if(children[i] instanceof MyGraphLeaf || children[i] instanceof MyPatch){
 
         if(materialID != null && materialID !=-1)
           var material = this.materials[materialID];
@@ -1489,7 +1564,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         children[i].display();
 
 		}else{
-			
+
 	  var tex;
 	  var mat;
 
@@ -1499,8 +1574,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         tex = node.textureID;
       }else
 		tex = textureID;
-		  
-		  
+
+
 
       if (node.materialID != 'null'){
         mat =node.materialID;

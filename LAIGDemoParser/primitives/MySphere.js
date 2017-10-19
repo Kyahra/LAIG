@@ -22,6 +22,11 @@ MySphere.prototype.initBuffers = function() {
     var phi = (Math.PI) / this.stacks; // 0-180 deg -- latitude
     var n_verts = 0;
 
+    var patchLengthx = 1 / this.slices;
+    var patchLengthy = 1 / this.stacks;
+    var xCoord = 0;
+    var yCoord = 0;
+
 
     for (var i = 0; i <= this.slices; i++) {
         for (var j = 0; j <= this.stacks; j++) {
@@ -40,8 +45,15 @@ MySphere.prototype.initBuffers = function() {
                 this.indices.push(n_verts - 1, n_verts - 2, n_verts - this.stacks - 2);
             }
 
-            this.originalTexCoords.push(0.5 * x + 0.5, 0.5 - 0.5 * y);
+
+                yCoord += patchLengthy;
+
+          //  this.originalTexCoords.push(0.5 * x + 0.5, 0.5 - 0.5 * y);
+            this.originalTexCoords.push(  xCoord,yCoord);
         }
+
+        yCoord = 0;
+        xCoord += patchLengthx;
 
     }
 
