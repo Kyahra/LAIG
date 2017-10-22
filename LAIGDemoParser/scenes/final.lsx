@@ -206,8 +206,7 @@
             <NODEREF id="ball_water"/>
             <NODEREF id="towel"/>
             <NODEREF id="lounge"/>
-
-
+            
         </DESCENDANTS>
     </NODE>
 
