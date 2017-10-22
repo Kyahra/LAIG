@@ -27,11 +27,17 @@ function MyGraphLeaf(graph, xmlelem) {
 
 }
 
-
+/**
+ *  	Displays the leaf object
+ */
 MyGraphLeaf.prototype.display = function(){
 	this.primitive.display();
 }
 
+
+/**
+ *		Sets the Amplification factors
+ */
 MyGraphLeaf.prototype.setAmpSAmpT = function(amplifFactorS,amplifFactorT){
 
 	if(this.type == 'rectangle' || this.type == 'triangle')

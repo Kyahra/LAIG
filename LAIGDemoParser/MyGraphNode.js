@@ -2,7 +2,6 @@
  * MyGraphNode class, representing an intermediate node in the scene graph.
  * @constructor
 **/
-
 function MyGraphNode(graph, nodeID) {
     this.graph = graph;
 
@@ -39,8 +38,10 @@ MyGraphNode.prototype.addChild = function(nodeID) {
 	 this.children.push(leaf);
  }
 
- 
+
+/**
+*  Gets the children from this node
+*/
 MyGraphNode.prototype.getChildren = function() {
     return this.children;
 }
-

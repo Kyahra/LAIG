@@ -23,7 +23,7 @@ function MySceneGraph(filename, scene) {
     this.nodes = [];
 
 
-    this.idRoot = null;                    // The id of the root element.
+    this.idRoot = null;     // The id of the root element.
 
     this.axisCoords = [];
     this.axisCoords['x'] = [1, 0, 0];
@@ -876,6 +876,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
             var filepath = null ;
             var amplifFactorS = null ;
             var amplifFactorT = null ;
+
             // Retrieves texture specifications.
             for (var j = 0; j < texSpecs.length; j++) {
                 var name = texSpecs[j].nodeName;
@@ -1173,6 +1174,8 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
     for (var i = 0; i < children.length; i++) {
         var nodeName;
+
+        // Parses a root node
         if ((nodeName = children[i].nodeName) == "ROOT") {
             // Retrieves root node.
             if (this.idRoot != null )
@@ -1184,6 +1187,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 this.idRoot = root;
             }
         }
+        // Parses a generic node
         else if (nodeName == "NODE") {
             // Retrieves node ID.
             var nodeID = this.reader.getString(children[i], 'id');
@@ -1193,8 +1197,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-            this.log("Processing node "+nodeID);
-
+            this.log("Processing node " + nodeID);
 
 
             // Creates node.
@@ -1242,7 +1245,8 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             for (var j = 0; j < nodeSpecs.length; j++) {
                 switch (nodeSpecs[j].nodeName) {
                 case "TRANSLATION":
-                    // Retrieves translation parameters.
+
+                    // Retrieves x translation
                     var x = this.reader.getFloat(nodeSpecs[j], 'x');
                     if (x == null ) {
                         this.onXMLMinorError("unable to parse x-coordinate of translation; discarding transform");
@@ -1251,6 +1255,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(x))
                         return "non-numeric value for x-coordinate of translation (node ID = " + nodeID + ")";
 
+                    // Retrieves y translation
                     var y = this.reader.getFloat(nodeSpecs[j], 'y');
                     if (y == null ) {
                         this.onXMLMinorError("unable to parse y-coordinate of translation; discarding transform");
@@ -1259,6 +1264,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(y))
                         return "non-numeric value for y-coordinate of translation (node ID = " + nodeID + ")";
 
+                    // Retrieves z translation
                     var z = this.reader.getFloat(nodeSpecs[j], 'z');
                     if (z == null ) {
                         this.onXMLMinorError("unable to parse z-coordinate of translation; discarding transform");
@@ -1267,8 +1273,10 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(z))
                         return "non-numeric value for z-coordinate of translation (node ID = " + nodeID + ")";
 
+                    // Translates the object
                     mat4.translate(this.nodes[nodeID].transformMatrix, this.nodes[nodeID].transformMatrix, [x, y, z]);
                     break;
+
                 case "ROTATION":
                     // Retrieves rotation parameters.
                     var axis = this.reader.getItem(nodeSpecs[j], 'axis', ['x', 'y', 'z']);
@@ -1284,10 +1292,12 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(angle))
                         return "non-numeric value for rotation angle (node ID = " + nodeID + ")";
 
+                    // Rotates the object
                     mat4.rotate(this.nodes[nodeID].transformMatrix, this.nodes[nodeID].transformMatrix, angle * DEGREE_TO_RAD, this.axisCoords[axis]);
                     break;
+
                 case "SCALE":
-                    // Retrieves scale parameters.
+                    // Retrieves x scale parameter
                     var sx = this.reader.getFloat(nodeSpecs[j], 'sx');
                     if (sx == null ) {
                         this.onXMLMinorError("unable to parse x component of scaling; discarding transform");
@@ -1296,6 +1306,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(sx))
                         return "non-numeric value for x component of scaling (node ID = " + nodeID + ")";
 
+                    // Retrieves y scale parameter
                     var sy = this.reader.getFloat(nodeSpecs[j], 'sy');
                     if (sy == null ) {
                         this.onXMLMinorError("unable to parse y component of scaling; discarding transform");
@@ -1304,6 +1315,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(sy))
                         return "non-numeric value for y component of scaling (node ID = " + nodeID + ")";
 
+                    // Retrieves z scale parameter
                     var sz = this.reader.getFloat(nodeSpecs[j], 'sz');
                     if (sz == null ) {
                         this.onXMLMinorError("unable to parse z component of scaling; discarding transform");
@@ -1312,6 +1324,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     else if (isNaN(sz))
                         return "non-numeric value for z component of scaling (node ID = " + nodeID + ")";
 
+                    // Scales the object
                     mat4.scale(this.nodes[nodeID].transformMatrix, this.nodes[nodeID].transformMatrix, [sx, sy, sz]);
                     break;
                 default:
