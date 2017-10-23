@@ -1376,6 +1376,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 							this.warn("Error in leaf args");
 
 
+            // Patches parsing
             if(type == 'patch'){
 
               var degree1;
@@ -1397,6 +1398,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
               			if(cPoints[k].nodeName == "CPOINT"){
 
+                    // Parses xx component
                     var x = this.reader.getFloat(cPoints[k], 'xx');
                             if (x == null ) {
                                 this.onXMLMinorError("unable to parse x component of control point");
@@ -1405,7 +1407,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                           else if (isNaN(x))
                               return "non-numeric value for x component of control point (node ID = " + nodeID + ")";
 
-
+                    // Parses yy component
               			var y = this.reader.getFloat(cPoints[k], 'yy');
               			if (y== null ) {
                               this.onXMLMinorError("unable to parse y component of control point");
@@ -1414,7 +1416,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                           else if (isNaN(y))
                               return "non-numeric value for y component of control point (node ID = " + nodeID + ")";
 
-
+                    // Parses zz component
               			var z = this.reader.getFloat(cPoints[k], 'zz');
                           if (z == null ) {
                               this.onXMLMinorError("unable to parse z component of control point");
@@ -1423,7 +1425,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                           else if (isNaN(z))
                               return "non-numeric value for z component of control point (node ID = " + nodeID + ")";
 
-
+                    // Parses ww component
               			var w = this.reader.getFloat(cPoints[k], 'ww');
                           if (w == null ) {
                               this.onXMLMinorError("unable to parse w component of control point");
@@ -1451,6 +1453,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
               console.log("   degree  U: " + degree1);
               console.log("   degree  V: " + degree2);
 
+              // Adds the patch to the nodes
               this.nodes[nodeID].addLeaf(new MyPatch(this,descendants[j],degree1,degree2,controlvertexes))
 
             }else
@@ -1471,8 +1474,6 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
     console.log("Parsed nodes");
 
-
-
     return null ;
 }
 /*
@@ -1490,6 +1491,9 @@ MySceneGraph.prototype.onXMLMinorError = function(message) {
     console.warn("Warning: " + message);
 }
 
+/**
+ * Enables log command
+ */
 MySceneGraph.prototype.log = function(message) {
     console.log("   " + message);
 }
@@ -1545,11 +1549,12 @@ MySceneGraph.prototype.displayScene = function() {
 
 	this.displayAux(rootNode.children,this.defaultMaterialID,"null");
 
-
-
-
 }
 
+
+/**
+ * Auxiliary function that display each node. It is recursevely called
+ */
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 
@@ -1606,8 +1611,6 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 		}
 	}
-
-
 
 
 }
