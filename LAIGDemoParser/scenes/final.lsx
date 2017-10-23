@@ -206,10 +206,28 @@
             <NODEREF id="ball_water"/>
             <NODEREF id="towel"/>
             <NODEREF id="lounge"/>
-            
+            <NODEREF id="tri"/>
+
         </DESCENDANTS>
     </NODE>
 
+    <NODE id="tri">
+         <MATERIAL id="null" />
+         <TEXTURE id="tiles" />
+
+         <TRANSLATION x="67.5" y="0.1" z="1.6" />
+         <SCALE sx="3" sy="3" sz="3" />
+         <ROTATION axis="x" angle="-90" />
+         <ROTATION axis="z" angle="180" />
+
+
+
+         <DESCENDANTS>
+           <LEAF  type="triangle" args="0 0 0 3 0 0 0 3 0" />
+         </DESCENDANTS>
+
+
+     </NODE>
 
 
 	 <NODE id="ball_water">
