@@ -5,9 +5,10 @@ var INITIALS_INDEX = 0;
 var ILLUMINATION_INDEX = 1;
 var LIGHTS_INDEX = 2;
 var TEXTURES_INDEX = 3;
-var MATERIALS_INDEX = 4;
-var LEAVES_INDEX = 5;
-var NODES_INDEX = 6;
+var ANIMATIONS_INDEX = 4;
+var MATERIALS_INDEX = 5;
+var LEAVES_INDEX = 6;
+var NODES_INDEX = 7;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -126,6 +127,17 @@ MySceneGraph.prototype.parseLSXFile = function(rootElement) {
             this.onXMLMinorError("tag <TEXTURES> out of order");
 
         if ((error = this.parseTextures(nodes[index])) != null )
+            return error;
+    }
+	
+	// <ANIMATIONS>
+    if ((index = nodeNames.indexOf("ANIMATIONS")) == -1)
+        return "tag <ANIMATIONS> missing";
+    else {
+        if (index != ANIMATIONS_INDEX)
+            this.onXMLMinorError("tag <ANIMATIONS> out of order");
+
+        if ((error = this.parseAnimations(nodes[index])) != null )
             return error;
     }
 
@@ -928,6 +940,81 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
         return "at least one texture must be defined in the TEXTURES block";
 
     console.log("Parsed textures");
+}
+
+/**
+ * Parses the <ANIMATIONS> block
+ */
+ MySceneGraph.prototype.parseAnimations = function(animationsNode) {
+
+    this.animations = [];
+
+    var eachAnimation = animationsNode.children;
+    // Each animation.
+
+    var oneAnimationDefined = false;
+
+    for (var i = 0; i < eachAnimation.length; i++) {
+        var nodeName = eachAnimation[i].nodeName;
+        if (nodeName == "ANIMATION") {
+            // Retrieves animation ID.
+            var animationID = this.reader.getString(eachAnimation[i], 'id');
+            if (animationID == null )
+                return "failed to parse animation ID";
+            // Checks if ID is valid.
+            if (this.animations[animationID] != null )
+                return "animation ID must unique (conflict with ID = " + animationID + ")";
+			
+			var speed = this.reader.getString(eachAnimation[i],'speed');
+			var type = this.reader.getString(eachAnimation[i],'type');
+
+            if(type == 'linear'){
+				var controlPoints = eachAnimation[i].children;
+				var CPs =[];
+				
+				for (var i = 0; i < controlPoints.length; i++) {
+
+              		if(controlPoints[i].nodeName == "controlpoint"){
+
+                    // Parses xx component
+                    var x = this.reader.getFloat(controlPoints[i], 'xx');
+                            if (x == null ) {
+                                this.onXMLMinorError("unable to parse x component of control point");
+                				        break;
+                            }
+                          else if (isNaN(x))
+                              return "non-numeric value for x component of control point (animation ID = " + animationID + ")";
+
+                    // Parses yy component
+              			var y = this.reader.getFloat(controlPoints[i], 'yy');
+              			if (y== null ) {
+                              this.onXMLMinorError("unable to parse y component of control point");
+                              break;
+                           }
+                          else if (isNaN(y))
+                              return "non-numeric value for y component of control point (animation ID = " + animationID + ")";
+
+                    // Parses zz component
+              			var z = this.reader.getFloat(controlPoints[i], 'zz');
+                          if (z == null ) {
+                              this.onXMLMinorError("unable to parse z component of control point");
+                              break;
+                          }
+                          else if (isNaN(z))
+                              return "non-numeric value for z component of control point (animation ID = " + animationID + ")";
+
+              			console.log("   CP  x: " + x);
+              			console.log("   CP  y: " + y);
+              			console.log("   CP  z: " + z);
+
+                    CPs.push([x,y,z]);
+				}
+				
+			}
+           
+            
+
+    console.log("Parsed animations");
 }
 
 /**
