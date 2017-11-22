@@ -13,3 +13,11 @@ function normalizeVector(vector) {
 function subtractPoints(point1, point2) {
     return [point2[0] - point1[0], point2[1] - point1[1], point2[2] - point1[2]];
 }
+
+function addPoints(point1, point2) {
+    return [point1[0] + point2[0], point1[1] + point2[1], point1[2] + point2[2]];
+}
+
+function multVector(vector, constant) {
+    return [vector[0] * constant, vector[1] * constant, vector[2] * constant];
+}

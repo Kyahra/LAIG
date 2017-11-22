@@ -1675,7 +1675,7 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
-
+	
 	for(var i =0;i< children.length;i++){
 
 		if(children[i] instanceof MyGraphLeaf || children[i] instanceof MyPatch){
@@ -1727,8 +1727,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 	  var animationID = node.getCurrentAnimation();
 	  if(animationID != -1){
 		  var animation = this.animations[animationID];
-		  console.log(animation);
-		  animation.resetAnimation();
+		  animation.apply();
 	  }
 
       this.displayAux(node.children,mat,tex);
@@ -1745,22 +1744,25 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 MySceneGraph.prototype.updateAnimations= function(deltaTime){
 	var rootNode = this.nodes[this.idRoot];
 	
+	
+	
 	for(var child of rootNode.children){
-		if(child instanceof MyGraphNode){
-		var animation = this.animations[child.getCurrentAnimation()];
-			if(animation != -1){
+		
+		var node = this.nodes[child];
+		
+		if(node instanceof MyGraphNode){
+	    var animationID = node.getCurrentAnimation();
+		console.log(animationID);
+			if(animationID != -1){
+			var animation = this.animations[animationID];
 			animation.update(deltaTime);
 			
 			if(animation.isDone()){
-				animation.resetAnimation();
-				child.updateCurrentAnimation();
+				node.updateCurrentAnimation();
+				console.log('yoooo');
 			}
 		}
-		
-		for (var child2 of child.children) {
-            child2.update(deltaTime);
-		
-		}
+	
 	}
 	
    

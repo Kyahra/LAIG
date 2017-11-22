@@ -65,7 +65,7 @@ MyGraphNode.prototype.getCurrentAnimation = function(){
 
 
 MyGraphNode.prototype.updateCurrentAnimation = function(){
-	if(this.currentAnimation == (this.animations -1))
+	if(this.currentAnimation == (this.animations.length -1))
 		this.currentAnimation = -1;
 	else
 		this.currentAnimation++;
