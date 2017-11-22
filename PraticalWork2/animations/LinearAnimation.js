@@ -5,7 +5,7 @@ class LinearAnimation extends Animation{
     super(scene, id, speed);
 
     this.points = points;
-	this.speed(speed);
+	this.speed= speed;
     this.resetAnimation();
 
 	}

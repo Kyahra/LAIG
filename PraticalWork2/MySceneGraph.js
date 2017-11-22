@@ -952,8 +952,6 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
     var eachAnimation = animationsNode.children;
     // Each animation.
 
-    var oneAnimationDefined = false;
-
     for (var i = 0; i < eachAnimation.length; i++) {
         var nodeName = eachAnimation[i].nodeName;
         if (nodeName == "ANIMATION") {
@@ -1009,13 +1007,22 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
                     CPs.push([x,y,z]);
 				}
-				
+			  }
+			  
+			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
+
+			   this.textures[textureID] = [texture, amplifFactorS, amplifFactorT];
 			}
+			
+			}else
+            this.onXMLMinorError("unknown tag name <" + nodeName + ">");
+		}  
            
             
 
     console.log("Parsed animations");
 }
+
 
 /**
  * Parses the <MATERIALS> node.
