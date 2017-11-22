@@ -13,8 +13,8 @@ class LinearAnimation extends Animation{
 	resetAnimation() {
         this.angleXZ = 0;
         this.angleYZ = 0;
-        this.currentPoint = this.points;
-        this.position = this.points.value;
+        this.currentPoint = 0;
+        this.position = this.points[0];
         this.done = false;
         //this.seqNum = 0;
         this.updateAnimation();
@@ -23,8 +23,9 @@ class LinearAnimation extends Animation{
 	
     updateAnimation() {
         this.timeElapsed = 0;
-        this.timeExpected = 1 / (this.speed / distance(this.currentPoint.value, this.currentPoint.next.value));
-        this.currentDirection = normalizeVector(subtractPoints(this.currentPoint.value, this.currentPoint.next.value));
+		
+        this.timeExpected = 1 / (this.speed / distance(this.points[this.currentPoint], this.points[this.currentPoint+1]));
+        this.currentDirection = normalizeVector(subtractPoints(this.points[this.currentPoint], this.points[this.currentPoint+1]));
 
         /* Updates rotation angle in order to align the object with the direction of animation */
         this.angleXZ = Math.atan2(this.currentDirection[0], this.currentDirection[2]);
@@ -55,12 +56,12 @@ class LinearAnimation extends Animation{
     }
 
     updateState() {
-        if (this.currentPoint.next.next === this.points) {
+        if (this.currentPoint ===2) {
             this.done = true;
             return;
         }
 
-        this.currentPoint = this.currentPoint.next;
+        this.currentPoint++;
         this.updateAnimation();
     }
 	

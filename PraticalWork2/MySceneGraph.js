@@ -1011,7 +1011,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 			  
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 
-			   this.textures[textureID] = [texture, amplifFactorS, amplifFactorT];
+			   this.animations[animationID] = [animation];
 			}
 			
 			}else
