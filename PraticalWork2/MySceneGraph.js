@@ -1011,7 +1011,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 			  
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 
-			   this.animations[animationID] = [animation];
+			   this.animations[animationID] = animation;
 			}
 			
 			}else
@@ -1334,7 +1334,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "ID does not correspond to a valid texture (node ID = " + nodeID + ")";
 
             this.nodes[nodeID].textureID = textureID;
-
+			
             // Retrieves possible transformations.
             for (var j = 0; j < nodeSpecs.length; j++) {
                 switch (nodeSpecs[j].nodeName) {
@@ -1425,6 +1425,30 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     break;
                 }
             }
+			
+			// Retrieves information about animations.
+            var animationsIndex = specsNames.indexOf("ANIMATIONREFS");
+            if (animationsIndex != -1){
+            var animations = nodeSpecs[animationsIndex].children;
+
+            var sizeChildren = 0;
+            for (var j = 0; j < animations.length; j++) {
+                if (animations[j].nodeName == "ANIMATIONREF")
+				{
+
+					var curId = this.reader.getString(animations[j], 'id');
+
+					this.log("   Animation: "+curId);
+
+                    if (curId == null )
+                        this.onXMLMinorError("unable to parse animation id");
+                    else 
+                        this.nodes[nodeID].addAnimation(curId);
+                    
+					}
+
+				}
+			}
 
             // Retrieves information about children.
             var descendantsIndex = specsNames.indexOf("DESCENDANTS");
@@ -1698,6 +1722,14 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
       this.scene.pushMatrix();
 
       this.scene.multMatrix(node.transformMatrix);
+	  
+	  
+	  var animationID = node.getCurrentAnimation();
+	  if(animationID != -1){
+		  var animation = this.animations[animationID];
+		  console.log(animation);
+		  animation.resetAnimation();
+	  }
 
       this.displayAux(node.children,mat,tex);
 
@@ -1705,6 +1737,33 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 		}
 	}
-
+	
 
 }
+
+
+MySceneGraph.prototype.updateAnimations= function(deltaTime){
+	var rootNode = this.nodes[this.idRoot];
+	
+	for(var child of rootNode.children){
+		if(child instanceof MyGraphNode){
+		var animation = this.animations[child.getCurrentAnimation()];
+			if(animation != -1){
+			animation.update(deltaTime);
+			
+			if(animation.isDone()){
+				animation.resetAnimation();
+				child.updateCurrentAnimation();
+			}
+		}
+		
+		for (var child2 of child.children) {
+            child2.update(deltaTime);
+		
+		}
+	}
+	
+   
+  }
+}
+

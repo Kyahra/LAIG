@@ -56,17 +56,17 @@ class LinearAnimation extends Animation{
     }
 
     updateState() {
-        if (this.currentPoint ===2) {
+		 if (this.currentPoint ==(this.points.length-1)) {
             this.done = true;
             return;
         }
-
-        this.currentPoint++;
+		
+		this.currentPoint++;
         this.updateAnimation();
     }
 	
 	
-    aplly() {
+    apply() {
         this.scene.translate(this.position[0], this.position[1], this.position[2]);
         this.scene.rotate(this.angleXZ, 0, 1, 0);
         this.scene.rotate(this.angleYZ, 1, 0, 0);

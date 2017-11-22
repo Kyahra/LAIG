@@ -29,6 +29,8 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+	
+	this.lastUpdateTime = (new Date()).getTime();
     
     this.axis = new CGFaxis(this);
 }
@@ -153,3 +155,8 @@ XMLscene.prototype.display = function() {
     // ---- END Background, camera and axis setup
     
 }
+
+XMLscene.prototype.update = function (currTime) {
+    this.graph.updateAnimations(currTime - this.lastUpdateTime);
+    this.lastUpdateTime = currTime;
+};
