@@ -21,8 +21,6 @@ class LinearAnimation extends Animation{
 
 
 	updateMatrix(node,deltaTime){
-			if (deltaTime > this.duration)
-				deltaTime = this.duration;
 
 			this.currentDistance = this.speed * deltaTime;
 
