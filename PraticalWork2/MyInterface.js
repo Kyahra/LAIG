@@ -26,8 +26,6 @@ MyInterface.prototype.init = function(application) {
 
     // add a group of controls (and open/expand by defult)
 
-
-
     return true;
 };
 
@@ -36,10 +34,9 @@ MyInterface.prototype.addObject = function () {
     var group = this.gui.addFolder("Shaders");
     group.open();
 
- 
 
-    group.add(this.scene, 'shaders', ['pila', '2', '3']);
-  
+    group.add(this.scene, 'shaders', ['Objeto 1', 'Objeto 2', 'Objeto 3']);
+
 };
 
 /**

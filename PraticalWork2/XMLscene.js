@@ -12,6 +12,7 @@ function XMLscene(interface) {
     this.lightValues = {};
 
     this.shaders = 0;
+
 }
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -37,6 +38,8 @@ XMLscene.prototype.init = function(application) {
 
 
     this.axis = new CGFaxis(this);
+
+    this.shaders = new CGFshader(this.gl);
 }
 
 /**
@@ -167,11 +170,14 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function (currTime) {
 
+    this.time = Math.sin(currTime) / 2 + 0.5;
+
     if(this.prevTime == -1)
 		this.graph.update(0);
 	else
 		this.graph.update(currTime-this.prevTime);
 
+    this.shaders.setUniformsValues({timeFactor:this.time});
 
 
 	this.prevTime = currTime;
