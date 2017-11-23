@@ -968,7 +968,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 			var speed = this.reader.getString(eachAnimation[i],'speed');
 			var type = this.reader.getString(eachAnimation[i],'type');
 
-            if(type == 'linear'){
+            if(type == 'linear' || type == 'bezier'){
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
@@ -1012,8 +1012,42 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 			  }
 
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
-
 			   this.animations[animationID] = animation;
+			   
+			}else{
+					//Parses xx component
+					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
+                            if (centerX == null ) {
+                                this.onXMLMinorError("unable to parse x component of center point");
+                				        break;
+                            }
+                          else if (isNaN(centerX))
+                              return "non-numeric value for x component of center point (animation ID = " + animationID + ")";
+
+                    // Parses yy component
+              			var centerY = this.reader.getFloat(eachAnimation[i],'centery');
+              			if (centerY== null ) {
+                              this.onXMLMinorError("unable to parse y component of center point");
+                              break;
+                           }
+                          else if (isNaN(centerY))
+                              return "non-numeric value for y component of center point (animation ID = " + animationID + ")";
+
+                    // Parses zz component
+              			var centerZ = this.reader.getFloat(eachAnimation[i],'centerz');
+                          if (centerZ == null ) {
+                              this.onXMLMinorError("unable to parse z component of center point");
+                              break;
+                          }
+                          else if (isNaN(centerZ))
+                              return "non-numeric value for z component of center point (animation ID = " + animationID + ")";
+
+				var radius = this.reader.getString(eachAnimation[i],'radius');
+				var startang = this.reader.getString(eachAnimation[i],'stratang');
+				var rotang = this.reader.getString(eachAnimation[i],'rotang');
+				
+				//var animation = new LinearAnimation(this.scene);
+				//this.animations[animationID] = animation;
 			}
 
 			}else
