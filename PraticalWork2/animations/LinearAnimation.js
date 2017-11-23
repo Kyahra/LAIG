@@ -20,11 +20,9 @@ class LinearAnimation extends Animation{
 	}
 
 
-	getAnimMatrix(deltaTime,initialTransforms){
+	updateMatrix(node,deltaTime){
 			if (deltaTime > this.duration)
 				deltaTime = this.duration;
-
-		  this.animTransforms= initialTransforms;
 
 			this.currentDistance = this.speed * deltaTime;
 
@@ -45,21 +43,10 @@ class LinearAnimation extends Animation{
 				lastSegDist = this.segmentDistances[i - 1];
 
 			var displacement = (this.currentDistance - lastSegDist) / (this.segmentDistances[i] - lastSegDist);
-			mat4.translate(this.animTransforms, this.animTransforms, [(p2[0] - p1[0]) * displacement + p1[0], (p2[1] - p1[1]) * displacement + p1[1], (p2[2] - p1[2]) * displacement + p1[2]]);
+			mat4.translate(node.animMatrix, node.animMatrix, [(p2[0] - p1[0]) * displacement + p1[0], (p2[1] - p1[1]) * displacement + p1[1], (p2[2] - p1[2]) * displacement + p1[2]]);
 
 			// calculate rotation angle and apply rotation
-			var rotationAngle = Math.atan((p2[0] - p1[0]) / (p2[2] - p1[2]));
-
-			if (p2[2] - p1[2] < 0)
-				rotationAngle += Math.PI;
-
-			if (p2[0] - p1[0] == 0 && p2[2] - p1[2] == 0)
-				rotationAngle = this.previousAngle;
-
-			this.previousAngle = rotationAngle;
-
-			mat4.rotate(this.animTransforms, this.animTransforms, rotationAngle, [0,1,0]);
-
-			return this.animTransforms;
+			
 			}
+			
 }
