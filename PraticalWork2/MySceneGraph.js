@@ -955,14 +955,13 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
     // Each animation.
 
     for (var i = 0; i < eachAnimation.length; i++) {
-			console.log('yo');
 
             // Retrieves animation ID.
             var animationID = this.reader.getString(eachAnimation[i], 'id');
             if (animationID == null )
                 return "failed to parse animation ID";
-			
-			
+
+
             // Checks if ID is valid.
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
@@ -970,7 +969,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 			var speed = this.reader.getString(eachAnimation[i],'speed');
 			var type = this.reader.getString(eachAnimation[i],'type');
 
-            if(type == 'linear' || type == 'bezier'){
+        if(type == 'linear' || type == 'bezier'){
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
@@ -1015,7 +1014,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 			   this.animations[animationID] = animation;
-			   
+
 			}else{
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
@@ -1043,21 +1042,21 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                           }
                           else if (isNaN(centerZ))
                               return "non-numeric value for z component of center point (animation ID = " + animationID + ")";
-						  
+
 				var center =[];
 				center.push(centerX);
 				center.push(centerY);
 				center.push(centerZ);
 
 				var radius = this.reader.getString(eachAnimation[i],'radius');
-				var startang = this.reader.getString(eachAnimation[i],'stratang');
+				var startang = this.reader.getString(eachAnimation[i],'startang');
 				var rotang = this.reader.getString(eachAnimation[i],'rotang');
-				
-				//var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
-				//this.animations[animationID] = animation;
+
+				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
+				this.animations[animationID] = animation;
 			}
 
-			
+
 		}
 
 
@@ -1343,7 +1342,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
             var specsNames = [];
-            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS"];
+            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS","ANIMATIONREFS"];
             for (var j = 0; j < nodeSpecs.length; j++) {
                 var name = nodeSpecs[j].nodeName;
                 specsNames.push(nodeSpecs[j].nodeName);
@@ -1765,7 +1764,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 	  this.scene.multMatrix(node.animMatrix);
       this.scene.multMatrix(node.transformMatrix);
-	  
+
 
       this.displayAux(node.children,mat,tex);
 

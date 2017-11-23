@@ -66,11 +66,16 @@
 </TEXTURES>
 
 <ANIMATIONS>
-	<ANIMATION id="Test1" speed="5" type="linear">
+	<ANIMATION id="Test1" speed="10" type="linear">
 		<controlpoint xx="0" yy="0" zz="0" />
 		<controlpoint xx="1" yy="0" zz="0" />
 		<controlpoint xx="1" yy="1" zz="0" />
 	</ANIMATION>
+
+  <ANIMATION id="Test2" speed="10" type="circular"
+			   centerx="0" centery="0" centerz="0"
+			   radius="5" startang="40" rotang="360"
+	/>
 </ANIMATIONS>
 
 
@@ -123,12 +128,10 @@
         <MATERIAL id="plasticMaterial" />
         <TEXTURE id="red" />
 
-        <SCALE sx="1.7" sy="1.7" sz="1.7" />
-        <ROTATION axis="x" angle="-25" />
-        <ROTATION axis="z" angle="-15" />
+
 
 		<ANIMATIONREFS>
-			<ANIMATIONREF id="Test1" />
+			<ANIMATIONREF id="Test2" />
 		</ANIMATIONREFS>
 
         <DESCENDANTS>
