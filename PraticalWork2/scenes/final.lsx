@@ -69,7 +69,7 @@
 	<ANIMATION id="Test1" speed="10" type="linear">
 		<controlpoint xx="0" yy="0" zz="0" />
 		<controlpoint xx="1" yy="0" zz="0" />
-		<controlpoint xx="1" yy="1" zz="0" /> 	
+		<controlpoint xx="1" yy="1" zz="0" />
 	</ANIMATION>
 </ANIMATIONS>
 
@@ -112,13 +112,13 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-           
+
             <NODEREF id="ball_water"/>
 
         </DESCENDANTS>
     </NODE>
 
-    
+
 	 <NODE id="ball_water">
         <MATERIAL id="plasticMaterial" />
         <TEXTURE id="red" />
@@ -126,7 +126,7 @@
         <SCALE sx="1.7" sy="1.7" sz="1.7" />
         <ROTATION axis="x" angle="-25" />
         <ROTATION axis="z" angle="-15" />
-		
+
 		<ANIMATIONREFS>
 			<ANIMATIONREF id="Test1" />
 		</ANIMATIONREFS>

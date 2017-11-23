@@ -2,66 +2,64 @@ class LinearAnimation extends Animation{
 
 	constructor(scene, id, speed, points){
 
-    this.scene = scene;
-	this.id = id;
-	this.time = time;
-	this.points = points;
-	this.distance = 0;
-	this.segmentDistances = [];
-	for (var i = 0; i < points.length - 1; i++) {
-		this.distance += vec3.dist(vec3.fromValues(points[i][0], points[i][1], points[i][2]), vec3.fromValues(points[i + 1][0], points[i + 1][1], points[i + 1][2]));
-		this.segmentDistances.push(this.distance);
-	}
-	this.velocity = this.distance / time;
-	this.previousAngle = 0;
+	  super(scene,id,speed);
+
+		this.points = points;
+		this.distance = 0;
+		this.segmentDistances = [];
+		for (var i = 0; i < points.length - 1; i++) {
+			this.distance += vec3.dist(vec3.fromValues(points[i][0], points[i][1], points[i][2]), vec3.fromValues(points[i + 1][0], points[i + 1][1], points[i + 1][2]));
+			this.segmentDistances.push(this.distance);
+		}
+
+		this.duration = this.distance / this.speed;
+		this.previousAngle = 0;
+
+		this.animTransforms = mat4.create();
 
 	}
- 
-
-    updateAnimation() {
-		console.log(this.points.length);
-		console.log(this.currentPoint)
-        this.timeElapsed = 0;
-		
-        this.timeExpected = 1 / (this.speed / distance(this.points[this.currentPoint], this.points[this.currentPoint+1]));
-        this.currentDirection = normalizeVector(subtractPoints(this.points[this.currentPoint], this.points[this.currentPoint+1]));
-
-        /* Updates rotation angle in order to align the object with the direction of animation */
-        this.angleXZ = Math.atan2(this.currentDirection[0], this.currentDirection[2]);
-        this.angleYZ = -Math.atan2(this.currentDirection[1], this.currentDirection[2]);
-    }
-
- 
-
-	update(deltaTime) {
-   
-		console.log('update');
-		
-        this.position = addPoints(this.position, multVector(this.currentDirection, this.speed * deltaTime / 1000));
-        this.timeElapsed += deltaTime / 1000;
 
 
-        if (this.timeElapsed >= this.timeExpected) {
-            this.updateState();
-        }
-    }
+	getAnimMatrix(deltaTime,initialTransforms){
+			if (deltaTime > this.duration)
+				deltaTime = this.duration;
 
-    updateState() {
-		
-		
-		 if (this.currentPoint <(this.points.length-1)) {
-			 this.currentPoint++;
-			 this.updateAnimation();
-        }
-		
-		
-    }
-	
-	
-    apply() {
-        this.scene.translate(this.position[0], this.position[1], this.position[2]);
-        this.scene.rotate(this.angleXZ, 0, 1, 0);
-        this.scene.rotate(this.angleYZ, 1, 0, 0);
-    }
+		  this.animTransforms= initialTransforms;
 
+			this.currentDistance = this.speed * deltaTime;
+
+			// find current segment
+			var i = 0;
+			while (this.currentDistance > this.segmentDistances[i] && i < this.segmentDistances.length)
+				i++;
+
+			// get control points from current segment
+			var p1 = this.points[i];
+			var p2 = this.points[i + 1];
+
+			// calculate displacement and apply translation
+			var lastSegDist;
+			if (i == 0)
+				lastSegDist = 0;
+			else
+				lastSegDist = this.segmentDistances[i - 1];
+
+			var displacement = (this.currentDistance - lastSegDist) / (this.segmentDistances[i] - lastSegDist);
+			mat4.translate(this.animTransforms, this.animTransforms, [(p2[0] - p1[0]) * displacement + p1[0], (p2[1] - p1[1]) * displacement + p1[1], (p2[2] - p1[2]) * displacement + p1[2]]);
+
+			// calculate rotation angle and apply rotation
+			var rotationAngle = Math.atan((p2[0] - p1[0]) / (p2[2] - p1[2]));
+
+			if (p2[2] - p1[2] < 0)
+				rotationAngle += Math.PI;
+
+			if (p2[0] - p1[0] == 0 && p2[2] - p1[2] == 0)
+				rotationAngle = this.previousAngle;
+
+			this.previousAngle = rotationAngle;
+
+			mat4.rotate(this.animTransforms, this.animTransforms, rotationAngle, [0,1,0]);
+
+			return this.animTransforms;
+			}
 }

@@ -31,6 +31,8 @@ function MySceneGraph(filename, scene) {
     this.axisCoords['y'] = [0, 1, 0];
     this.axisCoords['z'] = [0, 0, 1];
 
+    this.totalTime =0;
+
     // File reading
     this.reader = new CGFXMLreader();
 
@@ -129,7 +131,7 @@ MySceneGraph.prototype.parseLSXFile = function(rootElement) {
         if ((error = this.parseTextures(nodes[index])) != null )
             return error;
     }
-	
+
 	// <ANIMATIONS>
     if ((index = nodeNames.indexOf("ANIMATIONS")) == -1)
         return "tag <ANIMATIONS> missing";
@@ -962,14 +964,14 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
             // Checks if ID is valid.
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
-			
+
 			var speed = this.reader.getString(eachAnimation[i],'speed');
 			var type = this.reader.getString(eachAnimation[i],'type');
 
             if(type == 'linear'){
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
-				
+
 				for (var i = 0; i < controlPoints.length; i++) {
 
               		if(controlPoints[i].nodeName == "controlpoint"){
@@ -1008,17 +1010,17 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                     CPs.push([x,y,z]);
 				}
 			  }
-			  
+
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 
 			   this.animations[animationID] = animation;
 			}
-			
+
 			}else
             this.onXMLMinorError("unknown tag name <" + nodeName + ">");
-		}  
-           
-            
+		}
+
+
 
     console.log("Parsed animations");
 }
@@ -1334,7 +1336,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "ID does not correspond to a valid texture (node ID = " + nodeID + ")";
 
             this.nodes[nodeID].textureID = textureID;
-			
+
             // Retrieves possible transformations.
             for (var j = 0; j < nodeSpecs.length; j++) {
                 switch (nodeSpecs[j].nodeName) {
@@ -1425,7 +1427,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     break;
                 }
             }
-			
+
 			// Retrieves information about animations.
             var animationsIndex = specsNames.indexOf("ANIMATIONREFS");
             if (animationsIndex != -1){
@@ -1442,9 +1444,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
                     if (curId == null )
                         this.onXMLMinorError("unable to parse animation id");
-                    else 
+                    else
                         this.nodes[nodeID].addAnimation(curId);
-                    
+
 					}
 
 				}
@@ -1675,7 +1677,7 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
-	
+
 	for(var i =0;i< children.length;i++){
 
 		if(children[i] instanceof MyGraphLeaf || children[i] instanceof MyPatch){
@@ -1722,7 +1724,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
       this.scene.pushMatrix();
 
       this.scene.multMatrix(node.transformMatrix);
-	  
+
 
       this.displayAux(node.children,mat,tex);
 
@@ -1730,35 +1732,32 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 		}
 	}
-	
+
 
 }
 
 
 MySceneGraph.prototype.update= function(deltaTime){
-	
+  this.totalTime += deltaTime;
+
 	var rootNode = this.nodes[this.idRoot];
 
 	if(rootNode == null)
 		return "there is not root node";
 
-	this.updateAux(rootNode.children,deltaTime);
-	
+	this.updateAux(rootNode.children);
+
 }
 
-MySceneGraph.prototype.updateAux= function(children,deltaTime){
-	
-	for(var i; i =0; i < children.length){
-		
+MySceneGraph.prototype.updateAux= function(children){
+	for(var i=0; i < children.length;i++){
+
 		var node = this.nodes[children[i]];
-		
 		if(node instanceof MyGraphNode){
-			node.updateAnimations(deltaTime);
-			updateAux(node.children);
-			
-		}
-	
-	}
-		
-}
 
+			node.updateAnimations(this.totalTime );
+			this.updateAux(node.children);
+
+		}
+	}
+}
