@@ -10,6 +10,8 @@ function XMLscene(interface) {
     this.interface = interface;
 
     this.lightValues = {};
+
+    this.shaders = 0;
 }
 
 XMLscene.prototype = Object.create(CGFscene.prototype);
@@ -97,7 +99,7 @@ XMLscene.prototype.onGraphLoaded = function()
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
 
-    //this.interface.addObject();
+    this.interface.addObject();
 
 	this.setUpdatePeriod(1000/60);
 	this.prevTime = -1;

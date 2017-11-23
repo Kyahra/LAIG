@@ -36,12 +36,10 @@ MyInterface.prototype.addObject = function () {
     var group = this.gui.addFolder("Shaders");
     group.open();
 
-    obj = this;
-    group.add(this.scene, 'wireframe').onChange(function(v)
-		{
-      obj.scene.updateWireframe(v)
-    });
+ 
 
+    group.add(this.scene, 'shaders', ['pila', '2', '3']);
+  
 };
 
 /**
