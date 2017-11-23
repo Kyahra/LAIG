@@ -98,6 +98,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.interface.addLightsGroup(this.graph.lights);
 	
 	this.setUpdatePeriod(1000/60);
+	this.prevTime = -1;
 }
 
 /**
@@ -161,6 +162,12 @@ XMLscene.prototype.display = function() {
 }
 
 XMLscene.prototype.update = function (currTime) {
-    this.graph.updateAnimations(currTime - this.lastUpdateTime);
-    this.lastUpdateTime = currTime;
+	
+    if(this.prevTime == -1)
+		this.graph.update(0);
+	else
+		this.graph.update(currTime-this.prevTime);
+	
+	this.prevTime = currTime;
+
 };

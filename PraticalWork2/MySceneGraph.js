@@ -1723,12 +1723,6 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
       this.scene.multMatrix(node.transformMatrix);
 	  
-	  
-	  var animationID = node.getCurrentAnimation();
-	  if(animationID != -1){
-		  var animation = this.animations[animationID];
-		  animation.apply();
-	  }
 
       this.displayAux(node.children,mat,tex);
 
@@ -1741,31 +1735,30 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 }
 
 
-MySceneGraph.prototype.updateAnimations= function(deltaTime){
+MySceneGraph.prototype.update= function(deltaTime){
+	
 	var rootNode = this.nodes[this.idRoot];
+
+	if(rootNode == null)
+		return "there is not root node";
+
+	this.updateAux(rootNode.children,deltaTime);
 	
+}
+
+MySceneGraph.prototype.updateAux= function(children,deltaTime){
 	
-	
-	for(var child of rootNode.children){
+	for(var i; i =0; i < children.length){
 		
-		var node = this.nodes[child];
+		var node = this.nodes[children[i]];
 		
 		if(node instanceof MyGraphNode){
-	    var animationID = node.getCurrentAnimation();
-		console.log(animationID);
-			if(animationID != -1){
-			var animation = this.animations[animationID];
-			animation.update(deltaTime);
+			node.updateAnimations(deltaTime);
+			updateAux(node.children);
 			
-			if(animation.isDone()){
-				node.updateCurrentAnimation();
-				console.log('yoooo');
-			}
 		}
 	
 	}
-	
-   
-  }
+		
 }
 

@@ -2,17 +2,18 @@ class LinearAnimation extends Animation{
 
 	constructor(scene, id, speed, points){
 
-    super(scene, id, speed);
-
-    this.points = points;
-	this.speed= speed;
-  
-	this.angleXZ = 0;
-    this.angleYZ = 0;
-    this.currentPoint = 0;
-    this.position = this.points[0];
-    this.done = false;
-    this.updateAnimation();
+    this.scene = scene;
+	this.id = id;
+	this.time = time;
+	this.points = points;
+	this.distance = 0;
+	this.segmentDistances = [];
+	for (var i = 0; i < points.length - 1; i++) {
+		this.distance += vec3.dist(vec3.fromValues(points[i][0], points[i][1], points[i][2]), vec3.fromValues(points[i + 1][0], points[i + 1][1], points[i + 1][2]));
+		this.segmentDistances.push(this.distance);
+	}
+	this.velocity = this.distance / time;
+	this.previousAngle = 0;
 
 	}
  
