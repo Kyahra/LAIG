@@ -223,7 +223,7 @@
         <TEXTURE id="null" />   
 
 		<ANIMATIONREFS>
-			<ANIMATIONREF id="Test1" />
+			<ANIMATIONREF id="Test2" />
 		</ANIMATIONREFS>
 
         <DESCENDANTS>

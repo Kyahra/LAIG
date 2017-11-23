@@ -955,12 +955,14 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
     // Each animation.
 
     for (var i = 0; i < eachAnimation.length; i++) {
-        var nodeName = eachAnimation[i].nodeName;
-        if (nodeName == "ANIMATION") {
+			console.log('yo');
+
             // Retrieves animation ID.
             var animationID = this.reader.getString(eachAnimation[i], 'id');
             if (animationID == null )
                 return "failed to parse animation ID";
+			
+			
             // Checks if ID is valid.
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
@@ -972,12 +974,12 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
-				for (var i = 0; i < controlPoints.length; i++) {
+				for (var j = 0; j < controlPoints.length; j++) {
 
               		if(controlPoints[i].nodeName == "controlpoint"){
 
                     // Parses xx component
-                    var x = this.reader.getFloat(controlPoints[i], 'xx');
+                    var x = this.reader.getFloat(controlPoints[j], 'xx');
                             if (x == null ) {
                                 this.onXMLMinorError("unable to parse x component of control point");
                 				        break;
@@ -986,7 +988,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                               return "non-numeric value for x component of control point (animation ID = " + animationID + ")";
 
                     // Parses yy component
-              			var y = this.reader.getFloat(controlPoints[i], 'yy');
+              			var y = this.reader.getFloat(controlPoints[j], 'yy');
               			if (y== null ) {
                               this.onXMLMinorError("unable to parse y component of control point");
                               break;
@@ -995,7 +997,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                               return "non-numeric value for y component of control point (animation ID = " + animationID + ")";
 
                     // Parses zz component
-              			var z = this.reader.getFloat(controlPoints[i], 'zz');
+              			var z = this.reader.getFloat(controlPoints[j], 'zz');
                           if (z == null ) {
                               this.onXMLMinorError("unable to parse z component of control point");
                               break;
@@ -1041,17 +1043,21 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                           }
                           else if (isNaN(centerZ))
                               return "non-numeric value for z component of center point (animation ID = " + animationID + ")";
+						  
+				var center =[];
+				center.push(centerX);
+				center.push(centerY);
+				center.push(centerZ);
 
 				var radius = this.reader.getString(eachAnimation[i],'radius');
 				var startang = this.reader.getString(eachAnimation[i],'stratang');
 				var rotang = this.reader.getString(eachAnimation[i],'rotang');
 				
-				//var animation = new LinearAnimation(this.scene);
+				//var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
 				//this.animations[animationID] = animation;
 			}
 
-			}else
-            this.onXMLMinorError("unknown tag name <" + nodeName + ">");
+			
 		}
 
 

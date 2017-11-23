@@ -5,24 +5,22 @@ class CircularAnimation extends Animation {
 
         this.scene = scene;
 		this.id = id;
-		this.time = time;
-		var c = center.match(/[^ ]+/g);
 		this.center = center;
 		this.initialAngle = initialAngle;
 		this.rotAngle = rotAngle;
 		this.radius = radius;
 		
-		this.time = this.rotAngle /this.velocity;
+		this.duration = this.rotAngle /this.velocity;
 	
     }
 
     updateMatrix(node,deltaTime){ {
 		
-		this.scene.translate(this.center[0], this.center[1], this.center[2]);
+		mat4.translate(node.animMatrix, node.animMatrix, [this.center[0],this.center[1],this.center[2]]);
 
-		var angle = this.initialAngle + this.velocity * time;
-		this.scene.rotate(angle, 0, 1, 0);
+		var angle = this.initialAngle + this.velocity * deltaTime;
+		mat4.rotate(node.animMatrix, node.animMatrix, angle,[0,1,0]);
+		mat4.translate(node.animMatrix, node.animMatrix, [this.radius,0,0]);
 
-		this.scene.translate(this.radius, 0, 0);
 	}
 }
