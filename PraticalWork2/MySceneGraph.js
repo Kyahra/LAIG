@@ -961,8 +961,8 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
             var animationID = this.reader.getString(eachAnimation[i], 'id');
             if (animationID == null )
                 return "failed to parse animation ID";
-			
-			
+
+
             // Checks if ID is valid.
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
@@ -1015,7 +1015,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 			   this.animations[animationID] = animation;
-			   
+
 			}else{
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
@@ -1043,7 +1043,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                           }
                           else if (isNaN(centerZ))
                               return "non-numeric value for z component of center point (animation ID = " + animationID + ")";
-						  
+
 				var center =[];
 				center.push(centerX);
 				center.push(centerY);
@@ -1052,12 +1052,12 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				var radius = this.reader.getString(eachAnimation[i],'radius');
 				var startang = this.reader.getString(eachAnimation[i],'stratang');
 				var rotang = this.reader.getString(eachAnimation[i],'rotang');
-				
+
 				//var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
 				//this.animations[animationID] = animation;
 			}
 
-			
+
 		}
 
 
@@ -1333,8 +1333,16 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-            this.log("Processing node " + nodeID);
+/**
+*     NEW STUFF
+*/
+            // Retrieves selectable parameter
+            var nodeSelectable = this.reader.getString(children[i], 'selectable'):
+            if (nodeSelectable == null )
+                return "failed to retrieve node selectable";
 
+            this.log("Processing node " + nodeID);
+//////////////////////////
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
@@ -1765,7 +1773,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 	  this.scene.multMatrix(node.animMatrix);
       this.scene.multMatrix(node.transformMatrix);
-	  
+
 
       this.displayAux(node.children,mat,tex);
 
