@@ -1013,9 +1013,12 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                     CPs.push([x,y,z]);
 				         }
 			  }
-
-			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
-			   this.animations[animationID] = animation;
+			    if(type == 'linear')
+					var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
+				else
+					var animation = new BezierAnimation(this.scene,animationID,speed,CPs);
+				
+				this.animations[animationID] = animation;
 
 			}else if(type == 'circular'){
 					//Parses xx component

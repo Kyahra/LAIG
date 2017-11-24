@@ -13,9 +13,7 @@ class LinearAnimation extends Animation{
 		}
 
 		this.duration = this.distance / this.speed;
-		this.previousAngle = 0;
 
-		this.animTransforms = mat4.create();
 
 	}
 

@@ -78,9 +78,16 @@
 	/>
 
   <ANIMATION id="Test3" type="combo">
-    <SPANREF id="Test1"/>
     <SPANREF id="Test2"/>
+    <SPANREF id="Test1"/>
   </ANIMATION>
+  
+  <ANIMATION id="Test4" speed="10" type="bezier">
+		<controlpoint xx="0" yy="0" zz="0" />
+		<controlpoint xx="5" yy="0" zz="0" />
+		<controlpoint xx="5" yy="5" zz="0" />
+		<controlpoint xx="0" yy="5" zz="0" />
+	</ANIMATION>
 
 </ANIMATIONS>
 

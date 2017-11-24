@@ -16,7 +16,7 @@ class CircularAnimation extends Animation {
 
     updateMatrix(node,deltaTime){
 
-    mat4.identity(node.animMatrix);
+		mat4.identity(node.animMatrix);
 		mat4.translate(node.animMatrix, node.animMatrix, [this.center[0],this.center[1],this.center[2]]);
 
 		var angle =this.startAngle + ( deltaTime /this.duration) * this.rotAngle;
