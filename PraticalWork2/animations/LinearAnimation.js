@@ -40,6 +40,7 @@ class LinearAnimation extends Animation{
 			// calculate displacement and apply translation
 			var relativeDistance = this.currentDistance/this.segmentDistances[i];
 			
+			
 			mat4.translate(node.animMatrix, node.animMatrix, [(p2[0] - p1[0]) * relativeDistance , (p2[1] - p1[1]) * relativeDistance, (p2[2] - p1[2]) * relativeDistance ]);
 
 			// calculate rotation angle and apply rotation
@@ -47,6 +48,7 @@ class LinearAnimation extends Animation{
 			
 			var angle = angleBetween([0,0,1],subtractPoints(this.points[i],this.points[i+1]));
 			mat4.rotate(node.animMatrix,node.animMatrix, angle,[0,1,0]);
+			
 			
 			
 

@@ -66,10 +66,10 @@
 </TEXTURES>
 
 <ANIMATIONS>
-	<ANIMATION id="Test1" speed="5" type="linear">
+	<ANIMATION id="Test1" speed="1" type="linear">
 		<controlpoint xx="0" yy="0" zz="0" />
-		
 		<controlpoint xx="5" yy="0" zz="5" />
+		<controlpoint xx="0" yy="0" zz="5" />
 	</ANIMATION>
 
   <ANIMATION id="Test2" speed="10" type="circular"

@@ -173,13 +173,12 @@ XMLscene.prototype.update = function (currTime) {
     this.time = Math.sin(currTime) / 2 + 0.5;
 
     if(this.prevTime == -1)
-		this.graph.update(0);
-	else
-		this.graph.update(currTime-this.prevTime);
+  		this.graph.update(0);
+  	else
+  		this.graph.update(currTime-this.prevTime);
 
     this.shaders.setUniformsValues({timeFactor:this.time});
 
-
-	this.prevTime = currTime;
+	  this.prevTime = currTime;
 
 };

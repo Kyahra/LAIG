@@ -1017,10 +1017,11 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 					var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 				else
 					var animation = new BezierAnimation(this.scene,animationID,speed,CPs);
-				
+
 				this.animations[animationID] = animation;
 
 			}else if(type == 'circular'){
+
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
                             if (centerX == null ) {
@@ -1057,6 +1058,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				var startang = this.reader.getString(eachAnimation[i],'startang');
 				var rotang = this.reader.getString(eachAnimation[i],'rotang');
 
+
 				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
 				this.animations[animationID] = animation;
 			}else{
@@ -1075,6 +1077,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
         var animation = new ComboAnimation(this.scene,animationID,spanRefs);
  				this.animations[animationID] = animation;
+
 
 
 		}
@@ -1352,8 +1355,16 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-            this.log("Processing node " + nodeID);
+/**
+*     NEW STUFF
 
+            // Retrieves selectable parameter
+            var nodeSelectable = this.reader.getString(children[i], 'selectable');
+            if (nodeSelectable == null )
+                return "failed to retrieve node selectable";
+
+            this.log("Processing node " + nodeID);
+			//////////////////////////*/
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
