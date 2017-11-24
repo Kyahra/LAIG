@@ -11,7 +11,7 @@ function XMLscene(interface) {
 
     this.lightValues = {};
 
-    this.shaders = 0;
+    this.shaderObjects = 0;
 
 }
 
@@ -35,11 +35,9 @@ XMLscene.prototype.init = function(application) {
 
 	this.lastUpdateTime = (new Date()).getTime();
 
-
-
     this.axis = new CGFaxis(this);
 
-    this.shaders = new CGFshader(this.gl);
+    this.shaders = new CGFshader(this.gl,"shaders/flat.vert","shaders/flat.frag");
 }
 
 /**
@@ -125,6 +123,9 @@ XMLscene.prototype.display = function() {
     // Apply transformations corresponding to the camera position relative to the origin
     this.applyViewMatrix();
 
+	// shader
+	//this.setActiveShader(this.shaders);
+	
     this.pushMatrix();
 
     if (this.graph.loadedOk)
@@ -163,6 +164,7 @@ XMLscene.prototype.display = function() {
 
 
     this.popMatrix();
+	
 
     // ---- END Background, camera and axis setup
 
@@ -179,6 +181,6 @@ XMLscene.prototype.update = function (currTime) {
 
     this.shaders.setUniformsValues({timeFactor:this.time});
 
-	  this.prevTime = currTime;
+	this.prevTime = currTime;
 
 };

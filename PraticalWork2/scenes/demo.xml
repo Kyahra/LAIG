@@ -173,7 +173,7 @@
     <ROOT id="root" />
 
     <!-- The root node -->
-    <NODE id="root">
+    <NODE id="root" selectable="false">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -189,7 +189,7 @@
     </NODE>
 
     <!-- The floor -->
-    <NODE id="chao">
+    <NODE id="chao" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="rocks" />
 
@@ -204,7 +204,7 @@
     </NODE>
 
     <!-- The lights -->
-     <NODE id="luzes">
+     <NODE id="luzes" selectable="false">
         <MATERIAL id="lightMaterial" />
         <TEXTURE id="clear" />
 
@@ -218,13 +218,13 @@
     </NODE>
 
     <!-- The first light -->
-     <NODE id="luz1">
+     <NODE id="luz1" selectable="true">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
-    		<ANIMATIONREFS>
+    	<!--	<ANIMATIONREFS>
           <ANIMATIONREF id="Test1" />
-    		</ANIMATIONREFS>
+    		</ANIMATIONREFS> -->
 
         <DESCENDANTS>
             <NODEREF id="luz_candeeiro" />
@@ -233,7 +233,7 @@
     </NODE>
 
    <!-- The second light -->
-    <NODE id="luz2">
+    <NODE id="luz2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -246,7 +246,7 @@
     </NODE>
 
     <!-- The third light -->
-    <NODE id="luz3">
+    <NODE id="luz3" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -259,7 +259,7 @@
     </NODE>
 
     <!-- The fourth light -->
-    <NODE id="luz4">
+    <NODE id="luz4" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -272,7 +272,7 @@
     </NODE>
 
     <!-- Lamp post -->
-    <NODE id="luz_candeeiro">
+    <NODE id="luz_candeeiro" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -284,7 +284,7 @@
     </NODE>
 
     <!-- Light bulb -->
-    <NODE id="luz_esfera">
+    <NODE id="luz_esfera" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -299,7 +299,7 @@
     </NODE>
 
     <!-- The post in the lamp post... -->
-    <NODE id="luz_suporte">
+    <NODE id="luz_suporte" selectable="false">
         <MATERIAL id="lightPostMaterial" />
         <TEXTURE id="null" />
 
@@ -313,7 +313,7 @@
     </NODE>
 
     <!-- Street bench -->
-    <NODE id="bancos">
+    <NODE id="bancos" selectable="false">
         <MATERIAL id="lightMaterial" />
         <TEXTURE id="banco" />
 
@@ -325,7 +325,7 @@
     </NODE>
 
     <!-- One bench -->
-    <NODE id="banco2">
+    <NODE id="banco2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -338,7 +338,7 @@
     </NODE>
 
     <!-- Another bench -->
-     <NODE id="banco1">
+     <NODE id="banco1" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -351,7 +351,7 @@
     </NODE>
 
     <!-- Generic bench -->
-    <NODE id="banco">
+    <NODE id="banco" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -371,7 +371,7 @@
     </NODE>
 
     <!-- Trees -->
-    <NODE id="arvores">
+    <NODE id="arvores" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="clear" />
 
@@ -383,7 +383,7 @@
     </NODE>
 
     <!-- One tree -->
-    <NODE id="arvore1">
+    <NODE id="arvore1" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -396,7 +396,7 @@
     </NODE>
 
     <!-- Another tree -->
-    <NODE id="arvore2">
+    <NODE id="arvore2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -409,7 +409,7 @@
     </NODE>
 
     <!-- Generic tree -->
-    <NODE id="arvore">
+    <NODE id="arvore" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -421,7 +421,7 @@
     </NODE>
 
     <!-- Tree trunk -->
-    <NODE id="troncoArvore">
+    <NODE id="troncoArvore" selectable="false">
         <MATERIAL id="trunkTreeMaterial" />
         <TEXTURE id="trunk" />
 
@@ -435,7 +435,7 @@
     </NODE>
 
     <!-- Tree leaves -->
-     <NODE id="folhasArvore">
+     <NODE id="folhasArvore" selectable="false">
         <MATERIAL id="leavesTreeMaterial" />
         <TEXTURE id="folhas" />
 
@@ -451,7 +451,7 @@
     </NODE>
 
     <!-- A cube face -->
-    <NODE id="faceCubo1">
+    <NODE id="faceCubo1" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -464,7 +464,7 @@
     </NODE>
 
     <!-- Another cube face -->
-     <NODE id="faceCubo2">
+     <NODE id="faceCubo2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -478,7 +478,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo3">
+    <NODE id="faceCubo3" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -492,7 +492,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo4">
+    <NODE id="faceCubo4" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -506,7 +506,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo5">
+    <NODE id="faceCubo5" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -521,7 +521,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo6">
+    <NODE id="faceCubo6" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -536,7 +536,7 @@
     </NODE>
 
     <!-- A pyramid -->
-    <NODE id="piramide">
+    <NODE id="piramide" selectable="false">
 
         <MATERIAL id="null" />
         <TEXTURE id="vidral" />
@@ -553,7 +553,7 @@
     </NODE>
 
     <!-- The pyramid base -->
-    <NODE id="basePiramide">
+    <NODE id="basePiramide" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -568,7 +568,7 @@
     </NODE>
 
     <!-- Half a pyramid -->
-    <NODE id="meiaPiramide1">
+    <NODE id="meiaPiramide1" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -579,7 +579,7 @@
     </NODE>
 
     <!-- The other half -->
-    <NODE id="meiaPiramide2">
+    <NODE id="meiaPiramide2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -593,7 +593,7 @@
     </NODE>
 
     <!-- Generic half a pyramid -->
-    <NODE id="meiaPiramide">
+    <NODE id="meiaPiramide" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -605,7 +605,7 @@
     </NODE>
 
     <!-- Pyramid face -->
-   <NODE id="facePiramide1">
+   <NODE id="facePiramide1" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -620,7 +620,7 @@
     </NODE>
 
     <!-- Another pyramid face -->
-    <NODE id="facePiramide2">
+    <NODE id="facePiramide2" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 

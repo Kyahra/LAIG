@@ -35,7 +35,7 @@ MyInterface.prototype.addObject = function () {
     group.open();
 
 
-    group.add(this.scene, 'shaders', ['Objeto 1', 'Objeto 2', 'Objeto 3']);
+    group.add(this.scene, 'shaderObjects', {'Luz1' : 0 , 'Luz2' : 1, 'Luz3' : 2});
 
 };
 

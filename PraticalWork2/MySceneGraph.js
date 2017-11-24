@@ -1355,23 +1355,15 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-/**
-*     NEW STUFF
-<<<<<<< HEAD
 
             // Retrieves selectable parameter
             var nodeSelectable = this.reader.getString(children[i], 'selectable');
-            if (nodeSelectable == null )
-                return "failed to retrieve node selectable";
 
-            this.log("Processing node " + nodeID);
-			//////////////////////////*/
+            this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
 
-
-            
-
+				
             // Creates node.
-            this.nodes[nodeID] = new MyGraphNode(this,nodeID);
+            this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable);
 
 
             // Gathers child nodes.
@@ -1794,7 +1786,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
       }else
 		 mat = materialID;
 
-
+	  //this.setActiveShader(this.shaders);
+	 
       this.scene.pushMatrix();
 
 	  this.scene.multMatrix(node.animMatrix);
@@ -1804,6 +1797,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
       this.displayAux(node.children,mat,tex);
 
       this.scene.popMatrix();
+	  
+	  
 
 		}
 	}

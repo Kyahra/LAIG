@@ -125,7 +125,7 @@
     <ROOT id="root" />
 
     <!-- The root node -->
-    <NODE id="root">
+    <NODE id="root" selectable = "false">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="null" />
 
@@ -137,7 +137,7 @@
     </NODE>
 
 
-	 <NODE id="ball_water">
+	 <NODE id="ball_water" selectable="false" >
         <MATERIAL id="plasticMaterial" />
         <TEXTURE id="red" />
 
