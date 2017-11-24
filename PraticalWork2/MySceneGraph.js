@@ -1020,18 +1020,8 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 				this.animations[animationID] = animation;
 
-<<<<<<< HEAD
-			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
-			   this.animations[animationID] = animation;
-
-			}else{
-=======
 			}else if(type == 'circular'){
-<<<<<<< HEAD
 
-=======
->>>>>>> aa25c00dfaceab7d72e09e9d1ad27cf3cb5ca4fb
->>>>>>> ee28fdf8ce3d8a02264d1a09240271a9bb8a32f9
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
                             if (centerX == null ) {
