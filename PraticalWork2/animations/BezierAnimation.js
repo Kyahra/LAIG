@@ -20,8 +20,7 @@ class BezierAnimation extends Animation{
 		var R2 = dividePoint(addPoints(H,R3),2);
 		var R1 = dividePoint(addPoints(L3,R2),2);
 		
-		this.distance = distance(this.points[0],L2) + distance(L2,L3) + 
-		distance(L3,R1) + distance(R1,R2) + distance(R2,R3)+ distance(R3,this.points[2])
+		this.distance = distance(this.points[0],L2) + distance(L2,L3) + distance(L3,R1) + distance(R1,R2) + distance(R2,R3) + distance(R3,this.points[3]);
 		
 	}
 
@@ -48,7 +47,7 @@ class BezierAnimation extends Animation{
             3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][2] +
             Math.pow(deltaTime, 3) * this.points[3][2];
 			
-			mat4.translate(node.animMatrix, node.animMatrix, [this.position[0], this.position[1], this.position[2]]);
+		mat4.translate(node.animMatrix, node.animMatrix, [this.position[0], this.position[1], this.position[2]]);
 
 		}
 		

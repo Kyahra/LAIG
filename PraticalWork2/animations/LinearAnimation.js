@@ -7,6 +7,7 @@ class LinearAnimation extends Animation{
 		this.points = points;
 		this.distance = 0;
 		this.segmentDistances = [];
+
 		for (var i = 0; i < points.length - 1; i++) {
 			this.distance += vec3.dist(vec3.fromValues(points[i][0], points[i][1], points[i][2]), vec3.fromValues(points[i + 1][0], points[i + 1][1], points[i + 1][2]));
 			this.segmentDistances.push(this.distance);
@@ -19,6 +20,8 @@ class LinearAnimation extends Animation{
 
 
 	updateMatrix(node,deltaTime){
+		
+			mat4.identity(node.animMatrix);
 
 			this.currentDistance = this.speed * deltaTime;
 
@@ -26,6 +29,7 @@ class LinearAnimation extends Animation{
 			var i = 0;
 			while (this.currentDistance > this.segmentDistances[i] && i < this.segmentDistances.length){
 				this.currentDistance-this.segmentDistances[i];
+				mat4.translate(node.animMatrix,node.animMatrix,this.points[i+1]);
 				i++;
 			}
 
@@ -35,9 +39,16 @@ class LinearAnimation extends Animation{
 
 			// calculate displacement and apply translation
 			var relativeDistance = this.currentDistance/this.segmentDistances[i];
+			
 			mat4.translate(node.animMatrix, node.animMatrix, [(p2[0] - p1[0]) * relativeDistance , (p2[1] - p1[1]) * relativeDistance, (p2[2] - p1[2]) * relativeDistance ]);
 
 			// calculate rotation angle and apply rotation
+			
+			
+			var angle = angleBetween([0,0,1],subtractPoints(this.points[i],this.points[i+1]));
+			mat4.rotate(node.animMatrix,node.animMatrix, angle,[0,1,0]);
+			
+			
 
 			}
 
