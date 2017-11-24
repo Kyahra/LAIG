@@ -1020,8 +1020,18 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 				this.animations[animationID] = animation;
 
-			}else if(type == 'circular'){
+<<<<<<< HEAD
+			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
+			   this.animations[animationID] = animation;
 
+			}else{
+=======
+			}else if(type == 'circular'){
+<<<<<<< HEAD
+
+=======
+>>>>>>> aa25c00dfaceab7d72e09e9d1ad27cf3cb5ca4fb
+>>>>>>> ee28fdf8ce3d8a02264d1a09240271a9bb8a32f9
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
                             if (centerX == null ) {
@@ -1357,6 +1367,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
 /**
 *     NEW STUFF
+<<<<<<< HEAD
 
             // Retrieves selectable parameter
             var nodeSelectable = this.reader.getString(children[i], 'selectable');
@@ -1365,6 +1376,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
             this.log("Processing node " + nodeID);
 			//////////////////////////*/
+
+
+            
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID);
