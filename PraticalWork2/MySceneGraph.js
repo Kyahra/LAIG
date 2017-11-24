@@ -955,7 +955,6 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
     // Each animation.
 
     for (var i = 0; i < eachAnimation.length; i++) {
-			console.log('yo');
 
             // Retrieves animation ID.
             var animationID = this.reader.getString(eachAnimation[i], 'id');
@@ -967,16 +966,18 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
 
-			var speed = this.reader.getString(eachAnimation[i],'speed');
+
 			var type = this.reader.getString(eachAnimation[i],'type');
 
-            if(type == 'linear' || type == 'bezier'){
+        if(type == 'linear' || type == 'bezier'){
+
+        var speed = this.reader.getString(eachAnimation[i],'speed');
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
 				for (var j = 0; j < controlPoints.length; j++) {
 
-              		if(controlPoints[i].nodeName == "controlpoint"){
+              		if(controlPoints[j].nodeName == "controlpoint"){
 
                     // Parses xx component
                     var x = this.reader.getFloat(controlPoints[j], 'xx');
@@ -1010,13 +1011,23 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
               			console.log("   CP  z: " + z);
 
                     CPs.push([x,y,z]);
-				}
+				         }
 			  }
+			    if(type == 'linear')
+					var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
+				else
+					var animation = new BezierAnimation(this.scene,animationID,speed,CPs);
 
+				this.animations[animationID] = animation;
+
+<<<<<<< HEAD
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 			   this.animations[animationID] = animation;
 
 			}else{
+=======
+			}else if(type == 'circular'){
+>>>>>>> aa25c00dfaceab7d72e09e9d1ad27cf3cb5ca4fb
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
                             if (centerX == null ) {
@@ -1050,17 +1061,34 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				center.push(centerZ);
 
 				var radius = this.reader.getString(eachAnimation[i],'radius');
-				var startang = this.reader.getString(eachAnimation[i],'stratang');
+				var startang = this.reader.getString(eachAnimation[i],'startang');
 				var rotang = this.reader.getString(eachAnimation[i],'rotang');
 
-				//var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
-				//this.animations[animationID] = animation;
-			}
+
+				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
+				this.animations[animationID] = animation;
+			}else{
+
+        var spans = eachAnimation[i].children;
+				var spanRefs =[];
+
+				for (var j = 0; j < spans.length; j++) {
+
+             if(spans[j].nodeName == "SPANREF"){
+
+                var id = this.reader.getString(spans[j], 'id');
+                spanRefs.push(id);
+				     }
+         }
+
+        var animation = new ComboAnimation(this.scene,animationID,spanRefs);
+ 				this.animations[animationID] = animation;
+
 
 
 		}
 
-
+  }
 
     console.log("Parsed animations");
 }
@@ -1351,7 +1379,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             // Gathers child nodes.
             var nodeSpecs = children[i].children;
             var specsNames = [];
-            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS"];
+            var possibleValues = ["MATERIAL", "TEXTURE", "TRANSLATION", "ROTATION", "SCALE", "DESCENDANTS","ANIMATIONREFS"];
             for (var j = 0; j < nodeSpecs.length; j++) {
                 var name = nodeSpecs[j].nodeName;
                 specsNames.push(nodeSpecs[j].nodeName);

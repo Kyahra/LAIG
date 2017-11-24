@@ -13,9 +13,7 @@ class LinearAnimation extends Animation{
 		}
 
 		this.duration = this.distance / this.speed;
-		this.previousAngle = 0;
 
-		this.animTransforms = mat4.create();
 
 	}
 
@@ -26,25 +24,21 @@ class LinearAnimation extends Animation{
 
 			// find current segment
 			var i = 0;
-			while (this.currentDistance > this.segmentDistances[i] && i < this.segmentDistances.length)
+			while (this.currentDistance > this.segmentDistances[i] && i < this.segmentDistances.length){
+				this.currentDistance-this.segmentDistances[i];
 				i++;
+			}
 
 			// get control points from current segment
 			var p1 = this.points[i];
 			var p2 = this.points[i + 1];
 
 			// calculate displacement and apply translation
-			var lastSegDist;
-			if (i == 0)
-				lastSegDist = 0;
-			else
-				lastSegDist = this.segmentDistances[i - 1];
-
-			var displacement = (this.currentDistance - lastSegDist) / (this.segmentDistances[i] - lastSegDist);
-			mat4.translate(node.animMatrix, node.animMatrix, [(p2[0] - p1[0]) * displacement + p1[0], (p2[1] - p1[1]) * displacement + p1[1], (p2[2] - p1[2]) * displacement + p1[2]]);
+			var relativeDistance = this.currentDistance/this.segmentDistances[i];
+			mat4.translate(node.animMatrix, node.animMatrix, [(p2[0] - p1[0]) * relativeDistance , (p2[1] - p1[1]) * relativeDistance, (p2[2] - p1[2]) * relativeDistance ]);
 
 			// calculate rotation angle and apply rotation
-			
+
 			}
-			
+
 }
