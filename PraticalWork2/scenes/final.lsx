@@ -73,9 +73,15 @@
 	</ANIMATION>
 
   <ANIMATION id="Test2" speed="10" type="circular"
-			   centerx="0" centery="0" centerz="0"
-			   radius="5" startang="40" rotang="360"
+			   centerx="10" centery="10" centerz="10"
+			   radius="5" startang="40" rotang="20"
 	/>
+
+  <ANIMATION id="Test3" type="combo">
+    <SPANREF id="Test1"/>
+    <SPANREF id="Test2"/>
+  </ANIMATION>
+
 </ANIMATIONS>
 
 
@@ -131,7 +137,7 @@
 
 
 		<ANIMATIONREFS>
-			<ANIMATIONREF id="Test2" />
+			<ANIMATIONREF id="Test3" />
 		</ANIMATIONREFS>
 
         <DESCENDANTS>

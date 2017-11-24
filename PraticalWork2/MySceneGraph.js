@@ -966,16 +966,18 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
             if (this.animations[animationID] != null )
                 return "animation ID must unique (conflict with ID = " + animationID + ")";
 
-			var speed = this.reader.getString(eachAnimation[i],'speed');
+
 			var type = this.reader.getString(eachAnimation[i],'type');
 
         if(type == 'linear' || type == 'bezier'){
+
+        var speed = this.reader.getString(eachAnimation[i],'speed');
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
 				for (var j = 0; j < controlPoints.length; j++) {
 
-              		if(controlPoints[i].nodeName == "controlpoint"){
+              		if(controlPoints[j].nodeName == "controlpoint"){
 
                     // Parses xx component
                     var x = this.reader.getFloat(controlPoints[j], 'xx');
@@ -1009,13 +1011,13 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
               			console.log("   CP  z: " + z);
 
                     CPs.push([x,y,z]);
-				}
+				         }
 			  }
 
 			   var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
 			   this.animations[animationID] = animation;
 
-			}else{
+			}else if(type == 'circular'){
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
                             if (centerX == null ) {
@@ -1054,12 +1056,27 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
 				this.animations[animationID] = animation;
-			}
+			}else{
+
+        var spans = eachAnimation[i].children;
+				var spanRefs =[];
+
+				for (var j = 0; j < spans.length; j++) {
+
+             if(spans[j].nodeName == "SPANREF"){
+
+                var id = this.reader.getString(spans[j], 'id');
+                spanRefs.push(id);
+				     }
+         }
+
+        var animation = new ComboAnimation(this.scene,animationID,spanRefs);
+ 				this.animations[animationID] = animation;
 
 
 		}
 
-
+  }
 
     console.log("Parsed animations");
 }
