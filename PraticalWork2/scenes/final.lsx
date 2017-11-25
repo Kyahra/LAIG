@@ -72,9 +72,9 @@
 		<controlpoint xx="0" yy="0" zz="5" />
 	</ANIMATION>
 
-  <ANIMATION id="Test2" speed="10" type="circular"
-			   centerx="10" centery="10" centerz="10"
-			   radius="5" startang="40" rotang="20"
+  <ANIMATION id="Test2" speed="200" type="circular"
+			   centerx="1" centery="1" centerz="1"
+			   radius="5" startang="0" rotang="20"
 	/>
 
 	<ANIMATION id="Test4" speed="10" type="bezier">
@@ -83,7 +83,7 @@
 		<controlpoint xx="5" yy="5" zz="0" />
 		<controlpoint xx="0" yy="5" zz="0" />
 	</ANIMATION>
-	
+
 	 <ANIMATION id="Test3" type="combo">
 		<SPANREF id="Test1"/>
 		<SPANREF id="Test4"/>
@@ -142,7 +142,7 @@
         <TEXTURE id="red" />
 
 		<ANIMATIONREFS>
-			<ANIMATIONREF id="Test1" />
+			<ANIMATIONREF id="Test2" />
 		</ANIMATIONREFS>
 
         <DESCENDANTS>
