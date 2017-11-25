@@ -11,7 +11,7 @@ function XMLscene(interface) {
 
     this.lightValues = {};
 
-    this.shaderObjects = 0;
+    this.shaderObjects = {};
 
 }
 
@@ -125,7 +125,7 @@ XMLscene.prototype.display = function() {
 
 	// shader
 	//this.setActiveShader(this.shaders);
-	
+
     this.pushMatrix();
 
     if (this.graph.loadedOk)
@@ -164,7 +164,7 @@ XMLscene.prototype.display = function() {
 
 
     this.popMatrix();
-	
+
 
     // ---- END Background, camera and axis setup
 
