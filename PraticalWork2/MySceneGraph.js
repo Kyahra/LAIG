@@ -971,7 +971,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
         if(type == 'linear' || type == 'bezier'){
 
-        var speed = this.reader.getString(eachAnimation[i],'speed');
+        var speed = this.reader.getFloat(eachAnimation[i],'speed');
 				var controlPoints = eachAnimation[i].children;
 				var CPs =[];
 
@@ -1021,6 +1021,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				this.animations[animationID] = animation;
 
 			}else if(type == 'circular'){
+        var speed = this.reader.getFloat(eachAnimation[i],'speed');
 
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
@@ -1062,6 +1063,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
 				this.animations[animationID] = animation;
 			}else{
+
 
         var spans = eachAnimation[i].children;
 				var spanRefs =[];
@@ -1361,7 +1363,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
 
-				
+
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable);
 
@@ -1787,7 +1789,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 		 mat = materialID;
 
 	  //this.setActiveShader(this.shaders);
-	 
+
       this.scene.pushMatrix();
 
 	  this.scene.multMatrix(node.animMatrix);
@@ -1797,8 +1799,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
       this.displayAux(node.children,mat,tex);
 
       this.scene.popMatrix();
-	  
-	  
+
+
 
 		}
 	}

@@ -24,10 +24,14 @@ function vectorNorm(vector) {
 function dotProduct(vector1, vector2) {
 	var v1 = vectorNorm(vector1);
 	var v2 = vectorNorm(vector2);
-	
+
     return (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]);
 }
 
 function angleBetween(vector1, vector2) {
     return Math.acos(dotProduct(vector1, vector2));
 }
+
+radians = function(degrees) {
+  return degrees * Math.PI / 180;
+};
