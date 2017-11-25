@@ -81,8 +81,8 @@
 	<ANIMATION id="Test4" speed="10" type="bezier">
 		<controlpoint xx="0" yy="0" zz="0" />
 		<controlpoint xx="5" yy="0" zz="0" />
-		<controlpoint xx="5" yy="5" zz="0" />
-		<controlpoint xx="0" yy="5" zz="0" />
+		<controlpoint xx="5" yy="0" zz="5" />
+		<controlpoint xx="0" yy="0" zz="5" />
 	</ANIMATION>
 
 	 <ANIMATION id="Test3" type="combo">
@@ -143,7 +143,7 @@
         <TEXTURE id="red" />
 
         <ANIMATIONREFS>
-          <ANIMATIONREF id="Test1" />
+          <ANIMATIONREF id="Test4" />
         </ANIMATIONREFS>
 
         <DESCENDANTS>

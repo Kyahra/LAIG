@@ -13,10 +13,7 @@ class LinearAnimation extends Animation{
 			this.segmentDistances.push(distance(this.points[i],this.points[i+1]));
 		}
 
-		console.log(this.speed);
-
 		this.duration = this.distance / this.speed;
-
 
 	}
 
