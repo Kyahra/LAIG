@@ -10,10 +10,7 @@ class CircularAnimation extends Animation {
 		this.rotAngle = rotAng;
 		this.radius = radius;
 
-    console.log(this.rotAngle);
-    console.log(this.speed);
 		this.duration = this.rotAngle /this.speed;
-    console.log(this.duration);
 
     }
 

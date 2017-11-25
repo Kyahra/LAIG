@@ -74,7 +74,7 @@
 
   <ANIMATION id="Test2" speed="200" type="circular"
 			   centerx="1" centery="1" centerz="1"
-			   radius="5" startang="0" rotang="20"
+			   radius="5" startang="0" rotang="180"
 	/>
 
 	<ANIMATION id="Test4" speed="10" type="bezier">

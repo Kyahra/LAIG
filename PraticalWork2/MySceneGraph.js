@@ -1022,7 +1022,6 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 
 			}else if(type == 'circular'){
         var speed = this.reader.getFloat(eachAnimation[i],'speed');
-        console.log(speed);
 
 					//Parses xx component
 					  var centerX = this.reader.getFloat(eachAnimation[i],'centerx');
@@ -1065,7 +1064,7 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				this.animations[animationID] = animation;
 			}else{
 
-        
+
         var spans = eachAnimation[i].children;
 				var spanRefs =[];
 
