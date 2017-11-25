@@ -1006,15 +1006,11 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
                           else if (isNaN(z))
                               return "non-numeric value for z component of control point (animation ID = " + animationID + ")";
 
-              			console.log("   CP  x: " + x);
-              			console.log("   CP  y: " + y);
-              			console.log("   CP  z: " + z);
-
                     CPs.push([x,y,z]);
 				         }
 			  }
 			    if(type == 'linear')
-					var animation = new LinearAnimation(this.scene,animationID,speed,CPs);
+					var animation = new LinearAnimation(this.scene,animationID,speed,CPs,);
 				else
 					var animation = new BezierAnimation(this.scene,animationID,speed,CPs);
 
@@ -1073,6 +1069,13 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
              if(spans[j].nodeName == "SPANREF"){
 
                 var id = this.reader.getString(spans[j], 'id');
+
+                console.log(id);
+                console.log(this.animations[id].type);
+
+                if(this.animations[id] instanceof ComboAnimation)
+                  return "combo animations (animation ID = " + animationID + ") can not cotain other combo animations (animation ID = " + id + ")";
+
                 spanRefs.push(id);
 				     }
          }

@@ -52,7 +52,6 @@ class BezierAnimation extends Animation{
 
 		deltaTime = deltaTime /this.duration;
 
-
 		mat4.identity(node.animMatrix);
 
 		var newPos = [];
@@ -64,7 +63,7 @@ class BezierAnimation extends Animation{
 		this.getPosition(deltaTime-0.1,oldPos);
 
 		var direction = subtractPoints(oldPos,newPos);
-			var angle = angleBetween([0,0,1],subtractPoints(oldPos,newPos));
+		var angle = angleBetween([0,0,1],subtractPoints(oldPos,newPos));
 
 			if(direction[0] < 0)
 			angle =  -angle;

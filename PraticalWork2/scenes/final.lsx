@@ -88,7 +88,7 @@
 	 <ANIMATION id="Test3" type="combo">
 		<SPANREF id="Test1"/>
 		<SPANREF id="Test4"/>
-	</ANIMATION>
+	 </ANIMATION>
 
 </ANIMATIONS>
 

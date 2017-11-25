@@ -6,7 +6,7 @@ class Animation {
         this.speed = speed;
         this.done = false;
     }
-	
+
     isDone() {
         return this.done;
     }
