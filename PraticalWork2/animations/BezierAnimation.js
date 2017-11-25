@@ -6,13 +6,11 @@ class BezierAnimation extends Animation{
 
 		this.points = points;
 		this.calculateDistance();
-		console.log(this.distance);
-		console.log(this.speed);
 		this.duration = this.distance / this.speed;
-		console.log(this.duration);
 
 		this.position= this.points[0];
 		this.direction = [];
+		this.inclination =0;
 
 	}
 
@@ -28,64 +26,52 @@ class BezierAnimation extends Animation{
 
 	}
 
+	getPosition(deltaTime,position){
+		position[0] =
+				Math.pow((1 - deltaTime), 3) * this.points[0][0] +
+				3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][0] +
+				3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][0] +
+				Math.pow(deltaTime, 3) * this.points[3][0];
+
+		position[1] =
+				Math.pow((1 - deltaTime), 3) * this.points[0][1] +
+				3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][1] +
+				3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][1] +
+				Math.pow(deltaTime, 3) * this.points[3][1];
+
+		position[2] =
+				Math.pow((1 - deltaTime), 3) * this.points[0][2] +
+				3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][2] +
+				3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][2] +
+				Math.pow(deltaTime, 3) * this.points[3][2];
+
+	}
+
 
 	updateMatrix(node,deltaTime){
 
 		deltaTime = deltaTime /this.duration;
 
+
 		mat4.identity(node.animMatrix);
 
-        this.position[0] =
-            Math.pow((1 - deltaTime), 3) * this.points[0][0] +
-            3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][0] +
-            3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][0] +
-            Math.pow(deltaTime, 3) * this.points[3][0];
+		var newPos = [];
+		var oldPos = [];
 
-        this.position[1] =
-            Math.pow((1 - deltaTime), 3) * this.points[0][1] +
-            3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][1] +
-            3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][1] +
-            Math.pow(deltaTime, 3) * this.points[3][1];
+		this.getPosition(deltaTime,newPos);
+		mat4.translate(node.animMatrix, node.animMatrix, [newPos[0], newPos[1], newPos[2]]);
 
-        this.position[2] =
-            Math.pow((1 - deltaTime), 3) * this.points[0][2] +
-            3 * deltaTime * Math.pow((1 - deltaTime), 2) * this.points[1][2] +
-            3 * Math.pow(deltaTime, 2) * (1 - deltaTime) * this.points[2][2] +
-            Math.pow(deltaTime, 3) * this.points[3][2];
+		this.getPosition(deltaTime-0.1,oldPos);
 
-		mat4.translate(node.animMatrix, node.animMatrix, [this.position[0], this.position[1], this.position[2]]);
+		var direction = subtractPoints(oldPos,newPos);
+			var angle = angleBetween([0,0,1],subtractPoints(oldPos,newPos));
 
+			if(direction[0] < 0)
+			angle =  -angle;
 
-			this.direction[0] = -3 * (this.points[1][0] * Math.pow(deltaTime - 1, 2) +
-					 this.points[1][0] * (-3 * Math.pow(deltaTime, 2) + 4 * deltaTime - 1) +
-					 deltaTime * (3 * this.points[2][0] * deltaTime - 2 * this.points[2][0] -
-					 this.points[3][0] * deltaTime));
-
-			this.direction[1] = -3 * (this.points[0][1] * Math.pow(deltaTime - 1, 2) +
-				   this.points[1][1] * (-3 * Math.pow(deltaTime, 2) + 4 * deltaTime - 1) +
-				   deltaTime * (3 * this.points[2][1] * deltaTime - 2 * this.points[2][1] -
-				   this.points[3][1] * deltaTime));
-
-		 this.direction[2] = -3 * (this.points[0][2] * Math.pow(deltaTime - 1, 2) +
-				   this.points[1][2] * (-3 * Math.pow(deltaTime, 2) + 4 * deltaTime - 1) +
-				   deltaTime * (3 * this.points[2][2] *deltaTime - 2 * this.points[2][2] -
-				   this.points[3][2] * deltaTime));
-
-
-			 //console.log("New direction: ", this.direction);
-			 var angle;
-			 if (this.direction[0] > 0)
-					 angle = Math.atan(this.direction[2] / -this.direction[0]) + Math.PI / 2;
-			 else if (this.direction[0] < 0)
-					 angle = -(Math.atan(this.direction[2] / this.direction[0]) + Math.PI / 2);
-			 else if (this.direction[0] == 0)
-					 angle = 0;
-
-				//	mat4.rotate(node.animMatrix, node.animMatrix,angle, [0,1,0]);
+			mat4.rotate(node.animMatrix, node.animMatrix,angle, [0,1,0]);
 
 		}
-
-
 
 
 
