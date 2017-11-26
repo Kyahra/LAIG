@@ -1795,9 +1795,9 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
       this.scene.pushMatrix();
 
-	  this.scene.multMatrix(node.animMatrix);
-      this.scene.multMatrix(node.transformMatrix);
 
+      this.scene.multMatrix(node.transformMatrix);
+this.scene.multMatrix(node.animMatrix);
 
       this.displayAux(node.children,mat,tex);
 
