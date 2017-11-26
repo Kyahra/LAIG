@@ -22,12 +22,16 @@ class ComboAnimation extends Animation {
         for(var i=0; i<this.spanRefs.length;i++){
       		var animation = animations[this.spanRefs[i]];
 
+            
+
       		if(animation.duration >= deltaTime){
       			animation.updateMatrix(node,deltaTime);
             break;
           }
       		else
       			deltaTime = deltaTime - animation.duration;
+
+
       	}
 	}
 }

@@ -88,6 +88,7 @@ XMLscene.prototype.onGraphLoaded = function()
 {
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
+    this.camera.zoom(-40);
     this.axis = new CGFaxis(this,this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],

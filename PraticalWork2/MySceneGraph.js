@@ -1051,9 +1051,9 @@ MySceneGraph.prototype.parseTextures = function(texturesNode) {
 				center.push(centerY);
 				center.push(centerZ);
 
-				var radius = this.reader.getString(eachAnimation[i],'radius');
-				var startang = this.reader.getString(eachAnimation[i],'startang');
-				var rotang = this.reader.getString(eachAnimation[i],'rotang');
+				var radius = this.reader.getFloat(eachAnimation[i],'radius');
+				var startang = this.reader.getFloat(eachAnimation[i],'startang');
+				var rotang = this.reader.getFloat(eachAnimation[i],'rotang');
 
 
 				var animation = new CircularAnimation(this.scene,animationID,speed,center,radius,startang,rotang);
@@ -1360,15 +1360,15 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-
+/*
             // Retrieves selectable parameter
             var nodeSelectable = this.reader.getString(children[i], 'selectable');
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
-
+*/
 
             // Creates node.
-            this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable);
+            this.nodes[nodeID] = new MyGraphNode(this,nodeID, false);
 
 
             // Gathers child nodes.
@@ -1797,7 +1797,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 
       this.scene.multMatrix(node.transformMatrix);
-this.scene.multMatrix(node.animMatrix);
+    this.scene.multMatrix(node.animMatrix);
 
       this.displayAux(node.children,mat,tex);
 
