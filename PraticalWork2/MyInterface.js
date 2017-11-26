@@ -32,6 +32,10 @@ MyInterface.prototype.init = function(application) {
 
 MyInterface.prototype.addSelectables = function(){
   this.gui.add(this.scene.graph, "ChosenNode", this.scene.graph.selectables);
+
+  for(var i = 0 ; i < this.scene.graph.selectables.length; i++){
+    console.log("select" + this.scene.graph.selectables[i]);
+  }
 }
 
 MyInterface.prototype.addObject = function () {

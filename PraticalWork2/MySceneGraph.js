@@ -1768,55 +1768,47 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         if(texture != null){
       	   material.setTexture(texture[0]);
            children[i].setAmpSAmpT(texture[1],texture[2]);
-         }
+        }
 
-         if(material != null){
-             material.apply();
-         }
+        if(material != null){
+           material.apply();
+        }
 
         children[i].display();
 
-		}else{
+    } else {
 
-	  var tex;
-	  var mat;
+    	  var tex;
+    	  var mat;
 
-      var node = this.nodes[children[i]];
+        var node = this.nodes[children[i]];
 
-      if (node.textureID != 'null'){
-        tex = node.textureID;
-      }else
-		tex = textureID;
+        if (node.textureID != 'null'){
+            tex = node.textureID;
+        } else tex = textureID;
 
+        if (node.materialID != 'null'){
+          mat =node.materialID;
+        } else mat = materialID;
 
+        let flag = false;
+        if(children[i] == this.ChosenNode){
 
-      if (node.materialID != 'null'){
-        mat =node.materialID;
-      }else
-		 mat = materialID;
+          this.scene.setActiveShader(this.scene.shader);
+          flag = true;
+        }
 
-	  //this.setActiveShader(this.shaders);
+        this.scene.pushMatrix();
 
-    let flag = false;
-    if(node.children == this.ChosenNode){
+        this.scene.multMatrix(node.transformMatrix);
+        this.scene.multMatrix(node.animMatrix);
 
-      this.scene.setActiveShader(this.scene.shader);
-      flag = true;
-    }
+        this.displayAux(node.children,mat,tex);
 
-      this.scene.pushMatrix();
+        this.scene.popMatrix();
 
-
-      this.scene.multMatrix(node.transformMatrix);
-    this.scene.multMatrix(node.animMatrix);
-
-      this.displayAux(node.children,mat,tex);
-
-      this.scene.popMatrix();
-
-      if(flag )
-        this.scene.setActiveShader(this.scene.defaultShader);
-
+        if(flag )
+          this.scene.setActiveShader(this.scene.defaultShader);
 		}
 	}
 }
