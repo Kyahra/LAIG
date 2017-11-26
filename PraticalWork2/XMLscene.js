@@ -37,7 +37,7 @@ XMLscene.prototype.init = function(application) {
 
     this.axis = new CGFaxis(this);
 
-    this.shaders = new CGFshader(this.gl,"shaders/flat.vert","shaders/flat.frag");
+    this.shader = new CGFshader(this.gl,"shaders/flat.vert","shaders/flat.frag");
 }
 
 /**
@@ -100,8 +100,8 @@ XMLscene.prototype.onGraphLoaded = function()
 
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
-
-    this.interface.addObject();
+    this.interface.addSelectables();
+    //this.interface.addObject();
 
 	this.setUpdatePeriod(1000/60);
 	this.prevTime = -1;
@@ -125,7 +125,7 @@ XMLscene.prototype.display = function() {
     this.applyViewMatrix();
 
 	// shader
-	//this.setActiveShader(this.shaders);
+	//this.setActiveShader(this.shader);
 
     this.pushMatrix();
 
@@ -180,7 +180,7 @@ XMLscene.prototype.update = function (currTime) {
   	else
   		this.graph.update(currTime-this.prevTime);
 
-    this.shaders.setUniformsValues({timeFactor:this.time});
+    this.shader.setUniformsValues({timeFactor:this.time});
 
 	this.prevTime = currTime;
 

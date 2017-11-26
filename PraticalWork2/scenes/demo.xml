@@ -218,7 +218,7 @@
     </NODE>
 
     <!-- The first light -->
-     <NODE id="luz1" selectable="true">
+     <NODE id="luz1" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -233,7 +233,7 @@
     </NODE>
 
    <!-- The second light -->
-    <NODE id="luz2" selectable="false">
+    <NODE id="luz2" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -246,7 +246,7 @@
     </NODE>
 
     <!-- The third light -->
-    <NODE id="luz3" selectable="false">
+    <NODE id="luz3" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -259,7 +259,7 @@
     </NODE>
 
     <!-- The fourth light -->
-    <NODE id="luz4" selectable="false">
+    <NODE id="luz4" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -272,7 +272,7 @@
     </NODE>
 
     <!-- Lamp post -->
-    <NODE id="luz_candeeiro" selectable="false">
+    <NODE id="luz_candeeiro" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -284,7 +284,7 @@
     </NODE>
 
     <!-- Light bulb -->
-    <NODE id="luz_esfera" selectable="false">
+    <NODE id="luz_esfera" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -299,7 +299,7 @@
     </NODE>
 
     <!-- The post in the lamp post... -->
-    <NODE id="luz_suporte" selectable="false">
+    <NODE id="luz_suporte" >
         <MATERIAL id="lightPostMaterial" />
         <TEXTURE id="null" />
 
@@ -313,7 +313,7 @@
     </NODE>
 
     <!-- Street bench -->
-    <NODE id="bancos" selectable="false">
+    <NODE id="bancos" >
         <MATERIAL id="lightMaterial" />
         <TEXTURE id="banco" />
 
@@ -325,7 +325,7 @@
     </NODE>
 
     <!-- One bench -->
-    <NODE id="banco2" selectable="false">
+    <NODE id="banco2">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -338,7 +338,7 @@
     </NODE>
 
     <!-- Another bench -->
-     <NODE id="banco1" selectable="false">
+     <NODE id="banco1" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -351,7 +351,7 @@
     </NODE>
 
     <!-- Generic bench -->
-    <NODE id="banco" selectable="false">
+    <NODE id="banco">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -371,7 +371,7 @@
     </NODE>
 
     <!-- Trees -->
-    <NODE id="arvores" selectable="false">
+    <NODE id="arvores" >
         <MATERIAL id="null" />
         <TEXTURE id="clear" />
 
@@ -383,7 +383,7 @@
     </NODE>
 
     <!-- One tree -->
-    <NODE id="arvore1" selectable="false">
+    <NODE id="arvore1" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -396,7 +396,7 @@
     </NODE>
 
     <!-- Another tree -->
-    <NODE id="arvore2" selectable="false">
+    <NODE id="arvore2" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -409,7 +409,7 @@
     </NODE>
 
     <!-- Generic tree -->
-    <NODE id="arvore" selectable="false">
+    <NODE id="arvore" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -421,7 +421,7 @@
     </NODE>
 
     <!-- Tree trunk -->
-    <NODE id="troncoArvore" selectable="false">
+    <NODE id="troncoArvore" >
         <MATERIAL id="trunkTreeMaterial" />
         <TEXTURE id="trunk" />
 
@@ -435,7 +435,7 @@
     </NODE>
 
     <!-- Tree leaves -->
-     <NODE id="folhasArvore" selectable="false">
+     <NODE id="folhasArvore" >
         <MATERIAL id="leavesTreeMaterial" />
         <TEXTURE id="folhas" />
 
@@ -451,7 +451,7 @@
     </NODE>
 
     <!-- A cube face -->
-    <NODE id="faceCubo1" selectable="false">
+    <NODE id="faceCubo1" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -464,7 +464,7 @@
     </NODE>
 
     <!-- Another cube face -->
-     <NODE id="faceCubo2" selectable="false">
+     <NODE id="faceCubo2" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -478,7 +478,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo3" selectable="false">
+    <NODE id="faceCubo3" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -492,7 +492,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo4" selectable="false">
+    <NODE id="faceCubo4" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -506,7 +506,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo5" selectable="false">
+    <NODE id="faceCubo5" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -521,7 +521,7 @@
     </NODE>
 
     <!-- Another cube face -->
-    <NODE id="faceCubo6" selectable="false">
+    <NODE id="faceCubo6" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -536,7 +536,7 @@
     </NODE>
 
     <!-- A pyramid -->
-    <NODE id="piramide" selectable="false">
+    <NODE id="piramide" >
 
         <MATERIAL id="null" />
         <TEXTURE id="vidral" />
@@ -553,7 +553,7 @@
     </NODE>
 
     <!-- The pyramid base -->
-    <NODE id="basePiramide" selectable="false">
+    <NODE id="basePiramide" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -568,7 +568,7 @@
     </NODE>
 
     <!-- Half a pyramid -->
-    <NODE id="meiaPiramide1" selectable="false">
+    <NODE id="meiaPiramide1" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -579,7 +579,7 @@
     </NODE>
 
     <!-- The other half -->
-    <NODE id="meiaPiramide2" selectable="false">
+    <NODE id="meiaPiramide2" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -593,7 +593,7 @@
     </NODE>
 
     <!-- Generic half a pyramid -->
-    <NODE id="meiaPiramide" selectable="false">
+    <NODE id="meiaPiramide" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -605,7 +605,7 @@
     </NODE>
 
     <!-- Pyramid face -->
-   <NODE id="facePiramide1" selectable="false">
+   <NODE id="facePiramide1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -620,7 +620,7 @@
     </NODE>
 
     <!-- Another pyramid face -->
-    <NODE id="facePiramide2" selectable="false">
+    <NODE id="facePiramide2" >
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 

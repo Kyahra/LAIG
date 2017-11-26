@@ -29,6 +29,11 @@ MyInterface.prototype.init = function(application) {
     return true;
 };
 
+
+MyInterface.prototype.addSelectables = function(){
+  this.gui.add(this.scene.graph, "ChosenNode", this.scene.graph.selectables);
+}
+
 MyInterface.prototype.addObject = function () {
 
     var group = this.gui.addFolder("Shaders");

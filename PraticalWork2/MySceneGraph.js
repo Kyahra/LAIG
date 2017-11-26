@@ -43,6 +43,9 @@ function MySceneGraph(filename, scene) {
 	 */
 
     this.reader.open('scenes/' + filename, this);
+
+    this.ChosenNode = "";
+    this.selectables = [];
 }
 
 /*
@@ -1360,12 +1363,14 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
             if (this.nodes[nodeID] != null )
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
-/*
+
             // Retrieves selectable parameter
-            var nodeSelectable = this.reader.getString(children[i], 'selectable');
+            var nodeSelectable = this.reader.getString(children[i], 'selectable',0);
+            if(nodeSelectable == 1)
+              this.selectables.push(nodeID);
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
-*/
+
 
             // Creates node.
             this.nodes[nodeID] = new MyGraphNode(this,nodeID, false);
@@ -1748,7 +1753,6 @@ MySceneGraph.prototype.displayScene = function() {
  */
 MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
-
 	for(var i =0;i< children.length;i++){
 
 		if(children[i] instanceof MyGraphLeaf || children[i] instanceof MyPatch){
@@ -1793,6 +1797,13 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 	  //this.setActiveShader(this.shaders);
 
+    let flag = false;
+    if(node.children == this.ChosenNode){
+
+      this.scene.setActiveShader(this.scene.shader);
+      flag = true;
+    }
+
       this.scene.pushMatrix();
 
 
@@ -1803,12 +1814,11 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
       this.scene.popMatrix();
 
-
+      if(flag )
+        this.scene.setActiveShader(this.scene.defaultShader);
 
 		}
 	}
-
-
 }
 
 
