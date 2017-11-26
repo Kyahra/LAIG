@@ -124,12 +124,62 @@
 
 <ANIMATIONS>
 
-<ANIMATION id="Bounce1" speed="40" type="bezier">
+<ANIMATION id="Bounce1" speed="50" type="bezier">
   <controlpoint xx="0" yy="0" zz="0" />
   <controlpoint xx="0" yy="30" zz="0" />
   <controlpoint xx="40" yy="30" zz="0" />
-  <controlpoint xx="40" yy="0" zz="-20" />
+  <controlpoint xx="40" yy="0" zz="-15" />
 </ANIMATION>
+
+<ANIMATION id="Bounce2" speed="23" type="bezier">
+  <controlpoint xx="40" yy="0" zz="-15" />
+  <controlpoint xx="40" yy="5" zz="-15" />
+  <controlpoint xx="50" yy="5" zz="-15" />
+  <controlpoint xx="50" yy="0" zz="-18" />
+</ANIMATION>
+
+<ANIMATION id="Bounce3" speed="15" type="bezier">
+  <controlpoint xx="50" yy="0" zz="-18" />
+  <controlpoint xx="50" yy="2.5" zz="-18" />
+  <controlpoint xx="57" yy="2.5" zz="-18" />
+  <controlpoint xx="57" yy="-0.05" zz="-20" />
+</ANIMATION>
+
+<ANIMATION id="Roll1" speed="7" type="linear">
+  <controlpoint xx="57" yy="-0.05" zz="-20" />
+  <controlpoint xx="64.5" yy="-0.05" zz="-25" />
+</ANIMATION>
+
+<ANIMATION id="Bounce4" speed="25" type="bezier">
+  <controlpoint xx="64.5" yy="-0.05" zz="-25" />
+  <controlpoint xx="64.5" yy="-0.05" zz="-25" />
+  <controlpoint xx="73" yy="-0.05" zz="-25" />
+  <controlpoint xx="73" yy="-22" zz="-25" />
+</ANIMATION>
+
+<ANIMATION id="Bounce5" speed="15" type="bezier">
+  <controlpoint xx="73" yy="-22" zz="-25" />
+  <controlpoint xx="73" yy="-19" zz="-25" />
+  <controlpoint xx="78" yy="-19" zz="-25" />
+  <controlpoint xx="78" yy="-22" zz="-25" />
+</ANIMATION>
+
+<ANIMATION id="Roll2" speed="7" type="linear">
+  <controlpoint xx="78" yy="-22" zz="-25" />
+  <controlpoint xx="85" yy="-22" zz="-25" />
+</ANIMATION>
+
+<ANIMATION id="Combo1" type="combo">
+ <SPANREF id="Bounce1"/>
+ <SPANREF id="Bounce2"/>
+ <SPANREF id="Bounce3"/>
+ <SPANREF id="Roll1"/>
+ <SPANREF id="Bounce4"/>
+ <SPANREF id="Bounce5"/>
+ <SPANREF id="Roll2"/>
+</ANIMATION>
+
+
 
 </ANIMATIONS>
 
@@ -730,7 +780,7 @@
         <SCALE sx="0.25" sy="0.25" sz="0.25" />
 
         <ANIMATIONREFS>
-          <ANIMATIONREF id="Bounce1" />
+          <ANIMATIONREF id="Combo1" />
         </ANIMATIONREFS>
 
         <DESCENDANTS>

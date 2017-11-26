@@ -23,6 +23,7 @@ class LinearAnimation extends Animation{
 			mat4.identity(node.animMatrix);
 
 			this.currentDistance = this.speed * deltaTime;
+			mat4.translate(node.animMatrix,node.animMatrix,this.points[0]);
 
 			// find current segment
 			var i = 0;
