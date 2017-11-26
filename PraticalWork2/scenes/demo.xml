@@ -189,7 +189,7 @@
     </NODE>
 
     <!-- The floor -->
-    <NODE id="chao" selectable="false">
+    <NODE id="chao" >
         <MATERIAL id="null" />
         <TEXTURE id="rocks" />
 
@@ -204,7 +204,7 @@
     </NODE>
 
     <!-- The lights -->
-     <NODE id="luzes" selectable="false">
+     <NODE id="luzes">
         <MATERIAL id="lightMaterial" />
         <TEXTURE id="clear" />
 
@@ -536,7 +536,7 @@
     </NODE>
 
     <!-- A pyramid -->
-    <NODE id="piramide" >
+    <NODE id="piramide" selectable ="1">
 
         <MATERIAL id="null" />
         <TEXTURE id="vidral" />

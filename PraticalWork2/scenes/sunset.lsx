@@ -329,7 +329,7 @@
      </NODE>
 
 
-	 <NODE id="ball_water">
+	 <NODE id="ball_water" selectable ="1">
         <MATERIAL id="plasticMaterial" />
         <TEXTURE id="red" />
 
@@ -373,7 +373,7 @@
 
     </NODE>
 
-    <NODE id="umbrella1">
+    <NODE id="umbrella1" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -387,7 +387,7 @@
 
     </NODE>
 
-    <NODE id="umbrella2">
+    <NODE id="umbrella2" selectable="1">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -932,14 +932,14 @@
 
 
     <!-- Lounge chair-->
-    <NODE id="lounge">
+    <NODE id="lounge" selectable="0">
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
 
         <TRANSLATION x="15" y="-2" z="40"/>
         <SCALE sx="1" sy="0.8" sz="0.6" />
          <ROTATION axis="y" angle="-10" />
-         
+
         <DESCENDANTS>
           <NODEREF id="top" />
           <NODEREF id="lounge_legs"/>

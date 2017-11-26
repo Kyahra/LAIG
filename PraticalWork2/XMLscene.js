@@ -37,7 +37,7 @@ XMLscene.prototype.init = function(application) {
 
     this.axis = new CGFaxis(this);
 
-    this.shader = new CGFshader(this.gl,"shaders/flat.vert","shaders/flat.frag");
+    this.shader = new CGFshader(this.gl,"shaders/MyShader.vert","shaders/MyShader.frag");
 }
 
 /**
@@ -124,8 +124,6 @@ XMLscene.prototype.display = function() {
     // Apply transformations corresponding to the camera position relative to the origin
     this.applyViewMatrix();
 
-	// shader
-	//this.setActiveShader(this.shader);
 
     this.pushMatrix();
 
@@ -173,7 +171,7 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function (currTime) {
 
-    this.time = Math.sin(currTime) / 2 + 0.5;
+    this.time = (Math.cos(currTime/1000))/ 2 + 0.5;
 
     if(this.prevTime == -1)
   		this.graph.update(0);
@@ -181,7 +179,8 @@ XMLscene.prototype.update = function (currTime) {
   		this.graph.update(currTime-this.prevTime);
 
     this.shader.setUniformsValues({timeFactor:this.time});
+    //console.log("time: " + currTime);
 
-	this.prevTime = currTime;
+	  this.prevTime = currTime;
 
 };
