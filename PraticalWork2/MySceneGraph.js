@@ -5,8 +5,8 @@ var INITIALS_INDEX = 0;
 var ILLUMINATION_INDEX = 1;
 var LIGHTS_INDEX = 2;
 var TEXTURES_INDEX = 3;
-var ANIMATIONS_INDEX = 4;
-var MATERIALS_INDEX = 5;
+var ANIMATIONS_INDEX = 5;
+var MATERIALS_INDEX = 4;
 var LEAVES_INDEX = 6;
 var NODES_INDEX = 7;
 
@@ -1365,8 +1365,8 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
 
             // Retrieves selectable parameter
-            var nodeSelectable = this.reader.getString(children[i], 'selectable',0);
-            if(nodeSelectable == 1)
+            var nodeSelectable = this.reader.getBoolean(children[i], 'selectable',false);
+            if(nodeSelectable == true)
               this.selectables.push(nodeID);
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);

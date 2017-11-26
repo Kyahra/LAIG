@@ -122,6 +122,66 @@
 
 </TEXTURES>
 
+
+
+
+<MATERIALS>
+	<!-- Pyramid material -->
+    <MATERIAL id="piramideMaterial">
+        <shininess value="1" />
+        <specular r="0.1" g="0.1" b="0.1" a="1" />
+        <diffuse r="0.4" g="0.4" b="0.4" a="1" />
+        <ambient r="0.2" g="0.2" b="0.2" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+	<!-- Tree leaves material -->
+	<MATERIAL id="waterMaterial">
+        <shininess value="10" />
+        <specular r="0.7" g="0.7" b="0.7" a="1" />
+        <diffuse r="0.3" g="0.3" b="0.3" a="1" />
+        <ambient r="0.1" g="0.1" b="0.1" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+	<!-- Tree trunk material -->
+	<MATERIAL id="plasticMaterial">
+        <shininess value="70" />
+        <specular r="0.5" g="0.5" b="0.5" a="1" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1" />
+        <ambient r="0.1" g="0.1" b="0.1" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+    <!-- Lamp post material -->
+    <MATERIAL id="lightPostMaterial">
+        <shininess value="100" />
+        <specular r="0.0" g="0.0" b="0.0" a="1" />
+        <diffuse r="0.447" g="0.416" b="0.416" a="1" />
+        <ambient r="0.0" g="0.0" b="0.0" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+    <!-- Light bulb material -->
+    <MATERIAL id="lightMaterial">
+        <shininess value="50" />
+        <specular r="0.1" g="0.1" b="0.1" a="1" />
+        <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+        <ambient r="0.0" g="0.0" b="0.0" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+    <!-- A default material -->
+    <MATERIAL id="defaultMaterial">
+        <shininess value="1" />
+        <specular r="0.0" g="0.0" b="0.0" a="1" />
+        <diffuse r="0.4" g="0.4" b="0.4" a="1" />
+        <ambient r="0.4" g="0.4" b="0.4" a="1" />
+        <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+</MATERIALS>
+
 <ANIMATIONS>
 
 <ANIMATION id="Bounce1" speed="50" type="bezier">
@@ -222,64 +282,6 @@
 </ANIMATIONS>
 
 
-<MATERIALS>
-	<!-- Pyramid material -->
-    <MATERIAL id="piramideMaterial">
-        <shininess value="1" />
-        <specular r="0.1" g="0.1" b="0.1" a="1" />
-        <diffuse r="0.4" g="0.4" b="0.4" a="1" />
-        <ambient r="0.2" g="0.2" b="0.2" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-	<!-- Tree leaves material -->
-	<MATERIAL id="waterMaterial">
-        <shininess value="10" />
-        <specular r="0.7" g="0.7" b="0.7" a="1" />
-        <diffuse r="0.3" g="0.3" b="0.3" a="1" />
-        <ambient r="0.1" g="0.1" b="0.1" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-	<!-- Tree trunk material -->
-	<MATERIAL id="plasticMaterial">
-        <shininess value="70" />
-        <specular r="0.5" g="0.5" b="0.5" a="1" />
-        <diffuse r="0.7" g="0.7" b="0.7" a="1" />
-        <ambient r="0.1" g="0.1" b="0.1" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-    <!-- Lamp post material -->
-    <MATERIAL id="lightPostMaterial">
-        <shininess value="100" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />
-        <diffuse r="0.447" g="0.416" b="0.416" a="1" />
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-    <!-- Light bulb material -->
-    <MATERIAL id="lightMaterial">
-        <shininess value="50" />
-        <specular r="0.1" g="0.1" b="0.1" a="1" />
-        <diffuse r="0.5" g="0.5" b="0.5" a="1" />
-        <ambient r="0.0" g="0.0" b="0.0" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-    <!-- A default material -->
-    <MATERIAL id="defaultMaterial">
-        <shininess value="1" />
-        <specular r="0.0" g="0.0" b="0.0" a="1" />
-        <diffuse r="0.4" g="0.4" b="0.4" a="1" />
-        <ambient r="0.4" g="0.4" b="0.4" a="1" />
-        <emission r="0.0" g="0.0" b="0.0" a="1" />
-    </MATERIAL>
-
-</MATERIALS>
-
-
 <!-- The leaves -->
 <LEAVES>
 </LEAVES>
@@ -329,7 +331,7 @@
      </NODE>
 
 
-	 <NODE id="ball_water" selectable ="1">
+	 <NODE id="ball_water" selectable ="true">
         <MATERIAL id="plasticMaterial" />
         <TEXTURE id="red" />
 
@@ -373,7 +375,7 @@
 
     </NODE>
 
-    <NODE id="umbrella1" selectable="1">
+    <NODE id="umbrella1" selectable="true">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -387,7 +389,7 @@
 
     </NODE>
 
-    <NODE id="umbrella2" selectable="1">
+    <NODE id="umbrella2" selectable="true">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
 
@@ -932,7 +934,7 @@
 
 
     <!-- Lounge chair-->
-    <NODE id="lounge" selectable="0">
+    <NODE id="lounge" selectable="false">
         <MATERIAL id="null" />
         <TEXTURE id="ball" />
 
