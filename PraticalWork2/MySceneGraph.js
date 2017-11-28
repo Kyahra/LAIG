@@ -45,7 +45,7 @@ function MySceneGraph(filename, scene) {
     this.reader.open('scenes/' + filename, this);
 
     this.ChosenNode = "";
-    this.selectables = [];
+    this.selectables = ["none"];
 }
 
 /*
@@ -1792,8 +1792,10 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         } else mat = materialID;
 
         let flag = false;
-        if(children[i] == this.ChosenNode){
 
+
+        if(children[i] == this.ChosenNode){
+          console.log(children[i]);
           this.scene.setActiveShader(this.scene.shader);
           flag = true;
         }

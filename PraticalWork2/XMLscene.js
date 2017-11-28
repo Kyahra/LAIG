@@ -179,7 +179,7 @@ XMLscene.prototype.update = function (currTime) {
   		this.graph.update(currTime-this.prevTime);
 
     this.shader.setUniformsValues({timeFactor:this.time});
-    //console.log("time: " + currTime);
+
 
 	  this.prevTime = currTime;
 

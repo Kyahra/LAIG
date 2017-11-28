@@ -33,6 +33,7 @@ MyInterface.prototype.init = function(application) {
 MyInterface.prototype.addSelectables = function(){
   this.gui.add(this.scene.graph, "ChosenNode", this.scene.graph.selectables);
 
+
   for(var i = 0 ; i < this.scene.graph.selectables.length; i++){
     console.log("select" + this.scene.graph.selectables[i]);
   }
@@ -44,7 +45,7 @@ MyInterface.prototype.addObject = function () {
     group.open();
 
 
-    group.add(this.scene, 'shaderObjects', {'Luz1' : 0 , 'Luz2' : 1, 'Luz3' : 2});
+
 
 };
 

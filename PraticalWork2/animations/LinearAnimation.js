@@ -25,7 +25,7 @@ class LinearAnimation extends Animation{
 			this.currentDistance = this.speed * deltaTime;
 			mat4.translate(node.animMatrix,node.animMatrix,this.points[0]);
 
-			var initTranslation=this.points[0];
+			var initTranslation =[0,0,0];
 
 			// find current segment
 			var i = 0;
@@ -53,4 +53,3 @@ class LinearAnimation extends Animation{
 			}
 
 }
-
