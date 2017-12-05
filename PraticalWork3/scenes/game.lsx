@@ -57,10 +57,45 @@
 
 <!-- Textures -->
 <TEXTURES>
-    <!-- Poll ball -->
+
     <TEXTURE id="red">
         <file path="images/ball.png" />
         <amplif_factor s="0.5" t="0.5" />
+    </TEXTURE>
+
+    <TEXTURE id="wood">
+        <file path="images/wood.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="red_piece">
+        <file path="images/redPiece.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="blue_piece">
+        <file path="images/bluePiece.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="green_piece">
+        <file path="images/greenPiece.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="black_piece">
+        <file path="images/blackPiece.png" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="ivory_piece">
+        <file path="images/ivoryPiece.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="white_piece">
+        <file path="images/whitePiece.jpg" />
+        <amplif_factor s="1" t="1" />
     </TEXTURE>
 
 </TEXTURES>
@@ -133,7 +168,13 @@
         <DESCENDANTS>
 
             <NODEREF id="ball_water"/>
-            <NODEREF id="top"/>
+            <NODEREF id="board"/>
+            <NODEREF id="red_piece"/>
+            <NODEREF id="blue_piece"/>
+            <NODEREF id="green_piece"/>
+            <NODEREF id="black_piece"/>
+            <NODEREF id="ivory_piece"/>
+            <NODEREF id="white_piece"/>
 
         </DESCENDANTS>
     </NODE>
@@ -153,14 +194,92 @@
 
     </NODE>
 
-
-    <!-- Table top -->
-    <NODE id="top">
+    <NODE id="red_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="null" />
+        <TEXTURE id="red_piece" />
+
+        <TRANSLATION x="3" y="0.5" z="0" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="blue_piece">
+        <MATERIAL id="null" />
+        <TEXTURE id="blue_piece" />
+
+        <TRANSLATION x="6" y="0.5" z="0" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="green_piece">
+        <MATERIAL id="null" />
+        <TEXTURE id="green_piece" />
+
+        <TRANSLATION x="9" y="0.5" z="0" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="black_piece">
+        <MATERIAL id="null" />
+        <TEXTURE id="black_piece" />
+
+        <TRANSLATION x="3" y="0.5" z="3" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="ivory_piece">
+        <MATERIAL id="null" />
+        <TEXTURE id="ivory_piece" />
+
+        <TRANSLATION x="6" y="0.5" z="3" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="white_piece">
+        <MATERIAL id="null" />
+        <TEXTURE id="white_piece" />
+
+        <TRANSLATION x="9" y="0.5" z="3" />
+        <SCALE sx="3" sy="0.01" sz="3" />
+        <ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+
+
+    <NODE id="board">
+        <MATERIAL id="null" />
+        <TEXTURE id="wood" />
 
         <TRANSLATION x="0" y="0" z="10" />
-        <SCALE sx="15" sy="0.4" sz="15" />
+        <SCALE sx="16" sy="0.4" sz="16" />
 
         <DESCENDANTS>
           <NODEREF id="cubeFace1" />

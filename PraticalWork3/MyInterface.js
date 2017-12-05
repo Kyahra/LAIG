@@ -45,8 +45,6 @@ MyInterface.prototype.addObject = function () {
     group.open();
 
 
-
-
 };
 
 /**
