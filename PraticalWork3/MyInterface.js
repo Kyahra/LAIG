@@ -24,6 +24,7 @@ MyInterface.prototype.init = function(application) {
 
     this.gui = new dat.GUI();
 
+
     // add a group of controls (and open/expand by defult)
 
     return true;
@@ -44,8 +45,17 @@ MyInterface.prototype.addObject = function () {
     var group = this.gui.addFolder("Shaders");
     group.open();
 
-
 };
+
+MyInterface.prototype.addGameMode = function(){
+  this.gui.add(this.scene.graph, "GameMode", this.scene.graph.GameMode);
+
+/*
+  for(var i = 0 ; i < this.scene.graph.selectables.length; i++){
+    console.log("select" + this.scene.graph.selectables[i]);
+  }*/
+}
+
 
 /**
  * Adds a folder containing the IDs of the lights passed as parameter.

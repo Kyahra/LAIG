@@ -100,7 +100,9 @@ XMLscene.prototype.onGraphLoaded = function()
 
     // Adds lights group.
     this.interface.addLightsGroup(this.graph.lights);
-    this.interface.addSelectables();
+    //this.interface.addSelectables();
+    this.interface.addGameMode();
+    //this.interface.gui.__ul.childNodes[1].classList += 'full_width';
     //this.interface.addObject();
 
 	this.setUpdatePeriod(1000/60);

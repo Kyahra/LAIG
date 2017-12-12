@@ -46,6 +46,7 @@ function MySceneGraph(filename, scene) {
 
     this.ChosenNode = "";
     this.selectables = ["none"];
+    this.GameMode = ["PlayerVsPlayer", "PlayerVsComputer", "Computer"];
 }
 
 /*
