@@ -58,7 +58,7 @@
 <!-- Textures -->
 <TEXTURES>
     <TEXTURE id="stone">
-        <file path="images/wood.png" />
+        <file path="images/grey.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
@@ -68,22 +68,22 @@
     </TEXTURE>
 
     <TEXTURE id="red">
-        <file path="images/red.png" />
+        <file path="images/red.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
     <TEXTURE id="blue">
-        <file path="images/blue.png" />
+        <file path="images/blue.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
     <TEXTURE id="green">
-        <file path="images/green.png" />
+        <file path="images/green.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
     <TEXTURE id="black">
-        <file path="images/black.png" />
+        <file path="images/black.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
@@ -163,12 +163,11 @@
         <MATERIAL id="null" />
         <TEXTURE id="red" />
 
-        <TRANSLATION x="3" y="0.5" z="0" />
-        <SCALE sx="3" sy="0.01" sz="3" />
+        <TRANSLATION x="2.7" y="0" z="-2.5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -176,12 +175,11 @@
         <MATERIAL id="null" />
         <TEXTURE id="blue" />
 
-        <TRANSLATION x="6" y="0.5" z="0" />
-        <SCALE sx="3" sy="0.01" sz="3" />
+        <TRANSLATION x="5.4" y="0" z="-2.5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -189,12 +187,11 @@
         <MATERIAL id="null" />
         <TEXTURE id="green" />
 
-        <TRANSLATION x="9" y="0.5" z="0" />
-        <SCALE sx="3" sy="0.01" sz="3" />
+        <TRANSLATION x="8.1" y="0" z="-2.5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -202,12 +199,11 @@
         <MATERIAL id="null" />
         <TEXTURE id="black" />
 
-        <TRANSLATION x="3" y="0.5" z="3" />
-        <SCALE sx="3" sy="0.01" sz="3" />
+        <TRANSLATION x="10.8" y="0" z="-2.5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -215,12 +211,11 @@
         <MATERIAL id="null" />
         <TEXTURE id="ivory" />
 
-        <TRANSLATION x="6" y="0.5" z="3" />
-        <SCALE sx="3" sy="0.01" sz="3" />
+        <TRANSLATION x="13.5" y="0" z="-2.5" />
         <ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <LEAF  type="cylinder" args="12.15 0.2 0.2 20 20 1 1" />
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
@@ -250,8 +245,8 @@
     </NODE>
 
     <NODE id="board_base">
-      <MATERIAL id="stone_material" />
-      <TEXTURE id="stone" />
+      <MATERIAL id="plastic_material" />
+      <TEXTURE id="white" />
 
       <TRANSLATION x="-5" y="0" z="21" />
       <SCALE sx="26" sy="1" sz="26" />
@@ -267,7 +262,7 @@
       <MATERIAL id="plastic_material" />
       <TEXTURE id="board" />
 
-      <TRANSLATION x="0" y="0.71" z="16" />
+      <TRANSLATION x="0" y="1.01" z="16" />
       <SCALE sx="16" sy="1" sz="16" />
       <ROTATION axis="x" angle="-90" />
 
@@ -280,10 +275,10 @@
 
     <NODE id="board_struct">
         <MATERIAL id="plastic_material" />
-        <TEXTURE id="white" />
+        <TEXTURE id="black" />
 
         <TRANSLATION x="0" y="0" z="16" />
-        <SCALE sx="16" sy="0.7" sz="16" />
+        <SCALE sx="16" sy="1" sz="16" />
 
         <DESCENDANTS>
           <NODEREF id="cubeFace1" />
