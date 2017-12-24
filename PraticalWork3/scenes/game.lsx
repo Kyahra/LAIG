@@ -57,55 +57,63 @@
 
 <!-- Textures -->
 <TEXTURES>
-
-    <TEXTURE id="red">
-        <file path="images/ball.png" />
-        <amplif_factor s="0.5" t="0.5" />
-    </TEXTURE>
-
-    <TEXTURE id="wood">
+    <TEXTURE id="stone">
         <file path="images/wood.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="red_piece">
-        <file path="images/redPiece.png" />
+    <TEXTURE id="board">
+        <file path="images/board.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="blue_piece">
-        <file path="images/bluePiece.png" />
+    <TEXTURE id="red">
+        <file path="images/red.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="green_piece">
-        <file path="images/greenPiece.png" />
+    <TEXTURE id="blue">
+        <file path="images/blue.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="black_piece">
-        <file path="images/blackPiece.png" />
+    <TEXTURE id="green">
+        <file path="images/green.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="ivory_piece">
-        <file path="images/ivoryPiece.jpg" />
+    <TEXTURE id="black">
+        <file path="images/black.png" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="white_piece">
-        <file path="images/whitePiece.jpg" />
+    <TEXTURE id="ivory">
+        <file path="images/ivory.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="white">
+        <file path="images/white.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
 </TEXTURES>
 
 <MATERIALS>
-	<!-- Tree trunk material -->
-	<MATERIAL id="plasticMaterial">
-        <shininess value="70" />+
+    <!-- Stone material -->
+    <MATERIAL id="stone_material">
+      <shininess value="10" />
+      <specular r="0.2" g="0.2" b="0.2" a="1" />
+      <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+      <ambient r="0.4" g="0.4" b="0.4" a="1" />
+      <emission r="0.0" g="0.0" b="0.0" a="1" />
+    </MATERIAL>
+
+  	<!-- Plastic material -->
+  	<MATERIAL id="plastic_material">
+        <shininess value="30" />
         <specular r="0.5" g="0.5" b="0.5" a="1" />
-        <diffuse r="0.7" g="0.7" b="0.7" a="1" />
+        <diffuse r="0.6" g="0.6" b="0.6" a="1" />
         <ambient r="0.1" g="0.1" b="0.1" a="1" />
         <emission r="0.0" g="0.0" b="0.0" a="1" />
     </MATERIAL>
@@ -122,33 +130,7 @@
 </MATERIALS>
 
 <ANIMATIONS>
-	<ANIMATION id="Test1" speed="10" type="linear">
-		<controlpoint xx="0" yy="0" zz="0" />
-		<controlpoint xx="5" yy="0" zz="5" />
-    <controlpoint xx="0" yy="0" zz="5" />
-
-	</ANIMATION>
-
-  <ANIMATION id="Test2" speed="200" type="circular"
-			   centerx="1" centery="1" centerz="1"
-			   radius="5" startang="20" rotang="180"
-	/>
-
-	<ANIMATION id="Test4" speed="10" type="bezier">
-		<controlpoint xx="0" yy="0" zz="0" />
-		<controlpoint xx="5" yy="0" zz="0" />
-		<controlpoint xx="5" yy="0" zz="5" />
-		<controlpoint xx="0" yy="0" zz="5" />
-	</ANIMATION>
-
-	 <ANIMATION id="Test3" type="combo">
-		<SPANREF id="Test1"/>
-		<SPANREF id="Test4"/>
-	 </ANIMATION>
-
 </ANIMATIONS>
-
-
 
 <!-- The leaves -->
 <LEAVES>
@@ -166,8 +148,6 @@
         <TEXTURE id="null" />
 
         <DESCENDANTS>
-
-            <NODEREF id="ball_water"/>
             <NODEREF id="board"/>
             <NODEREF id="red_piece"/>
             <NODEREF id="blue_piece"/>
@@ -179,24 +159,9 @@
         </DESCENDANTS>
     </NODE>
 
-
-	 <NODE id="ball_water" selectable="false" >
-        <MATERIAL id="plasticMaterial" />
-        <TEXTURE id="red" />
-
-        <ANIMATIONREFS>
-          <ANIMATIONREF id="Test2" />
-        </ANIMATIONREFS>
-
-        <DESCENDANTS>
-          <LEAF  type="sphere" args="1 40 40" />
-        </DESCENDANTS>
-
-    </NODE>
-
     <NODE id="red_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="red_piece" />
+        <TEXTURE id="red" />
 
         <TRANSLATION x="3" y="0.5" z="0" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -209,7 +174,7 @@
 
     <NODE id="blue_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="blue_piece" />
+        <TEXTURE id="blue" />
 
         <TRANSLATION x="6" y="0.5" z="0" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -222,7 +187,7 @@
 
     <NODE id="green_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="green_piece" />
+        <TEXTURE id="green" />
 
         <TRANSLATION x="9" y="0.5" z="0" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -235,7 +200,7 @@
 
     <NODE id="black_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="black_piece" />
+        <TEXTURE id="black" />
 
         <TRANSLATION x="3" y="0.5" z="3" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -248,7 +213,7 @@
 
     <NODE id="ivory_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="ivory_piece" />
+        <TEXTURE id="ivory" />
 
         <TRANSLATION x="6" y="0.5" z="3" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -261,7 +226,7 @@
 
     <NODE id="white_piece">
         <MATERIAL id="null" />
-        <TEXTURE id="white_piece" />
+        <TEXTURE id="white" />
 
         <TRANSLATION x="9" y="0.5" z="3" />
         <SCALE sx="3" sy="0.01" sz="3" />
@@ -272,14 +237,53 @@
         </DESCENDANTS>
     </NODE>
 
-
-
     <NODE id="board">
-        <MATERIAL id="null" />
-        <TEXTURE id="wood" />
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
 
-        <TRANSLATION x="0" y="0" z="10" />
-        <SCALE sx="16" sy="0.4" sz="16" />
+      <DESCENDANTS>
+        <NODEREF id="board_struct"/>
+        <NODEREF id="board_top"/>
+        <NODEREF id="board_base"/>
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="board_base">
+      <MATERIAL id="stone_material" />
+      <TEXTURE id="stone" />
+
+      <TRANSLATION x="-5" y="0" z="21" />
+      <SCALE sx="26" sy="1" sz="26" />
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="board_top">
+      <MATERIAL id="plastic_material" />
+      <TEXTURE id="board" />
+
+      <TRANSLATION x="0" y="0.71" z="16" />
+      <SCALE sx="16" sy="1" sz="16" />
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="board_struct">
+        <MATERIAL id="plastic_material" />
+        <TEXTURE id="white" />
+
+        <TRANSLATION x="0" y="0" z="16" />
+        <SCALE sx="16" sy="0.7" sz="16" />
 
         <DESCENDANTS>
           <NODEREF id="cubeFace1" />
