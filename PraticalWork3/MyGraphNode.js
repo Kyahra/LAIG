@@ -2,11 +2,11 @@
  * MyGraphNode class, representing an intermediate node in the scene graph.
  * @constructor
 **/
-function MyGraphNode(graph, nodeID, nodeSelectable) {
+function MyGraphNode(graph, nodeID, selectable) {
     this.graph = graph;
 
     this.nodeID = nodeID;
-	this.nodeSelectable = nodeSelectable;
+	this.selectable = selectable;
 	
     // IDs of child nodes.
     this.children = [];
@@ -57,6 +57,7 @@ MyGraphNode.prototype.getChildren = function() {
 }
 
 MyGraphNode.prototype.updateAnimations = function(deltaTime) {
+	
 
   deltaTime=deltaTime/1000;
 

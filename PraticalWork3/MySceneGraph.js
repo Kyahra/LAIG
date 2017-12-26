@@ -44,9 +44,9 @@ function MySceneGraph(filename, scene) {
 
     this.reader.open('scenes/' + filename, this);
 
-    this.ChosenNode = "";
-    this.selectables = ["none"];
     this.GameMode = ["PlayerVsPlayer", "PlayerVsComputer", "Computer"];
+	
+	this.pickID=0;
 }
 
 /*
@@ -1335,6 +1335,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
  * Parses the <NODES> block.
  */
 MySceneGraph.prototype.parseNodes = function(nodesNode) {
+	
 
     // Traverses nodes.
     var children = nodesNode.children;
@@ -1365,16 +1366,18 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                 return "node ID must be unique (conflict: ID = " + nodeID + ")";
 
 
-            // Retrieves selectable parameter
+             // Retrieves selectable parameter
             var nodeSelectable = this.reader.getBoolean(children[i], 'selectable',false);
-            if(nodeSelectable == true)
-              this.selectables.push(nodeID);
+    
+		  
+			if(	nodeSelectable==null)
+				nodeSelectable= false;
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
 
 
             // Creates node.
-            this.nodes[nodeID] = new MyGraphNode(this,nodeID, false);
+            this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable);
 
 
             // Gathers child nodes.
@@ -1742,8 +1745,8 @@ MySceneGraph.prototype.displayScene = function() {
 
 	if(rootNode == null)
 		return "there is not root node";
-
-
+	
+		this.pickID=0;
 	this.displayAux(rootNode.children,this.defaultMaterialID,"null");
 
 }
@@ -1764,7 +1767,6 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
           var material = new CGFappearance(this.scene);
         }
         var texture = this.textures[textureID];
-
 
         if(texture != null){
       	   material.setTexture(texture[0]);
@@ -1793,13 +1795,11 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         } else mat = materialID;
 
         let flag = false;
-
-
-        if(children[i] == this.ChosenNode){
-          console.log(children[i]);
-          this.scene.setActiveShader(this.scene.shader);
-          flag = true;
-        }
+		
+		if(node.selectable){
+			this.pickID++;
+			this.scene.registerForPick(this.pickID,node);
+		}
 
         this.scene.pushMatrix();
 
@@ -1809,11 +1809,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         this.displayAux(node.children,mat,tex);
 
         this.scene.popMatrix();
-
-        if(flag )
-          this.scene.setActiveShader(this.scene.defaultShader);
-		}
 	}
+  }
 }
 
 

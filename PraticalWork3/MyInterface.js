@@ -50,16 +50,9 @@ MyInterface.prototype.addObject = function () {
 MyInterface.prototype.addGameMode = function(){
   this.gui.add(this.scene.graph, "GameMode", this.scene.graph.GameMode);
 
-/*
-  for(var i = 0 ; i < this.scene.graph.selectables.length; i++){
-    console.log("select" + this.scene.graph.selectables[i]);
-  }*/
+
 }
 
-
-/**
- * Adds a folder containing the IDs of the lights passed as parameter.
- */
 MyInterface.prototype.addLightsGroup = function(lights) {
 
     var group = this.gui.addFolder("Lights");
@@ -75,3 +68,5 @@ MyInterface.prototype.addLightsGroup = function(lights) {
         }
     }
 }
+
+

@@ -122,6 +122,7 @@
 </MATERIALS>
 
 <ANIMATIONS>
+
 </ANIMATIONS>
 
 <!-- The leaves -->
@@ -159,7 +160,7 @@
         </DESCENDANTS>
     </NODE>
 	
-	<NODE id="p1_base1">
+	<NODE id="p1_base1" >
         <MATERIAL id="null" />
         <TEXTURE id="black" />
 
@@ -212,7 +213,7 @@
     </NODE>
 	
 	
-	<NODE id="base_top">
+	<NODE id="base_top"  selectable="true">
         <MATERIAL id="plastic_material" />
         <TEXTURE id="white" />
 
@@ -224,8 +225,7 @@
         </DESCENDANTS>
     </NODE>
 	
-	
-	
+
 	
 	<NODE id="pieces">
 		<MATERIAL id="null" />
@@ -303,7 +303,7 @@
 
  
 	
-	<NODE id="piece">
+	<NODE id="piece" selectable="true">
         <MATERIAL id="null" />
         <TEXTURE id="null" />
    

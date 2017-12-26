@@ -37,7 +37,7 @@ XMLscene.prototype.init = function(application) {
 
     this.axis = new CGFaxis(this);
 
-    this.shader = new CGFshader(this.gl,"shaders/MyShader.vert","shaders/MyShader.frag");
+	this.setPickEnabled(true);
 }
 
 /**
@@ -71,6 +71,8 @@ XMLscene.prototype.initLights = function() {
             i++;
         }
     }
+	
+	
 
 }
 
@@ -98,12 +100,9 @@ XMLscene.prototype.onGraphLoaded = function()
 
     this.initLights();
 
-    // Adds lights group.
-    this.interface.addLightsGroup(this.graph.lights);
-    //this.interface.addSelectables();
+	this.interface.addLightsGroup(this.graph.lights);
     this.interface.addGameMode();
-    //this.interface.gui.__ul.childNodes[1].classList += 'full_width';
-    //this.interface.addObject();
+   
 
 	this.setUpdatePeriod(1000/60);
 	this.prevTime = -1;
@@ -113,6 +112,8 @@ XMLscene.prototype.onGraphLoaded = function()
  * Displays the scene.
  */
 XMLscene.prototype.display = function() {
+	this.logPicking();
+	this.clearPickRegistration();
     // ---- BEGIN Background, camera and axis setup
 
     // Clear image and depth buffer everytime we update the scene
@@ -136,8 +137,9 @@ XMLscene.prototype.display = function() {
 
 		// Draw axis
 		this.axis.display();
-
-        var i = 0;
+		
+		
+		var i = 0;
         for (var key in this.lightValues) {
             if (this.lightValues.hasOwnProperty(key)) {
                 if (this.lightValues[key]) {
@@ -153,6 +155,7 @@ XMLscene.prototype.display = function() {
             }
         }
 
+    
         // Displays the scene.
         this.graph.displayScene();
 
@@ -173,16 +176,35 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function (currTime) {
 
-    this.time = (Math.cos(currTime/1000))/ 2 + 0.5;
 
     if(this.prevTime == -1)
   		this.graph.update(0);
   	else
   		this.graph.update(currTime-this.prevTime);
 
-    this.shader.setUniformsValues({timeFactor:this.time});
-
-
-	  this.prevTime = currTime;
+	 this.prevTime = currTime;
 
 };
+
+XMLscene.prototype.logPicking = function (){
+	if (this.pickMode == false) {
+		if (this.pickResults != null && this.pickResults.length > 0) {
+			for (var i=0; i< this.pickResults.length; i++) {
+				var obj = this.pickResults[i][0];
+				if (obj)
+				{
+					var customId = this.pickResults[i][1];	
+					console.log(obj.nodeID);
+					console.log("Picked object: " + obj + ", with pick id " + customId);
+					var anim = new LinearAnimation(this, "Base", 3, [[0,0,0],[0,0,5]]);
+					this.graph.animations["Base"]= anim;
+					//anim.duration= this.prevTime +anim.duration;
+
+					obj.addAnimation("Base");
+					
+				}
+			}
+			this.pickResults.splice(0,this.pickResults.length);
+		}		
+	}
+}
