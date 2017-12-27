@@ -31,11 +31,11 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
-	  this.lastUpdateTime = (new Date()).getTime();
+	this.lastUpdateTime = (new Date()).getTime();
 
     this.axis = new CGFaxis(this);
 
-	  this.setPickEnabled(true);
+	this.setPickEnabled(true);
     this.game = new Game();
 }
 
@@ -205,3 +205,16 @@ XMLscene.prototype.logPicking = function (){
 		}
 	}
 }
+
+
+
+XMLscene.prototype.newGame = function (gameMode,data){
+	
+	console.log('yo');
+	let response = JSON.parse(data.target.response);
+    let board = response[0];
+	
+	console.log(board);
+	
+	document.getElementById('overlay').style.display = 'block';
+};

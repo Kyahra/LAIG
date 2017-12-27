@@ -3,7 +3,7 @@
 
 :-include('board.pl').
 
-startHvH:-
+startHvH(RandomB):-
         board4(B),
         createBoard(B,RandomB),
         random(0,2,R),

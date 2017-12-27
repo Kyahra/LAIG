@@ -44,18 +44,18 @@ MyInterface.prototype.init = function(application) {
 };
 
 MyInterface.prototype.requestNewConfig = function () {
-  var repply;
 
-    switch (this.gameMode) {
-      case GAMEMODE.HUMAN_VS_HUMAN:
-        getPrologRequest('hvh', repply);
-        break;
-      default:
-        break;
+    getPrologRequest('hvh', handleReply);
+   
 
-    }
+    
 
 };
+
+
+function handleReply(data){
+	console.log(data.target.response);
+}
 
 
 MyInterface.prototype.addLightsGroup = function(lights) {
