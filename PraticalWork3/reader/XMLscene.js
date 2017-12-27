@@ -8,9 +8,7 @@ function XMLscene(interface) {
     CGFscene.call(this);
 
     this.interface = interface;
-
     this.lightValues = {};
-
     this.shaderObjects = {};
 
 }
@@ -33,11 +31,12 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
-	this.lastUpdateTime = (new Date()).getTime();
+	  this.lastUpdateTime = (new Date()).getTime();
 
     this.axis = new CGFaxis(this);
 
-	this.setPickEnabled(true);
+	  this.setPickEnabled(true);
+    this.game = new Game();
 }
 
 /**
@@ -71,8 +70,8 @@ XMLscene.prototype.initLights = function() {
             i++;
         }
     }
-	
-	
+
+
 
 }
 
@@ -100,12 +99,10 @@ XMLscene.prototype.onGraphLoaded = function()
 
     this.initLights();
 
-	this.interface.addLightsGroup(this.graph.lights);
-    this.interface.addGameMode();
-   
+	  this.interface.addLightsGroup(this.graph.lights);
 
-	this.setUpdatePeriod(1000/60);
-	this.prevTime = -1;
+  	this.setUpdatePeriod(1000/60);
+  	this.prevTime = -1;
 }
 
 /**
@@ -137,8 +134,8 @@ XMLscene.prototype.display = function() {
 
 		// Draw axis
 		this.axis.display();
-		
-		
+
+
 		var i = 0;
         for (var key in this.lightValues) {
             if (this.lightValues.hasOwnProperty(key)) {
@@ -155,7 +152,7 @@ XMLscene.prototype.display = function() {
             }
         }
 
-    
+
         // Displays the scene.
         this.graph.displayScene();
 
@@ -193,7 +190,7 @@ XMLscene.prototype.logPicking = function (){
 				var obj = this.pickResults[i][0];
 				if (obj)
 				{
-					var customId = this.pickResults[i][1];	
+					var customId = this.pickResults[i][1];
 					console.log(obj.nodeID);
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 					var anim = new LinearAnimation(this, "Base", 3, [[0,0,0],[0,0,5]]);
@@ -201,10 +198,10 @@ XMLscene.prototype.logPicking = function (){
 					//anim.duration= this.prevTime +anim.duration;
 
 					obj.addAnimation("Base");
-					
+
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
-		}		
+		}
 	}
 }

@@ -19,6 +19,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 			 'primitives/MyPatch.js','animations/Animation.js',
 			 'animations/LinearAnimation.js','animations/CircularAnimation.js',
 			 'animations/ComboAnimation.js','animations/BezierAnimation.js',
+       'MyPrologInterface.js','game/Game.js',
 			 'utils.js',
 
 main=function()
@@ -35,16 +36,16 @@ main=function()
 
     myInterface.setActiveCamera(myScene.camera);
 
-	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
-	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
+  	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
+  	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-	var filename=getUrlVars()['file'] || "game.lsx";
+  	var filename=getUrlVars()['file'] || "game.lsx";
 
-	// create and load graph, and associate it to scene.
-	// Check console for loading errors
-	var myGraph = new MySceneGraph(filename, myScene);
+  	// create and load graph, and associate it to scene.
+  	// Check console for loading errors
+  	var myGraph = new MySceneGraph(filename, myScene);
 
-	// start
+  	// start
     app.run();
 
 }

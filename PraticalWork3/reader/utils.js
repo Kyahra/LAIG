@@ -35,3 +35,9 @@ function angleBetween(vector1, vector2) {
 radians = function(degrees) {
   return degrees * Math.PI / 180;
 };
+
+GAMEMODE = {
+    HUMAN_VS_HUMAN: 0,
+    HUMAN_VS_CPU: 1,
+    CPU_VS_CPU: 2
+};
