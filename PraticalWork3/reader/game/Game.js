@@ -12,7 +12,7 @@ class Game {
      * @param scene
      * @param gameMode
      */
-    newGame(scene, gameMode) {
+    newGame(scene, gameMode,board) {
         this.running = false;
         this.scene = scene;
         this.gameMode = gameMode;
@@ -20,6 +20,7 @@ class Game {
         this.colors = ['ivory','blue','red','green','black'];
 		this.player1=[0,1];
 		this.palyer2=[0,2];
+		this.board = board;
     }
 
 }

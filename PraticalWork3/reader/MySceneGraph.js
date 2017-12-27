@@ -1747,7 +1747,9 @@ MySceneGraph.prototype.displayScene = function() {
 		return "there is not root node";
 	
 		this.pickID=0;
+		
 	this.displayAux(rootNode.children,this.defaultMaterialID,"null");
+	this.displayBoard();
 
 }
 
@@ -1836,5 +1838,33 @@ MySceneGraph.prototype.updateAux= function(children){
 			this.updateAux(node.children);
 
 		}
+	}
+}
+
+
+MySceneGraph.prototype.displayBoard = function(){
+	
+	let board = this.scene.game.board;
+	
+	if(board != null){
+		let id = board[4][6];
+		id = id + "_piece";
+		
+		let node = this.nodes[id];
+		
+		
+		let old_matrix = node.transformMatrix;
+		mat4.identity(node.transformMatrix);
+		mat4.translate(node.transformMatrix, node.transformMatrix, [0,3,0]);
+		
+		this.scene.pushMatrix();
+
+        this.scene.multMatrix(node.transformMatrix);
+        this.scene.multMatrix(node.animMatrix);
+
+        this.displayAux(node.children,node.materialID,node.textureID);
+
+        this.scene.popMatrix();
+		node.transformMatrix= old_matrix;
 	}
 }

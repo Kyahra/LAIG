@@ -212,8 +212,8 @@ XMLscene.prototype.newGame = function (gameMode,data){
 	
 	let board = JSON.parse(data.target.response);
 	
-	this.game.newGame(this,gameMode);
-
+	this.game.newGame(this,gameMode,board);
+	
    
 	console.log(board);
 	
