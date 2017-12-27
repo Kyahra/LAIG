@@ -45,17 +45,12 @@ MyInterface.prototype.init = function(application) {
 
 MyInterface.prototype.requestNewConfig = function () {
 
-    getPrologRequest('hvh', handleReply);
-   
-
-    
+	getPrologRequest('initialize', this.scene.newGame.bind(this.scene,this.gameMode));
 
 };
 
 
-function handleReply(data){
-	console.log(data.target.response);
-}
+
 
 
 MyInterface.prototype.addLightsGroup = function(lights) {

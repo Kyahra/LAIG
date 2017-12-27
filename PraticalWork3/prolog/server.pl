@@ -106,9 +106,9 @@ print_header_line(_).
 :-include('src/main.pl').
 :-include('json.pl').
 
-parse_input(hvh,yoyo):-
-	startHvH(Board).
-	
+parse_input(initialize,Board):-
+	initialize(B),
+	matrix_to_json(B,Board).
 
 
 

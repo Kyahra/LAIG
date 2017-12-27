@@ -210,10 +210,11 @@ XMLscene.prototype.logPicking = function (){
 
 XMLscene.prototype.newGame = function (gameMode,data){
 	
-	console.log('yo');
-	let response = JSON.parse(data.target.response);
-    let board = response[0];
+	let board = JSON.parse(data.target.response);
 	
+	this.game.newGame(this,gameMode);
+
+   
 	console.log(board);
 	
 	document.getElementById('overlay').style.display = 'block';

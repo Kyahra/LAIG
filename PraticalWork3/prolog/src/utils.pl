@@ -1,5 +1,3 @@
-
-
 printLines(N) :-
        N > 0,
        nl,
@@ -67,3 +65,9 @@ is_set(Lst) :-
     setof(X, member(X, Lst), Set),
     length(Lst, N),
     length(Set, N).
+	
+	
+initialize(Board):-
+	board4(B),
+    createBoard(B,Board).
+

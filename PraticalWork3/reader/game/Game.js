@@ -17,9 +17,9 @@ class Game {
         this.scene = scene;
         this.gameMode = gameMode;
         this.currentPlayer = 0;
-        this.botIsPlaying = false;
-        this.lastMoves = [];
-        this.botDifficulty = [BOT_DIFFICULTY.EASY, BOT_DIFFICULTY.EASY];
+        this.colors = ['ivory','blue','red','green','black'];
+		this.player1=[0,1];
+		this.palyer2=[0,2];
     }
 
 }
