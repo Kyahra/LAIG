@@ -15,3 +15,16 @@ function prologRequestError(data) {
     console.log('Prolog request error:');
     console.log(data);
 }
+
+
+function claimColor(color, colors, player, callback) {
+    let requestString = 'claim('
+        + color + ','
+        + JSON.stringify(colors).replace(/"/g, '') + ','
+        + JSON.stringify(player).replace(/"/g, '') + ')';
+		
+	console.log(requestString);
+
+    getPrologRequest(requestString, callback);
+}
+

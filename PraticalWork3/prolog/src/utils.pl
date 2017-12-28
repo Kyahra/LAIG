@@ -70,4 +70,13 @@ is_set(Lst) :-
 initialize(Board):-
 	board4(B),
     createBoard(B,Board).
+	
+claim(Color,Colors,Player,NewColors,NewPlayer):-
+	length(Player,Length),
+	Length <4,
+	select(Color,Colors,NewColors),
+	append(Player,[Color],NewPlayer).
+
+    
+        
 

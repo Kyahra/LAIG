@@ -109,7 +109,7 @@ XMLscene.prototype.onGraphLoaded = function()
  * Displays the scene.
  */
 XMLscene.prototype.display = function() {
-	this.logPicking();
+	this.handlePicking();
 	this.clearPickRegistration();
     // ---- BEGIN Background, camera and axis setup
 
@@ -183,7 +183,7 @@ XMLscene.prototype.update = function (currTime) {
 
 };
 
-XMLscene.prototype.logPicking = function (){
+XMLscene.prototype.handlePicking = function (){
 	if (this.pickMode == false) {
 		if (this.pickResults != null && this.pickResults.length > 0) {
 			for (var i=0; i< this.pickResults.length; i++) {
@@ -193,11 +193,15 @@ XMLscene.prototype.logPicking = function (){
 					var customId = this.pickResults[i][1];
 					console.log(obj.nodeID);
 					console.log("Picked object: " + obj + ", with pick id " + customId);
+					if(this.game.running)
+						this.game.picked(obj);
+					/*
 					var anim = new LinearAnimation(this, "Base", 3, [[0,0,0],[0,0,5]]);
 					this.graph.animations["Base"]= anim;
 					//anim.duration= this.prevTime +anim.duration;
 
 					obj.addAnimation("Base");
+					*/
 
 				}
 			}

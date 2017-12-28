@@ -109,6 +109,13 @@ print_header_line(_).
 parse_input(initialize,Board):-
 	initialize(B),
 	matrix_to_json(B,Board).
+	
+parse_input(claim(Color,Colors,Player),JSON):-
+	claim(Color,Colors,Player,NewColors,NewPlayer),
+	json([1,NewColors,NewPlayer],JSON).
+	
+parse_input(claim(Color,Colors,Player),JSON):-
+	json([0,0,0],JSON).
 
 
 

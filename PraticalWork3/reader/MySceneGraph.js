@@ -1450,6 +1450,9 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                         return "non-numeric value for z-coordinate of translation (node ID = " + nodeID + ")";
 
                     // Translates the object
+					if(this.nodes[nodeID].selectable)
+						this.nodes[nodeID].position = [x,y,z];
+					
                     mat4.translate(this.nodes[nodeID].transformMatrix, this.nodes[nodeID].transformMatrix, [x, y, z]);
                     break;
 
