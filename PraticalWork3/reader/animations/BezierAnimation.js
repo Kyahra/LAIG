@@ -68,7 +68,7 @@ class BezierAnimation extends Animation{
 			if(direction[0] < 0)
 			angle =  -angle;
 
-			mat4.rotate(node.animMatrix, node.animMatrix,angle, [0,1,0]);
+			//mat4.rotate(node.animMatrix, node.animMatrix,angle, [0,1,0]);
 
 		}
 
