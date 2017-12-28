@@ -727,66 +727,65 @@
     </NODE>
 
 
-    <NODE id="red">
+    <NODE id="red" selectable="true">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="red" />
 
 		<TRANSLATION x="10" y="0" z="4"/>
-
+		<ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-          <NODEREF id="piece"/>
+           <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
-    <NODE id="blue">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="blue" />
-
-		<TRANSLATION x="10" y="0" z="-2"/>
-
-
-        <DESCENDANTS>
-          <NODEREF id="piece"/>
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="green">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="green" />
-
-		<TRANSLATION x="10" y="0" z="-4"/>
-
-
-        <DESCENDANTS>
-          <NODEREF id="piece"/>
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="black">
-        <MATERIAL id="defaultMaterial" />
-        <TEXTURE id="black" />
-
-		<TRANSLATION x="10" y="0" z="0"/>
-
-
-        <DESCENDANTS>
-          <NODEREF id="piece"/>
-        </DESCENDANTS>
-    </NODE>
-
-    <NODE id="ivory">
+	 <NODE id="ivory" selectable="true">
         <MATERIAL id="defaultMaterial" />
         <TEXTURE id="ivory" />
 
 		<TRANSLATION x="10" y="0" z="2"/>
-
+		<ROTATION axis="x" angle="-90" />
 
         <DESCENDANTS>
-         <NODEREF id="piece"/>
+          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
 
+	<NODE id="black" selectable="true">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="black" />
+
+		<TRANSLATION x="10" y="0" z="0"/>
+		<ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+           <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="blue" selectable="true">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="blue" />
+
+		<TRANSLATION x="10" y="0" z="-2"/>
+		<ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+           <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
+        </DESCENDANTS>
+    </NODE>
+
+    <NODE id="green" selectable="true">
+        <MATERIAL id="defaultMaterial" />
+        <TEXTURE id="green" />
+
+		<TRANSLATION x="10" y="0" z="-4"/>
+		<ROTATION axis="x" angle="-90" />
+
+        <DESCENDANTS>
+           <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
+        </DESCENDANTS>
+    </NODE>
 
 
 	<NODE id="piece" selectable="true">

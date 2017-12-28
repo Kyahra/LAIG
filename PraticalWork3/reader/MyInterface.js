@@ -56,7 +56,7 @@ MyInterface.prototype.requestNewConfig = function () {
 MyInterface.prototype.addLightsGroup = function(lights) {
 
     var group = this.gui.addFolder("Lights");
-    group.open();
+
 
     for (var key in lights) {
         if (lights.hasOwnProperty(key)) {
@@ -64,4 +64,6 @@ MyInterface.prototype.addLightsGroup = function(lights) {
             group.add(this.scene.lightValues, key);
         }
     }
+	
+	group.close();
 }

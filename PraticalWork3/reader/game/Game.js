@@ -4,7 +4,7 @@ class Game {
      * @param scene Scene.
      */
     constructor() {
-        this.running = false;
+  
     }
 
     /**
@@ -13,14 +13,14 @@ class Game {
      * @param gameMode
      */
     newGame(scene, gameMode,board) {
-        this.running = false;
         this.scene = scene;
         this.gameMode = gameMode;
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
-    		this.player1=[0,1];
-    		this.palyer2=[0,2];
-    		this.board = board;
+		this.player1=[0,1];
+    	this.palyer2=[0,2];
+    	this.board = board;
+		
         this.translations = [              [0,7.3],
                       [-3.4,-5.6], [-1.2,-5.6], [1.2,-5.6], [3.4,-5.6],
     [-6.8,-3.7], [-4.6,-3.7], [-2.2,-3.7], [0,-3.7], [2.2,-3.7], [4.6,-3.7], [6.8,-3.7],

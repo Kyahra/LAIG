@@ -215,7 +215,9 @@ XMLscene.prototype.newGame = function (gameMode,data){
 	this.game.newGame(this,gameMode,board);
 	this.game.positionBoard();
    
-	console.log(board);
-	
 	document.getElementById('overlay').style.display = 'block';
+    
+	let scores = document.getElementsByClassName('score');
+    for (let score of scores)
+		score.innerHTML = '0';
 };
