@@ -73,7 +73,7 @@
     </TEXTURE>
 
     <TEXTURE id="blue">
-        <file path="images/blue2.jpg" />
+        <file path="images/blue.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 

@@ -207,14 +207,7 @@ XMLscene.prototype.handlePicking = function (){
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 					if(this.game.running)
 						this.game.picked(obj);
-					/*
-					var anim = new LinearAnimation(this, "Base", 3, [[0,0,0],[0,0,5]]);
-					this.graph.animations["Base"]= anim;
-					//anim.duration= this.prevTime +anim.duration;
-
-					obj.addAnimation("Base");
-					*/
-
+		
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);

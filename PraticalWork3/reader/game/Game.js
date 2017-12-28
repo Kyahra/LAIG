@@ -13,15 +13,15 @@ class Game {
      * @param gameMode
      */
     newGame(scene, gameMode,board) {
-		this.running = true;
+		    this.running = true;
         this.scene = scene;
         this.gameMode = gameMode;
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
-		this.players = [[0,1],[0,2]];
-		this.bases = [[[-2,0,10],[2,0.5,10]],[[-2,0.5,8],[2,0.5,8]]];
-    	this.board = board;
-		
+    		this.players = [[0,1],[0,2]];
+    		this.bases = [[[-2,0.5,10.15],[2,0.5,10.15]],[[-2,0.5,8],[2,0.5,8]]];
+    	  this.board = board;
+
         this.translations = [              [0,7.3],
                       [-3.4,-5.6], [-1.2,-5.6], [1.2,-5.6], [3.4,-5.6],
     [-6.8,-3.7], [-4.6,-3.7], [-2.2,-3.7], [0,-3.7], [2.2,-3.7], [4.6,-3.7], [6.8,-3.7],
@@ -61,44 +61,43 @@ class Game {
 			}
 		}
 	}
-	
+
 	picked(obj){
 		let color = obj.nodeID;
-		
+
 		if(this.colors.includes(color))
 			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
-			
-		
+
+
 	}
-	
+
 	claimedColor(obj,data){
 		let response = JSON.parse(data.target.response);
-		
+
 		let claimed = response[0];
-	
+
 		if(claimed){
 			let colors = response[1];
 			let player = response[2];
 			this.colors = colors;
 			this.players[this.currentPlayer] =player;
-			
+
 			let init_pos = obj.position;
 			let final_pos = this.bases[this.currentPlayer][0];
-			
 			let delta_pos = subtractPoints(init_pos,final_pos);
-			
-			console.log(delta_pos);
-			
+
+		  this.bases[this.currentPlayer].splice(0,1);
+  
 			let p1 =[0,0,0];
-			let p2 =[0,30,0];
-			let p3 =[40,30,0];
-			let p4 =[40,30,0];
-			
-			var anim = new BezierAnimation(this.scene, "Base", 3, [p1,p2,p3,p4]);
+			let p2 =[0,0,3];
+			let p3 =[delta_pos[0],0,3];
+			let p4 =[delta_pos[0],-delta_pos[2],delta_pos[1]];
+
+			var anim = new BezierAnimation(this.scene, "Base", 10, [p1,p2,p3,p4]);
 			this.scene.graph.animations["Base"]= anim;
-			
+
 			obj.addAnimation("Base");
-			
+
 		}
 	}
 
