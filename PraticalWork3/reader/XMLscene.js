@@ -192,9 +192,14 @@ XMLscene.prototype.update = function (currTime) {
   	else
   		this.graph.update(currTime-this.prevTime);
 
-	 this.prevTime = currTime;
+   if(this.prevTime == -1)
+    this.animateCamera(0);
+   else {
+     this.animateCamera(currTime-this.prevTime);
+   }
 
-   this.animateCamera(currTime-this.prevTime);
+   this.prevTime = currTime;
+
 
 };
 
@@ -210,7 +215,7 @@ XMLscene.prototype.handlePicking = function (){
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 					if(this.game.running)
 						this.game.picked(obj);
-		
+
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
@@ -256,8 +261,12 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     if (!this.changingCamera)
         return;
 
+    console.log('time elapsed : ' + this.timeElapsed);
+
+    console.log('delta time : ' + deltaTime);
+
     // *0.95 is to avoid flickering when the animation surpasses the expected camera position
-    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.95) {
+    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.99) {
         this.changingCamera = false;
         this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
         this.camera = this.cameras[this.currentCamera];
