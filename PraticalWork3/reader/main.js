@@ -19,7 +19,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 			 'primitives/MyPatch.js','animations/Animation.js',
 			 'animations/LinearAnimation.js','animations/CircularAnimation.js',
 			 'animations/ComboAnimation.js','animations/BezierAnimation.js',
-       'MyPrologInterface.js','game/Game.js',
+			 'MyPrologInterface.js','game/Game.js',
 			 'utils.js',
 
 main=function()

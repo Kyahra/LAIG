@@ -70,6 +70,15 @@ is_set(Lst) :-
 initialize(Board):-
 	board4(B),
     createBoard(B,Board).
+	
+claim(Color,Colors,Player,NewColors,NewPlayer):-
+	length(Player,Length),
+	Length <4,
+	select(Color,Colors,NewColors),
+	append(Player,[Color],NewPlayer).
+
+    
+        
 
 % humanPlay(ValidMove, T, [6,0],[7,1],[0,1],[0,2],[ivory,green,red,blue,black], NewBoard, NewPlayer, NewColors)
 % do not use NewBoard when ValidMove=0

@@ -355,9 +355,9 @@ getFinalPos(X,Y):-
 
 
 claimColor(Colors,FinalColors,Player,NewPlayer):-
-        	colorsMenu(Colors,Idx),
+		  colorsMenu(Colors,Idx),
           nth0(Idx, Colors, Color),
-        	select(Color,Colors,NewColors),
+		  select(Color,Colors,NewColors),
 
           length(Player,Plength),
           (

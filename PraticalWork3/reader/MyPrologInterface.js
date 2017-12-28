@@ -17,6 +17,19 @@ function prologRequestError(data) {
 }
 
 
+<<<<<<< HEAD
+function claimColor(color, colors, player, callback) {
+    let requestString = 'claim('
+        + color + ','
+        + JSON.stringify(colors).replace(/"/g, '') + ','
+        + JSON.stringify(player).replace(/"/g, '') + ')';
+		
+	console.log(requestString);
+
+    getPrologRequest(requestString, callback);
+}
+
+=======
 function humanPlay(validMove, board, initPos, finalPos, player1, player2, colors, newBoard, newPlayer, newColors, callback) {
     let requestString = 'humanPlay('
         + validMove + ','
@@ -32,3 +45,4 @@ function humanPlay(validMove, board, initPos, finalPos, player1, player2, colors
 
     getPrologRequest(requestString, callback);
 }
+>>>>>>> 14dde60be3cefa1579168c869e4562673e9ce279
