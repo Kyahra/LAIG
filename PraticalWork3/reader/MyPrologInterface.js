@@ -24,8 +24,6 @@ function claimColor(color, colors, player, callback) {
         + JSON.stringify(colors).replace(/"/g, '') + ','
         + JSON.stringify(player).replace(/"/g, '') + ')';
 
-	console.log(requestString);
-
     getPrologRequest(requestString, callback);
 }
 

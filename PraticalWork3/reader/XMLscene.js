@@ -207,14 +207,12 @@ XMLscene.prototype.handlePicking = function (){
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 					if(this.game.running)
 						this.game.picked(obj);
-		
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
 		}
 	}
 }
-
 
 
 XMLscene.prototype.newGame = function (gameMode,data){

@@ -48,7 +48,7 @@ class LinearAnimation extends Animation{
 
 			// calculate rotation angle and apply rotation
 			var angle = angleBetween([0,0,1],subtractPoints(this.points[i],this.points[i+1]));
-			mat4.rotate(node.animMatrix,node.animMatrix, angle,[0,1,0]);
+			//mat4.rotate(node.animMatrix,node.animMatrix, angle,[0,1,0]);
 
 			}
 

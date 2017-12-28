@@ -19,7 +19,7 @@ class Game {
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
     		this.players = [[0,1],[0,2]];
-    		this.bases = [[[-2,0.5,10.15],[2,0.5,10.15]],[[-2,0.5,8],[2,0.5,8]]];
+    		this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];
     	  this.board = board;
 
         this.translations = [              [0,7.3],
@@ -32,6 +32,7 @@ class Game {
                     [-3.4,5.6], [-1.2,5.6], [1.2,5.6], [3.4,5.6],
                                          [0,-7.3]
                     ];
+        this.animationCounter =0;
     }
 
 	positionBoard(){
@@ -54,8 +55,17 @@ class Game {
 			  let node = this.scene.graph.nodes[id];
 
 			  node.textureID = color;
-				mat4.identity(node.transformMatrix);
-				mat4.translate(node.transformMatrix, node.transformMatrix, [x,1,z]);
+
+        let p1 =[0,0,0];
+        let p2 =[x,0,0];
+        let p3 =[x,z,0];
+        let p4 =[x,z,-19]
+
+        var anim = new LinearAnimation(this.scene, this.animationCounter,11, [p1,p2,p3,p4]);
+        this.scene.graph.animations[this.animationCounter]= anim;
+        node.addAnimation(this.animationCounter);
+        this.animationCounter++;
+
 
 				}
 			}
@@ -67,8 +77,13 @@ class Game {
 
 		if(this.colors.includes(color))
 			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
+    else{
+      if(this.init_piece == null)
+        this.init_piece =obj;
+      else{
 
-
+      }
+    }
 	}
 
 	claimedColor(obj,data){
@@ -87,13 +102,13 @@ class Game {
 			let delta_pos = subtractPoints(init_pos,final_pos);
 
 		  this.bases[this.currentPlayer].splice(0,1);
-  
-			let p1 =[0,0,0];
-			let p2 =[0,0,3];
-			let p3 =[delta_pos[0],0,3];
-			let p4 =[delta_pos[0],-delta_pos[2],delta_pos[1]];
 
-			var anim = new BezierAnimation(this.scene, "Base", 10, [p1,p2,p3,p4]);
+			let p1 =[0,0,0];
+			let p2 =[2,0,0];
+      let p3 =[2,-delta_pos[2],0];
+      let p4 =[-2+delta_pos[0],-delta_pos[2],0]
+
+			var anim = new LinearAnimation(this.scene, "Base", 11, [p1,p2,p3,p4]);
 			this.scene.graph.animations["Base"]= anim;
 
 			obj.addAnimation("Base");
