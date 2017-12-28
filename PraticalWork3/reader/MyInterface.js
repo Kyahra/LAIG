@@ -69,8 +69,11 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
 
 MyInterface.prototype.updateCamera = function(){
-
+/*
   if(this.scene.camera == this.scene.cameras[0])
     this.scene.camera = this.scene.cameras[1];
-  else this.scene.camera = this.scene.cameras[0];
+  else this.scene.camera = this.scene.cameras[0];*/
+
+
+   this.scene.nextCamera();
 }

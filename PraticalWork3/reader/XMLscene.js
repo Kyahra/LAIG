@@ -26,6 +26,8 @@ XMLscene.prototype.init = function(application) {
     this.cameras = [];
     this.initCameras();
 
+    this.currentCamera = 0;
+
     this.enableTextures(true);
 
     this.gl.clearDepth(100.0);
@@ -112,6 +114,7 @@ XMLscene.prototype.onGraphLoaded = function()
 	  this.interface.addLightsGroup(this.graph.lights);
 
   	this.setUpdatePeriod(1000/60);
+    //this.setUpdatePeriod(20);
   	this.prevTime = -1;
 }
 
@@ -237,12 +240,13 @@ XMLscene.prototype.newGame = function (gameMode,data){
     for (let score of scores)
 		score.innerHTML = '0';
 };
+/*
+XMLscene.prototype.midPoint = function (point1, point2) {
 
+  return [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2, (point1[2] + point2[2]) / 2, (point1[3] + point2[3]) / 2];
 
-XMLscene.prototype.nextCamera = function () {
+};*/
 
-
-}
 
 XMLscene.prototype.nextCamera = function () {
     //this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
