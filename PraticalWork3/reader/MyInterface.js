@@ -24,6 +24,7 @@ MyInterface.prototype.init = function(application) {
      let config = {
          newGame: this.requestNewConfig,
          gameMode: GAMEMODE.HUMAN_VS_HUMAN,
+         changeCamera: this.updateCamera,
          scene: this.scene
      };
 
@@ -37,6 +38,7 @@ MyInterface.prototype.init = function(application) {
 
 
      configFolder.add(config, 'newGame').name('New Game');
+     configFolder.add(config, 'changeCamera').name('Change Camera');
      configFolder.open();
 
      return true;
@@ -50,9 +52,6 @@ MyInterface.prototype.requestNewConfig = function () {
 };
 
 
-
-
-
 MyInterface.prototype.addLightsGroup = function(lights) {
 
     var group = this.gui.addFolder("Lights");
@@ -64,6 +63,14 @@ MyInterface.prototype.addLightsGroup = function(lights) {
             group.add(this.scene.lightValues, key);
         }
     }
-	
+
 	group.close();
+}
+
+
+MyInterface.prototype.updateCamera = function(){
+
+  if(this.scene.camera == this.scene.cameras[0])
+    this.scene.camera = this.scene.cameras[1];
+  else this.scene.camera = this.scene.cameras[0];
 }

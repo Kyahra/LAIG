@@ -6,6 +6,7 @@ var DEGREE_TO_RAD = Math.PI / 180;
  */
 function XMLscene(interface) {
     CGFscene.call(this);
+    this.CAMERA_ANIMATION_TIME = 1.5;
 
     this.interface = interface;
     this.lightValues = {};
@@ -22,6 +23,7 @@ XMLscene.prototype.constructor = XMLscene;
 XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
 
+    this.cameras = [];
     this.initCameras();
 
     this.enableTextures(true);
@@ -31,11 +33,11 @@ XMLscene.prototype.init = function(application) {
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
-	this.lastUpdateTime = (new Date()).getTime();
+	  this.lastUpdateTime = (new Date()).getTime();
 
     this.axis = new CGFaxis(this);
 
-	this.setPickEnabled(true);
+	  this.setPickEnabled(true);
     this.game = new Game();
 }
 
@@ -79,7 +81,12 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+  //this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+
+    this.cameras[0] = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+    this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(1, 25, 10),vec3.fromValues(0, 0, 0));
+
+    this.camera = this.cameras[0];
 }
 
 /* Handler called when the graph is finally loaded.
@@ -89,7 +96,10 @@ XMLscene.prototype.onGraphLoaded = function()
 {
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
-    //this.camera.zoom(-40);
+
+    /*this.camera = this.cameras[this.currentCamera];
+    this.interface.setActiveCamera(this.camera);*/
+
     this.axis = new CGFaxis(this,this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],
@@ -181,6 +191,8 @@ XMLscene.prototype.update = function (currTime) {
 
 	 this.prevTime = currTime;
 
+   this.animateCamera(currTime-this.prevTime);
+
 };
 
 XMLscene.prototype.logPicking = function (){
@@ -209,15 +221,76 @@ XMLscene.prototype.logPicking = function (){
 
 
 XMLscene.prototype.newGame = function (gameMode,data){
-	
+
 	let board = JSON.parse(data.target.response);
-	
+
 	this.game.newGame(this,gameMode,board);
 	this.game.positionBoard();
-   
+
 	document.getElementById('overlay').style.display = 'block';
-    
+
 	let scores = document.getElementsByClassName('score');
     for (let score of scores)
 		score.innerHTML = '0';
+};
+
+
+XMLscene.prototype.nextCamera = function () {
+
+
+}
+
+XMLscene.prototype.nextCamera = function () {
+    //this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
+
+    this.changingCamera = true;
+    this.timeElapsed = 0;
+};
+
+/**
+ * Animates the camera transition
+ * @param deltaTime Delta time
+ */
+XMLscene.prototype.animateCamera = function (deltaTime) {
+    if (!this.changingCamera)
+        return;
+
+    // *0.95 is to avoid flickering when the animation surpasses the expected camera position
+    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.95) {
+        this.changingCamera = false;
+        this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
+        this.camera = this.cameras[this.currentCamera];
+        return;
+    }
+
+    let currCamera = this.cameras[this.currentCamera];
+    let nextCamera = this.cameras[(this.currentCamera + 1) % this.cameras.length];
+
+    let targetCenter = midPoint(currCamera.target, nextCamera.target);
+    let positionCenter = midPoint(currCamera.position, nextCamera.position);
+
+    let targetRadius = distance(targetCenter, nextCamera.target);
+    let positionRadius = distance(positionCenter, nextCamera.position);
+
+    this.timeElapsed += deltaTime / 1000;
+    let cameraAngle = Math.PI * this.timeElapsed / this.CAMERA_ANIMATION_TIME;
+    let multiplier = this.currentCamera ? 1 : -1;
+
+
+    let targetPosition = [
+        targetCenter[0] + multiplier * targetRadius * Math.sin(cameraAngle),
+        targetCenter[1],
+        targetCenter[2] + multiplier * targetRadius * Math.cos(cameraAngle),
+        1
+    ];
+
+    let positionPosition = [
+        positionCenter[0] + multiplier * positionRadius * Math.sin(cameraAngle),
+        positionCenter[1],
+        positionCenter[2] + multiplier * positionRadius * Math.cos(cameraAngle),
+        1
+    ];
+
+    this.camera = new CGFcamera(currCamera.fov, currCamera.near, currCamera.far,
+        positionPosition, targetPosition);
 };
