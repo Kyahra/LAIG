@@ -107,7 +107,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
 
     this.initLights();
-    
+
 	  this.interface.addLightsGroup(this.graph.lights);
 
   	this.setUpdatePeriod(1000/60);
@@ -265,10 +265,6 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     if (!this.changingCamera)
         return;
 
-    console.log('time elapsed : ' + this.timeElapsed);
-
-    console.log('delta time : ' + deltaTime);
-
     // *0.95 is to avoid flickering when the animation surpasses the expected camera position
     if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.6) {
         this.changingCamera = false;
@@ -276,18 +272,6 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
         //this.camera = this.cameras[this.currentCamera];
         return;
     }
-
-  /*  let cameraNext = (this.currentCamera + 1) % this.cameras.length;
-
-    if(cameraNext.position == this.cameras[this.currentCamera].position){
-      this.changingCamera = false;
-      this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
-      this.camera = this.cameras[this.currentCamera];
-      return;
-
-    }*/
-
-
 
     let currCamera = this.cameras[this.currentCamera];
     let nextCamera = this.cameras[(this.currentCamera + 1) % this.cameras.length];
