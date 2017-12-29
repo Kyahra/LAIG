@@ -1,104 +1,44 @@
 class Game {
-    /**
-     * Constructor for the Game class.
-     * @param scene Scene.
-     */
+  
     constructor() {
 		this.running = false;
     }
 
-    /**
-     * Sets new game scene and resets game state. Should be called after initialization of all variables.
-     * @param scene
-     * @param gameMode
-     */
-    newGame(scene, gameMode,board) {
+    newGame(scene, gameMode,aux_board) {
 		    this.running = true;
         this.scene = scene;
         this.gameMode = gameMode;
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
-    		this.players = [[0,1],[0,2]];
-    		this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];
-        this.board = [[],[],[],[],[],[],[],[],[]];
-    	  this.board_aux= board;
-
-
-        this.translations = [              [0,7.3],
-                      [-3.4,-5.6], [-1.2,-5.6], [1.2,-5.6], [3.4,-5.6],
-    [-6.8,-3.7], [-4.6,-3.7], [-2.2,-3.7], [0,-3.7], [2.2,-3.7], [4.6,-3.7], [6.8,-3.7],
-        [-5.6,-1.9], [-3.4,-1.9], [-1.2,-1.9], [1.2,-1.9], [3.4,-1.9], [5.6,-1.9],
-            [-6.8,0], [-4.6,0], [-2.2,0], [0,0], [2.2,0], [4.6,0], [6.8,0],
-          [-5.6,1.9], [-3.4,1.9], [-1.2,1.9], [1.2,1.9], [3.4,1.9], [5.6,1.9],
-      [-6.8,3.7], [-4.6,3.7], [-2.2,3.7], [0,3.7], [2.2,3.7], [4.6,3.7], [6.8,3.7],
-                    [-3.4,5.6], [-1.2,5.6], [1.2,5.6], [3.4,5.6],
-                                         [0,-7.3]
-                    ];
+    	this.players = [[0,1],[0,2]];
+    	this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];			  
+    	this.board_aux= aux_board;
         this.animationCounter =0;
+	    this.board = new Board(scene,this);
     }
 
-	initBoard(){
-		let counter = 0;
-
-		for(let i=0; i<this.board_aux.length; i++){
-		  for(let j=0; j<this.board_aux[0].length; j++){
-
-			let color = this.board_aux[i][j];
-
-			if(color != "."){
-			  let translation = this.translations[counter];
-			  let x = translation[0];
-			  let z = translation[1];
-
-			  counter++;
-			  let id = 'piece_' + counter;
-
-
-			  let node = this.scene.graph.nodes[id];
-
-			  node.textureID = color;
-
-        let p1 =[0,0,0];
-        let p2 =[x,0,0];
-        let p3 =[x,z,0];
-        let p4 =[x,z,-19.01]
-
-        var anim = new LinearAnimation(this.scene, this.animationCounter,11, [p1,p2,p3,p4]);
-        this.scene.graph.animations[this.animationCounter]= anim;
-        node.addAnimation(this.animationCounter);
-        this.animationCounter++;
-
-        this.board[i][j] = node;
-        node.board_position = [i,j];
-
-      }else
-        this.board[i][j] =null;
-			}
-		}
-
-	}
 
 	picked(obj){
 		let color = obj.nodeID;
 
 		if(this.colors.includes(color))
 			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
-    else{
-      if(this.init_piece == null)
-        this.init_piece =obj;
-      else{
+		else{
+		  if(this.moved_piece == null)
+			this.moved_piece =obj;
+		  else{
 
-        let init_pos = this.init_piece.board_position;
-        let final_pos = obj.board_position;
+			let init_pos = this.moved_piece.board_position;
+			let final_pos = obj.board_position;
 
-        let player1 = this.players[this.currentPlayer];
-        let player2 = this.players[1-this.currentPlayer];
+			let player1 = this.players[this.currentPlayer];
+			let player2 = this.players[1-this.currentPlayer];
 
-        humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this));
+			humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this,obj,init_pos,final_pos));
 
 
-      }
-    }
+		  }
+       }
 	}
 
 	claimedColor(obj,data){
@@ -116,26 +56,60 @@ class Game {
 			let final_pos = this.bases[this.currentPlayer][0];
 			let delta_pos = subtractPoints(init_pos,final_pos);
 
-		  this.bases[this.currentPlayer].splice(0,1);
+			this.bases[this.currentPlayer].splice(0,1);
 
 			let p1 =[0,0,0];
 			let p2 =[2,0,0];
-      let p3 =[2,-delta_pos[2],0];
-      let p4 =[-2+delta_pos[0],-delta_pos[2],0]
+		    let p3 =[2,-delta_pos[2],0];
+		    let p4 =[-2+delta_pos[0],-delta_pos[2],0]
 
-			var anim = new LinearAnimation(this.scene, "Base", 11, [p1,p2,p3,p4]);
-			this.scene.graph.animations["Base"]= anim;
-
-			obj.addAnimation("Base");
-
+			var anim = new LinearAnimation(this.scene, this.animationCounter, 11, [p1,p2,p3,p4]);
+			this.scene.graph.animations[this.animationCounter]= anim;
+			obj.addAnimation(this.animationCounter);
+			
+			this.animationCounter++;
 		}
 	}
 
-  humanPlayed(data){
-    this.init_piece = null;
-    let response = JSON.parse(data.target.response);
-    console.log(response);
+	humanPlayed(end_piece,init_pos,final_pos,data){
 
+		this.aux_board  = JSON.parse(data.target.response);
+		
+		let init = this.aux_board[init_pos[0]][init_pos[1]];
+		
+		console.log(init);
+		
+		if(init == 'x'){
+			
+			let hight = this.board.getHight(final_pos);
+			this.moved_piece.board_position= final_pos;
+			this.board.insert(final_pos[0],final_pos[1],this.moved_piece);
+			
+			init_pos = this.moved_piece.position;
+			final_pos = end_piece.position;
+			let delta_pos = subtractPoints(init_pos,final_pos);
+			
+			
+			delta_pos.push((hight-1)*0.1);
+			
+			let p1 =[0,0,0];
+			let p2 =[delta_pos[0],0,5];
+		    let p3 =[delta_pos[0],delta_pos[1],5];
+			let p4 =[delta_pos[0],delta_pos[1],delta_pos[2]];
+			
+		
+			var anim = new BezierAnimation(this.scene, this.animationCounter, 5, [p1,p2,p3,p4]);
+			this.scene.graph.animations[this.animationCounter]= anim;
+			this.moved_piece.addAnimation(this.animationCounter);
+			this.animationCounter++;
+			
+			console.log(this.moved_piece);
+			
+			this.currentPlayer = 1-this.currentPlayer;
+			
+			
+		}
+		this.moved_piece = null;
   }
 
 
