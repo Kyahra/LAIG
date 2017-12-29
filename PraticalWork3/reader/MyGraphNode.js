@@ -77,9 +77,12 @@ MyGraphNode.prototype.updateAnimations = function(currTime) {
     }
 		else{
 			deltaTime = deltaTime - animation.duration;
+			if(i == this.animations.length-1){
 			mat4.multiply(this.transformMatrix,this.transformMatrix,this.animMatrix);
 			mat4.identity(this.animMatrix);
 			this.animations=[];
+			
+			}
 		}
 			
 			
