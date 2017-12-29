@@ -6,7 +6,7 @@ var DEGREE_TO_RAD = Math.PI / 180;
  */
 function XMLscene(interface) {
     CGFscene.call(this);
-    this.CAMERA_ANIMATION_TIME = 1.5;
+    this.CAMERA_ANIMATION_TIME = 1;
 
     this.interface = interface;
     this.lightValues = {};
@@ -264,12 +264,24 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     console.log('delta time : ' + deltaTime);
 
     // *0.95 is to avoid flickering when the animation surpasses the expected camera position
-    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.99) {
+    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.6) {
         this.changingCamera = false;
         this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
-        this.camera = this.cameras[this.currentCamera];
+        //this.camera = this.cameras[this.currentCamera];
         return;
     }
+
+  /*  let cameraNext = (this.currentCamera + 1) % this.cameras.length;
+
+    if(cameraNext.position == this.cameras[this.currentCamera].position){
+      this.changingCamera = false;
+      this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
+      this.camera = this.cameras[this.currentCamera];
+      return;
+
+    }*/
+
+
 
     let currCamera = this.cameras[this.currentCamera];
     let nextCamera = this.cameras[(this.currentCamera + 1) % this.cameras.length];
@@ -280,10 +292,9 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     let targetRadius = distance(targetCenter, nextCamera.target);
     let positionRadius = distance(positionCenter, nextCamera.position);
 
-    this.timeElapsed += deltaTime / 1000;
+    this.timeElapsed += deltaTime / 2000;
     let cameraAngle = Math.PI * this.timeElapsed / this.CAMERA_ANIMATION_TIME;
     let multiplier = this.currentCamera ? 1 : -1;
-
 
     let targetPosition = [
         targetCenter[0] + multiplier * targetRadius * Math.sin(cameraAngle),
