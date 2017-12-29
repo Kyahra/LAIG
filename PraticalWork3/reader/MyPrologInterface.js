@@ -28,18 +28,13 @@ function claimColor(color, colors, player, callback) {
 }
 
 
-function humanPlay(validMove, board, initPos, finalPos, player1, player2, colors, newBoard, newPlayer, newColors, callback) {
+function humanPlay(board, initPos, finalPos, player1, player2, callback) {
     let requestString = 'humanPlay('
-        + validMove + ','
-        + JSON.stringify(board) + ','
+        + JSON.stringify(board).replace(/"/g, '') + ','
         + JSON.stringify(initPos) + ','
         + JSON.stringify(finalPos) + ','
-        + JSON.stringify(player1) + ','
-        + JSON.stringify(player2) + ','
-        + JSON.stringify(colors) + ','
-        + JSON.stringify(newBoard) + ','
-        + JSON.stringify(newPlayer) + ','
-        + JSON.stringify(newColors) + ')';
+        + JSON.stringify(player1).replace(/"/g, '') + ','
+        + JSON.stringify(player2).replace(/"/g, '') + ')';
 
     getPrologRequest(requestString, callback);
 }

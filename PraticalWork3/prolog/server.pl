@@ -109,15 +109,20 @@ print_header_line(_).
 parse_input(initialize,Board):-
 	initialize(B),
 	matrix_to_json(B,Board).
-	
+
 parse_input(claim(Color,Colors,Player),JSON):-
 	claim(Color,Colors,Player,NewColors,NewPlayer),
 	json([1,NewColors,NewPlayer],JSON).
-	
+
 parse_input(claim(Color,Colors,Player),JSON):-
 	json([0,0,0],JSON).
 
+parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
+	humanPlay(Board,InitPos,FinalPos,P1,P2,B,P),
+	matrix_to_json(B,NewBoard).
 
+parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
+	matrix_to_json(Board,NewBoard).
 
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).

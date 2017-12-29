@@ -228,7 +228,7 @@ XMLscene.prototype.newGame = function (gameMode,data){
 	let board = JSON.parse(data.target.response);
 
 	this.game.newGame(this,gameMode,board);
-	this.game.positionBoard();
+	this.game.initBoard();
 
 	document.getElementById('overlay').style.display = 'block';
 

@@ -25,6 +25,7 @@ MyInterface.prototype.init = function(application) {
          newGame: this.requestNewConfig,
          gameMode: GAMEMODE.HUMAN_VS_HUMAN,
          changeCamera: this.updateCamera,
+         quitServer: this.quitServer,
          scene: this.scene
      };
 
@@ -39,6 +40,7 @@ MyInterface.prototype.init = function(application) {
 
      configFolder.add(config, 'newGame').name('New Game');
      configFolder.add(config, 'changeCamera').name('Change Camera');
+      configFolder.add(config, 'quitServer').name('Quit Server');
      configFolder.open();
 
      return true;
@@ -76,4 +78,8 @@ MyInterface.prototype.updateCamera = function(){
 
 
    this.scene.nextCamera();
+}
+
+MyInterface.prototype.quitServer = function(){
+  getPrologRequest('quit');
 }

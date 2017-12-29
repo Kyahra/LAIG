@@ -20,7 +20,9 @@ class Game {
         this.colors = ['ivory','blue','red','green','black'];
     		this.players = [[0,1],[0,2]];
     		this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];
-    	  this.board = board;
+        this.board = [[],[],[],[],[],[],[],[],[]];
+    	  this.board_aux= board;
+
 
         this.translations = [              [0,7.3],
                       [-3.4,-5.6], [-1.2,-5.6], [1.2,-5.6], [3.4,-5.6],
@@ -35,13 +37,13 @@ class Game {
         this.animationCounter =0;
     }
 
-	positionBoard(){
+	initBoard(){
 		let counter = 0;
 
-		for(let i=0; i<this.board.length; i++){
-		  for(let j=0; j<this.board[0].length; j++){
+		for(let i=0; i<this.board_aux.length; i++){
+		  for(let j=0; j<this.board_aux[0].length; j++){
 
-			let color = this.board[i][j];
+			let color = this.board_aux[i][j];
 
 			if(color != "."){
 			  let translation = this.translations[counter];
@@ -59,17 +61,21 @@ class Game {
         let p1 =[0,0,0];
         let p2 =[x,0,0];
         let p3 =[x,z,0];
-        let p4 =[x,z,-19]
+        let p4 =[x,z,-19.01]
 
         var anim = new LinearAnimation(this.scene, this.animationCounter,11, [p1,p2,p3,p4]);
         this.scene.graph.animations[this.animationCounter]= anim;
         node.addAnimation(this.animationCounter);
         this.animationCounter++;
 
+        this.board[i][j] = node;
+        node.board_position = [i,j];
 
-				}
+      }else
+        this.board[i][j] =null;
 			}
 		}
+
 	}
 
 	picked(obj){
@@ -81,6 +87,15 @@ class Game {
       if(this.init_piece == null)
         this.init_piece =obj;
       else{
+
+        let init_pos = this.init_piece.board_position;
+        let final_pos = obj.board_position;
+
+        let player1 = this.players[this.currentPlayer];
+        let player2 = this.players[1-this.currentPlayer];
+
+        humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this));
+
 
       }
     }
@@ -115,5 +130,14 @@ class Game {
 
 		}
 	}
+
+  humanPlayed(data){
+    this.init_piece = null;
+    let response = JSON.parse(data.target.response);
+    console.log(response);
+
+  }
+
+
 
 }

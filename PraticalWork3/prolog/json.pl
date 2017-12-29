@@ -15,8 +15,6 @@ surround(Element, Left, Right, Surrounded):-
   atom_concat(Temp, Right, Surrounded).
 
 
-
-
 matrix_to_json([], []).
 matrix_to_json([List | R], [JsonList | Json]):-
   list_to_json(List, JsonList),
