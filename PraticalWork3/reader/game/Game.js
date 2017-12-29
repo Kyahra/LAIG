@@ -1,5 +1,5 @@
 class Game {
-  
+
     constructor() {
 		this.running = false;
     }
@@ -11,7 +11,7 @@ class Game {
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
     	this.players = [[0,1],[0,2]];
-    	this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];			  
+    	this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];
     	this.board_aux= aux_board;
         this.animationCounter =0;
 	    this.board = new Board(scene,this);
@@ -66,7 +66,7 @@ class Game {
 			var anim = new LinearAnimation(this.scene, this.animationCounter, 11, [p1,p2,p3,p4]);
 			this.scene.graph.animations[this.animationCounter]= anim;
 			obj.addAnimation(this.animationCounter);
-			
+
 			this.animationCounter++;
 		}
 	}
@@ -74,40 +74,36 @@ class Game {
 	humanPlayed(end_piece,init_pos,final_pos,data){
 
 		this.aux_board  = JSON.parse(data.target.response);
-		
+
 		let init = this.aux_board[init_pos[0]][init_pos[1]];
-		
-		console.log(init);
-		
+
 		if(init == 'x'){
-			
-			let hight = this.board.getHight(final_pos);
+
 			this.moved_piece.board_position= final_pos;
 			this.board.insert(final_pos[0],final_pos[1],this.moved_piece);
-			
+      let hight = this.board.getHight(final_pos);
+
 			init_pos = this.moved_piece.position;
 			final_pos = end_piece.position;
 			let delta_pos = subtractPoints(init_pos,final_pos);
-			
-			
-			delta_pos.push((hight-1)*0.1);
-			
+
+
+			delta_pos[2]= ((hight-1)*0.2);
+
 			let p1 =[0,0,0];
 			let p2 =[delta_pos[0],0,5];
-		    let p3 =[delta_pos[0],delta_pos[1],5];
+		   let p3 =[delta_pos[0],delta_pos[1],5];
 			let p4 =[delta_pos[0],delta_pos[1],delta_pos[2]];
-			
-		
-			var anim = new BezierAnimation(this.scene, this.animationCounter, 5, [p1,p2,p3,p4]);
+
+
+			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
 			this.scene.graph.animations[this.animationCounter]= anim;
 			this.moved_piece.addAnimation(this.animationCounter);
 			this.animationCounter++;
-			
-			console.log(this.moved_piece);
-			
+
 			this.currentPlayer = 1-this.currentPlayer;
-			
-			
+
+
 		}
 		this.moved_piece = null;
   }
