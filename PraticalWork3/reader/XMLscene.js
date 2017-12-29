@@ -99,9 +99,6 @@ XMLscene.prototype.onGraphLoaded = function()
     this.camera.near = this.graph.near;
     this.camera.far = this.graph.far;
 
-    /*this.camera = this.cameras[this.currentCamera];
-    this.interface.setActiveCamera(this.camera);*/
-
     this.axis = new CGFaxis(this,this.graph.referenceLength);
 
     this.setGlobalAmbientLight(this.graph.ambientIllumination[0], this.graph.ambientIllumination[1],
@@ -110,7 +107,7 @@ XMLscene.prototype.onGraphLoaded = function()
     this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
 
     this.initLights();
-
+    
 	  this.interface.addLightsGroup(this.graph.lights);
 
   	this.setUpdatePeriod(1000/60);
@@ -235,13 +232,23 @@ XMLscene.prototype.newGame = function (gameMode,data){
     for (let score of scores)
 		score.innerHTML = '0';
 };
-/*
-XMLscene.prototype.midPoint = function (point1, point2) {
 
-  return [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2, (point1[2] + point2[2]) / 2, (point1[3] + point2[3]) / 2];
 
-};*/
 
+XMLscene.prototype.loadTheme = function (theme) {
+    if (theme == THEME.NORMAL) {
+        let filename = getUrlVars()['file'] || "game.lsx";
+        //this.lights = [];
+        this.cameras = [];
+        this.graph = new MySceneGraph(filename, this);
+    }
+    else {
+        let filename = getUrlVars()['file'] || "game2.lsx";
+        this.cameras = [];
+        //this.lights = [];
+        this.graph = new MySceneGraph(filename, this);
+    }
+};
 
 XMLscene.prototype.nextCamera = function () {
     //this.currentCamera = (this.currentCamera + 1) % this.cameras.length;

@@ -52,3 +52,8 @@ GAMEMODE = {
     HUMAN_VS_CPU: 1,
     CPU_VS_CPU: 2
 };
+
+THEME = {
+    LEGACY: 0,
+    NORMAL: 1
+};

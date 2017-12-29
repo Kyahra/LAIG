@@ -26,6 +26,8 @@ MyInterface.prototype.init = function(application) {
          gameMode: GAMEMODE.HUMAN_VS_HUMAN,
          changeCamera: this.updateCamera,
          quitServer: this.quitServer,
+         theme: THEME.LEGACY,
+         loadTheme: this.loadTheme,
          scene: this.scene
      };
 
@@ -40,8 +42,14 @@ MyInterface.prototype.init = function(application) {
 
      configFolder.add(config, 'newGame').name('New Game');
      configFolder.add(config, 'changeCamera').name('Change Camera');
-      configFolder.add(config, 'quitServer').name('Quit Server');
+     configFolder.add(config, 'quitServer').name('Quit Server');
      configFolder.open();
+
+     configFolder.add(config, 'theme', {
+          'Theme 1': THEME.LEGACY,
+          'Theme 2': THEME.NORMAL
+     }).name('Theme');
+     configFolder.add(config, 'loadTheme').name('Load Theme');
 
      return true;
 
@@ -56,30 +64,34 @@ MyInterface.prototype.requestNewConfig = function () {
 
 MyInterface.prototype.addLightsGroup = function(lights) {
 
-    var group = this.gui.addFolder("Lights");
+    if(this.gui.__folders.Lights == null){
+
+        var group = this.gui.addFolder("Lights");
 
 
-    for (var key in lights) {
-        if (lights.hasOwnProperty(key)) {
-            this.scene.lightValues[key] = lights[key][0];
-            group.add(this.scene.lightValues, key);
+        for (var key in lights) {
+            if (lights.hasOwnProperty(key)) {
+                this.scene.lightValues[key] = lights[key][0];
+                group.add(this.scene.lightValues, key);
+            }
         }
+    	group.close();
     }
-
-	group.close();
 }
 
 
 MyInterface.prototype.updateCamera = function(){
-/*
-  if(this.scene.camera == this.scene.cameras[0])
-    this.scene.camera = this.scene.cameras[1];
-  else this.scene.camera = this.scene.cameras[0];*/
-
-
    this.scene.nextCamera();
 }
 
 MyInterface.prototype.quitServer = function(){
   getPrologRequest('quit');
 }
+
+
+/**
+ * Loads theme.
+ */
+MyInterface.prototype.loadTheme = function () {
+    this.scene.loadTheme(this.theme);
+};
