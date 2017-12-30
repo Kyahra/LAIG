@@ -329,8 +329,3 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
         positionPosition, targetPosition);
 };
 
-XMLscene.prototype.updateScore = function (player,score) {
-	
-	document.getElementsByClassName('score')[player].innerHTML = score;
-	
-}
