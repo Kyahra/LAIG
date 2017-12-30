@@ -11,7 +11,8 @@ class Game {
         this.currentPlayer = 0;
         this.colors = ['ivory','blue','red','green','black'];
     	this.players = [[0,1],[0,2]];
-    	this.bases = [[[6,0,10.],[8,0,10]],[[6,0,-10],[8,0,-10]]];
+    	this.color_bases = [[[6,0,10],[8,0,10]],[[6,0,-10],[8,0,-10]]];
+		this.piece_bases = [[[-8,0,10],[-6,0,10],[-4,0,10],[-2,0,10]],[[-8,0,-10],[-6,0,-10],[-4,0,-10],[-2,0,-10]]];
     	this.board_aux= aux_board;
         this.animationCounter =0;
 	    this.board = new Board(scene,this);
@@ -53,10 +54,10 @@ class Game {
 			this.players[this.currentPlayer] =player;
 
 			let init_pos = obj.position;
-			let final_pos = this.bases[this.currentPlayer][0];
+			let final_pos = this.color_bases[this.currentPlayer][0];
 			let delta_pos = subtractPoints(init_pos,final_pos);
 
-			this.bases[this.currentPlayer].splice(0,1);
+			this.color_bases[this.currentPlayer].splice(0,1);
 
 			let p1 =[0,0,0];
 			let p2 =[2,0,0];
@@ -73,27 +74,27 @@ class Game {
 
 	humanPlayed(end_piece,init_pos,final_pos,data){
 
-		this.aux_board  = JSON.parse(data.target.response);
-
-		let init = this.aux_board[init_pos[0]][init_pos[1]];
+		this.board_aux  = JSON.parse(data.target.response);
+		
+		let init = this.board_aux[init_pos[0]][init_pos[1]];
 
 		if(init == 'x'){
 
-      let init_piece = this.board.get(init_pos[0],init_pos[1]);
-      let final_hight = this.board.getHight(init_pos) + this.board.getHight(final_pos);
+			  let init_piece = this.board.get(init_pos[0],init_pos[1]);
+			  let final_hight = this.board.getHight(init_pos) + this.board.getHight(final_pos);
 
-      this.board.clear(init_pos[0],init_pos[1]);
+			  this.board.clear(init_pos[0],init_pos[1]);
 
 
 			let pos1 = this.moved_piece.position;
 			let pos2 = end_piece.position;
 			let delta_pos = subtractPoints(pos1,pos2);
 
-      for(let i =0; i <init_piece.length; i++){
+		for(let i =0; i <init_piece.length; i++){
 
 			let p1 =[0,0,0];
 			let p2 =[delta_pos[0],0,5];
-		  let p3 =[delta_pos[0],delta_pos[1],5];
+			let p3 =[delta_pos[0],delta_pos[1],5];
 			let p4 =[delta_pos[0],delta_pos[1],0.2];
 
 
@@ -101,11 +102,15 @@ class Game {
 			this.scene.graph.animations[this.animationCounter]= anim;
 			init_piece[i].addAnimation(this.animationCounter);
 			this.animationCounter++;
+			
 
-      this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
-      init_piece[i].board_position = final_pos;
-      init_piece[i].position = pos2;
+	
+		  this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
+		  init_piece[i].board_position = final_pos;
+		  init_piece[i].position = pos2;
       }
+		
+			if(final_hight == 5) this.addPoint(final_pos);
 
 			this.currentPlayer = 1-this.currentPlayer;
 
@@ -113,6 +118,44 @@ class Game {
 		}
 		this.moved_piece = null;
   }
+  
+  
+	addPoint(position){
+
+		this.players[this.currentPlayer][0]++;
+		
+		console.log(this.players[this.currentPlayer]);
+		
+		let final_piece = this.board.get(position[0],position[1]);
+		
+		console.log(final_piece);
+		
+		let init_pos = final_piece[0].position;
+		let final_pos = this.piece_bases[this.currentPlayer][0];
+		let delta_pos = subtractPoints(init_pos,final_pos);
+
+		this.piece_bases[this.currentPlayer].splice(0,1);
+		
+		for(let i =0; i <final_piece.length; i++){
+
+			let p1 =[0,0,0];
+			let p2 =[delta_pos[0],0,5];
+			let p3 =[delta_pos[0],delta_pos[2],5];
+			let p4 =[delta_pos[0],delta_pos[2],delta_pos[1]];
+
+
+			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
+			this.scene.graph.animations[this.animationCounter]= anim;
+			final_piece[i].addAnimation(this.animationCounter);
+			this.animationCounter++;
+			
+	
+	
+      }
+	  
+	   this.board.clear(position[0],position[1]);
+		
+	}
 
 
 
