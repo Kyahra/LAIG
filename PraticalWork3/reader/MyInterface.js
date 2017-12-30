@@ -82,6 +82,7 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
 MyInterface.prototype.updateCamera = function(){
    this.scene.nextCamera();
+   //this.scene.cameraChange();
 }
 
 MyInterface.prototype.quitServer = function(){

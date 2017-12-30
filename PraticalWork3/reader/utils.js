@@ -5,9 +5,14 @@
  * @param point2 Second point.
  * @returns {[*,*,*,*]} Mid point
  */
+
+function midPoint(point1, point2) {
+    return [(point1[0] + point2[0]) / 1.5, (point1[1] + point2[1]) / 1.5, (point1[2] + point2[2]) / 1.5, (point1[3] + point2[3]) / 1.5];
+}
+/*
 function midPoint(point1, point2) {
     return [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2, (point1[2] + point2[2]) / 2, (point1[3] + point2[3]) / 2];
-}
+}*/
 
 
 function addPoints(point1, point2) {

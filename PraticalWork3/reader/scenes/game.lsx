@@ -144,8 +144,100 @@
             <NODEREF id="board"/>
       			<NODEREF id="colors"/>
       			<NODEREF id="pieces"/>
+           <NODEREF id="seat"/>
         </DESCENDANTS>
     </NODE>
+
+
+    <NODE id="seat" selectable="true">
+          <MATERIAL id="null" />
+          <TEXTURE id="red" />
+
+          <TRANSLATION x="0" y="-10" z="20"/>
+          <ROTATION axis="x" angle="-90" />
+
+          <DESCENDANTS>
+            <NODEREF id="top" />
+            <NODEREF id="legs"/>
+          </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="top">
+      <MATERIAL id="null" />
+      <TEXTURE id="red" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="legs">
+      <MATERIAL id="null" />
+      <TEXTURE id="white" />
+
+      <TRANSLATION x="0" y="0" z="-15" />
+
+      <DESCENDANTS>
+        <NODEREF id="leg1" />
+        <NODEREF id="leg2" />
+        <NODEREF id="leg3" />
+        <NODEREF id="leg4" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="leg1">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="-2" y="2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="15 0.5 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg2">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="2" y="2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="15 0.5 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg3">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="-2" y="-2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="15 0.5 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg4">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="2" y="-2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="15 0.5 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
 
 	<NODE id="pieces">
 		<MATERIAL id="null" />
