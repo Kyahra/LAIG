@@ -53,7 +53,7 @@ class Board {
 
 		mat4.translate(node.transformMatrix, node.transformMatrix, [x,z,0]);
 
-        var anim = new LinearAnimation(this.scene, this.game.animationCounter,0.1, [p1,p2]);
+        var anim = new LinearAnimation(this.scene, this.game.animationCounter,0.4, [p1,p2]);
         this.scene.graph.animations[this.game.animationCounter]= anim;
         node.addAnimation(this.game.animationCounter);
         this.game.animationCounter++;

@@ -93,11 +93,10 @@ humanPlay(Board,PosInit,PosFinal,P1,P2,NewBoard,NewPlayer):-
        updatePlayer(B,P1,Final,X2,Y2,NewBoard,NewPlayer).
 
 checkValidMove(Board,P1,P2,X1,Y1,X2,Y2):-
-        checkPiece(Board,P2,X1,Y1),
+      checkPiece(Board,P2,X1,Y1),
         checkDiagonal(X1,X2,Y1,Y2),
         checkDiagonalPositions(Board,X1,X2,Y1,Y2),
         checkPosition(Board,X1,Y1),
         checkPosition(Board,X2,Y2),
         checkNeutralTop(Board,P1,X1,Y1,X2,Y2),
         checkFinalStack(Board,X1,Y1,X2,Y2).
-

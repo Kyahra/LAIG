@@ -124,6 +124,7 @@ parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 	matrix_to_json(Board,NewBoard).
 
+
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).
 parse_input(quit, goodbye).
