@@ -118,8 +118,8 @@ parse_input(claim(Color,Colors,Player),JSON):-
 	json([0,0,0],JSON).
 
 parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
-	humanPlay(Board,InitPos,FinalPos,P1,P2,B,P),
-	matrix_to_json(B,NewBoard).
+	humanPlay(Board,InitPos,FinalPos,P1,P2,Tmp,P,F),
+	matrix_to_json(Tmp,NewBoard).
 
 parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 	matrix_to_json(Board,NewBoard).
