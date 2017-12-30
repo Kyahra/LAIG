@@ -80,12 +80,10 @@ class Game {
 		if(init == 'x'){
 
       let init_piece = this.board.get(init_pos[0],init_pos[1]);
+      let final_hight = this.board.getHight(init_pos) + this.board.getHight(final_pos);
 
       this.board.clear(init_pos[0],init_pos[1]);
-			this.board.insert(final_pos[0],final_pos[1],this.moved_piece);
-      let final_hight = this.board.getHight(final_pos);
 
-      this.moved_piece.board_position= final_pos;
 
 			let pos1 = this.moved_piece.position;
 			let pos2 = end_piece.position;
@@ -93,15 +91,10 @@ class Game {
 
       for(let i =0; i <init_piece.length; i++){
 
-        console.log('yo');
-
-			delta_pos[2]= ((final_hight-1)*0.2);
-
-
 			let p1 =[0,0,0];
 			let p2 =[delta_pos[0],0,5];
 		  let p3 =[delta_pos[0],delta_pos[1],5];
-			let p4 =[delta_pos[0],delta_pos[1],delta_pos[2]];
+			let p4 =[delta_pos[0],delta_pos[1],0.2];
 
 
 			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
@@ -109,8 +102,9 @@ class Game {
 			init_piece[i].addAnimation(this.animationCounter);
 			this.animationCounter++;
 
+      this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
       init_piece[i].board_position = final_pos;
-
+      init_piece[i].position = pos2;
       }
 
 			this.currentPlayer = 1-this.currentPlayer;
