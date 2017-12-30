@@ -271,18 +271,6 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
         return;
     }
 
-  /*  let cameraNext = (this.currentCamera + 1) % this.cameras.length;
-
-    if(cameraNext.position == this.cameras[this.currentCamera].position){
-      this.changingCamera = false;
-      this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
-      this.camera = this.cameras[this.currentCamera];
-      return;
-
-    }*/
-
-
-
     let currCamera = this.cameras[this.currentCamera];
     let nextCamera = this.cameras[(this.currentCamera + 1) % this.cameras.length];
 
