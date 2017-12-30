@@ -169,6 +169,7 @@ XMLscene.prototype.display = function() {
 
         // Displays the scene.
         this.graph.displayScene();
+		
 
     }
 	else
@@ -327,3 +328,9 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     this.camera = new CGFcamera(currCamera.fov, currCamera.near, currCamera.far,
         positionPosition, targetPosition);
 };
+
+XMLscene.prototype.updateScore = function (player,score) {
+	
+	document.getElementsByClassName('score')[player].innerHTML = score;
+	
+}

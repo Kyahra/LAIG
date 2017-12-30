@@ -94,8 +94,8 @@ class Game {
 
 			let p1 =[0,0,0];
 			let p2 =[delta_pos[0],0,5];
-			let p3 =[delta_pos[0],delta_pos[1],5];
-			let p4 =[delta_pos[0],delta_pos[1],0.2];
+			let p3 =[delta_pos[0],delta_pos[2],5];
+			let p4 =[delta_pos[0],delta_pos[2],0.2];
 
 
 			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
@@ -110,9 +110,12 @@ class Game {
 		  init_piece[i].position = pos2;
       }
 		
-			if(final_hight == 5) this.addPoint(final_pos);
+		if(final_hight == 5){
+			let score = ++this.players[this.currentPlayer][0];
+			document.getElementsByClassName('score')[this.currentPlayer].innerHTML = score;
+		} 
 
-			this.currentPlayer = 1-this.currentPlayer;
+		this.currentPlayer = 1-this.currentPlayer;
 
 
 		}
@@ -121,8 +124,8 @@ class Game {
   
   
 	addPoint(position){
-
-		this.players[this.currentPlayer][0]++;
+		
+		
 		
 		console.log(this.players[this.currentPlayer]);
 		
@@ -136,12 +139,14 @@ class Game {
 
 		this.piece_bases[this.currentPlayer].splice(0,1);
 		
-		for(let i =0; i <final_piece.length; i++){
+	
+	
+		for(let i =0;i <final_piece.length; i++){
 
 			let p1 =[0,0,0];
-			let p2 =[delta_pos[0],0,5];
+			let p2 =[0,0,5];
 			let p3 =[delta_pos[0],delta_pos[2],5];
-			let p4 =[delta_pos[0],delta_pos[2],delta_pos[1]];
+			let p4 =[delta_pos[0],delta_pos[2],-1];
 
 
 			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);

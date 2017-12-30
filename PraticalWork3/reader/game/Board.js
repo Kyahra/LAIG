@@ -61,7 +61,7 @@ class Board {
 
         this.matrix[i][j][0] = node;
         node.board_position = [i,j];
-		node.position = [x,z,0];
+		node.position = [x,0,z];
 
       }else
         this.matrix[i][j] =null;
@@ -78,13 +78,13 @@ class Board {
 		return this.matrix[final_pos[0]][final_pos[1]].length;
 	}
 
-  clear(x,y){
-    this.matrix[x][y] =[];
-  }
+	 clear(x,y){
+		this.matrix[x][y] =[];
+	 }
 
-  get(x,y){
-    return this.matrix[x][y];
-  }
+	 get(x,y){
+		return this.matrix[x][y];
+	 }
 
 
 }
