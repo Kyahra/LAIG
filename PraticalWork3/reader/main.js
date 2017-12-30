@@ -18,7 +18,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 			 'primitives/MyBaselessCylinder.js','primitives/MyCircle.js',
 			 'primitives/MyPatch.js','animations/Animation.js',
 			 'animations/LinearAnimation.js','animations/CircularAnimation.js',
-			 'animations/ComboAnimation.js','animations/BezierAnimation.js',
+			 'animations/ComboAnimation.js','animations/BezierAnimation.js','animations/cameraAnimation.js',
 			 'MyPrologInterface.js','game/Game.js','game/Board.js',
 			 'utils.js',
 
@@ -26,7 +26,7 @@ main=function()
 {
 	// Standard application, scene and interface setup
     var app = new CGFapplication(document.body);
-	var myInterface = new MyInterface();
+	  var myInterface = new MyInterface();
     var myScene = new XMLscene(myInterface);
 
 

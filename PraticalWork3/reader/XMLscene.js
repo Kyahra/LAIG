@@ -26,6 +26,8 @@ XMLscene.prototype.init = function(application) {
     this.cameras = [];
     this.initCameras();
 
+    this.gameCameraAnimation = null;
+
     this.currentCamera = 0;
 
     this.enableTextures(true);
@@ -89,6 +91,7 @@ XMLscene.prototype.initCameras = function() {
     this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(1, 25, 10),vec3.fromValues(0, 0, 0));
 
     this.camera = this.cameras[0];
+
 }
 
 /* Handler called when the graph is finally loaded.
@@ -113,6 +116,7 @@ XMLscene.prototype.onGraphLoaded = function()
   	this.setUpdatePeriod(1000/60);
     //this.setUpdatePeriod(20);
   	this.prevTime = -1;
+
 }
 
 /**
@@ -183,21 +187,21 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function (currTime) {
 
-
     if(this.prevTime == -1)
-  		this.graph.update(0);
-  	else
-  		this.graph.update(currTime-this.prevTime);
+    	this.graph.update(0);
+    else
+    	this.graph.update(currTime-this.prevTime);
 
-   if(this.prevTime == -1)
-    this.animateCamera(0);
-   else {
-     this.animateCamera(currTime-this.prevTime);
-   }
+    if(this.prevTime == -1){
+      this.animateCamera(0);
+      this.updateCameras(0);
+    }
+    else {
+      this.animateCamera(currTime-this.prevTime);
+      this.updateCameras(currTime-this.prevTime);
+    }
 
-   this.prevTime = currTime;
-
-
+    this.prevTime = currTime;
 };
 
 XMLscene.prototype.handlePicking = function (){
@@ -248,8 +252,30 @@ XMLscene.prototype.loadTheme = function (theme) {
     }
 };
 
+
+XMLscene.prototype.cameraChange = function () {
+
+    this.switchCamera = true;
+};
+
+
+XMLscene.prototype.updateCameras=function(time){
+
+    if(this.switchCamera)
+    {
+      this.gameCameraAnimation=new cameraAnimation(this,'player2');
+      //this.game.switchTurn=false;
+    }
+
+    if(this.gameCameraAnimation!=null)
+    {
+      this.gameCameraAnimation.updateAnimation(time);
+    }
+
+};
+
+
 XMLscene.prototype.nextCamera = function () {
-    //this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
 
     this.changingCamera = true;
     this.timeElapsed = 0;
