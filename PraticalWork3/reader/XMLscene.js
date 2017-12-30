@@ -208,8 +208,6 @@ XMLscene.prototype.handlePicking = function (){
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
-					console.log(obj.nodeID);
-					console.log("Picked object: " + obj + ", with pick id " + customId);
 					if(this.game.running)
 						this.game.picked(obj);
 				}

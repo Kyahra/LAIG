@@ -80,7 +80,7 @@ claim(Color,Colors,Player,NewColors,NewPlayer):-
 
 % humanPlay(ValidMove, T, [6,0],[7,1],[0,1],[0,2],[ivory,green,red,blue,black], NewBoard, NewPlayer, NewColors)
 % do not use NewBoard when ValidMove=0
-humanPlay(Board,PosInit,PosFinal,P1,P2,NewBoard,NewPlayer):-
+humanPlay(Board,PosInit,PosFinal,P1,P2,NewBoard,NewPlayer,Final):-
        nth0(0,PosInit, Y1),
        nth0(1,PosInit, X1),
        nth0(0,PosFinal, Y2),

@@ -54,6 +54,11 @@ class BezierAnimation extends Animation{
 
 		mat4.identity(node.animMatrix);
 
+		if(deltaTime >=0.95){
+			mat4.translate(node.animMatrix, node.animMatrix,this.points[3]);
+			return;
+		}
+
 		var newPos = [];
 		var oldPos = [];
 

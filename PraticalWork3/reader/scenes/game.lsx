@@ -151,7 +151,7 @@
 		<MATERIAL id="null" />
     <TEXTURE id="null" />
 
-    <TRANSLATION x="0" y="20" z="0"/>
+    <TRANSLATION x="0" y="0.8" z="0"/>
     <ROTATION axis="x" angle="-90" />
 
 		<DESCENDANTS>
