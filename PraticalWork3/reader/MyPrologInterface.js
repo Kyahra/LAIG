@@ -38,3 +38,12 @@ function humanPlay(board, initPos, finalPos, player1, player2, callback) {
 
     getPrologRequest(requestString, callback);
 }
+
+function isGameOver(board, player1, player2, callback) {
+    let requestString = 'isGameOver('
+        + JSON.stringify(board).replace(/"/g, '') + ','
+        + JSON.stringify(player1).replace(/"/g, '') + ','
+        + JSON.stringify(player2).replace(/"/g, '') + ')';
+
+    getPrologRequest(requestString, callback);
+}

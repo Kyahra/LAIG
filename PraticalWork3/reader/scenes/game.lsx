@@ -7,7 +7,7 @@
     <rotation axis="x" angle="0" />
     <rotation axis="y" angle="0" />
     <rotation axis="z" angle="0" />
-    <scale sx="0.25" sy="0.25" sz="0.25" />
+    <scale sx="0.5" sy="0.5" sz="0.5" />
     <reference length="5" />
 </INITIALS>
 
@@ -799,8 +799,8 @@
            <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
-  
-  
+
+
     <NODE id="floor">
       <MATERIAL id="plastic_material" />
       <TEXTURE id="white" />

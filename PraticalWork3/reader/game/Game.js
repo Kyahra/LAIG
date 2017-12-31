@@ -49,8 +49,10 @@ class Game {
 			let player1 = this.players[this.currentPlayer];
 			let player2 = this.players[1-this.currentPlayer];
 
-      if(init_pos != null && final_pos !=null)
+      if(init_pos != null && final_pos !=null){
 			   humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this,obj,init_pos,final_pos));
+         //isGameOver(this.board_aux,player1,player2,this.checkMoves1.bind(this));
+       }
       else
         this.moved_piece = null;
 		  }
@@ -84,7 +86,7 @@ class Game {
 			obj.addAnimation(this.animationCounter);
 			this.animationCounter++;
 
-      console.log('Player ' + (this.currentPlayer +1) +' claimed ' + obj.nodeID + ' pieces');
+      console.log('Player ' + (this.currentPlayer +1) +' claimed ' + obj.nodeID + ' pieces.');
 		}
 
 
@@ -138,12 +140,16 @@ class Game {
 
 		this.currentPlayer = 1-this.currentPlayer;
 
-		}
+  }else {
+    console.log('Invalid move... Try again.');
+  }
 		this.moved_piece = null;
   }
 
 
 	updateScore(duration,position,init_hight){
+
+        console.log('Player ' + (this.currentPlayer +1) +' scored a point!');
 
 		    let score = ++this.players[this.currentPlayer][0];
 		    document.getElementsByClassName('score')[this.currentPlayer].innerHTML = score;
@@ -182,5 +188,39 @@ class Game {
     	   this.board.clear(position[0],position[1]);
 
 	  }
+
+  checkMoves1(data){
+    let cont  = JSON.parse(data.target.response);
+
+    let player1 = this.players[this.currentPlayer];
+    let player2 = this.players[1-this.currentPlayer];
+
+    if(!cont) isGameOver(this.board_aux,player1,player2,this.checkMoves2.bind(this));
+  }
+
+  checkMoves2(data){
+      let cont  = JSON.parse(data.target.response);
+
+      if(!cont) this.gameOver(); else this.currentPlayer = 1-this.currentPlayer;
+  }
+
+  gameOver(){
+    this.runnig = false;
+    console.log('GAME OVER');
+
+    let p1_points = this.players[0][0];
+    let p2_points = this.players[1][0];
+    console.log('Player 1: '+ p1_points + 'points.');
+    console.log('Player 2: '+ p2_points + 'points.');
+
+    if(p1_points >p2_points)
+      console.log('Player 1 Wins!');
+    else if(p2_points >p1_points)
+      console.log('Player 2 Wins!');
+    else
+      console.log('It is a Tie!');
+
+  }
+
 
 }
