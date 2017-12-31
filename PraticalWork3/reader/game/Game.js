@@ -30,12 +30,18 @@ class Game {
 	picked(obj){
 		let color = obj.nodeID;
 
-		if(this.colors.includes(color))
+
+		if(this.colors.includes(color)){
+      obj.pickedShader = 0;
 			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
+    }
 		else{
 		  if(this.moved_piece == null)
 			this.moved_piece =obj;
 		  else{
+
+      this.moved_piece.pickedShader = 0;
+      obj.pickedShader = 0;
 
 			let init_pos = this.moved_piece.board_position;
 			let final_pos = obj.board_position;

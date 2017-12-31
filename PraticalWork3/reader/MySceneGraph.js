@@ -45,7 +45,7 @@ function MySceneGraph(filename, scene) {
     this.reader.open('scenes/' + filename, this);
 
     this.GameMode = ["PlayerVsPlayer", "PlayerVsComputer", "Computer"];
-	
+
 	this.pickID=0;
 }
 
@@ -1335,7 +1335,7 @@ MySceneGraph.prototype.parseMaterials = function(materialsNode) {
  * Parses the <NODES> block.
  */
 MySceneGraph.prototype.parseNodes = function(nodesNode) {
-	
+
 
     // Traverses nodes.
     var children = nodesNode.children;
@@ -1368,8 +1368,8 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
 
              // Retrieves selectable parameter
             var nodeSelectable = this.reader.getBoolean(children[i], 'selectable',false);
-    
-		  
+
+
 			if(	nodeSelectable==null)
 				nodeSelectable= false;
 
@@ -1452,7 +1452,7 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
                     // Translates the object
 					if(this.nodes[nodeID].selectable)
 						this.nodes[nodeID].position = [x,y,z];
-					
+
                     mat4.translate(this.nodes[nodeID].transformMatrix, this.nodes[nodeID].transformMatrix, [x, y, z]);
                     break;
 
@@ -1748,9 +1748,9 @@ MySceneGraph.prototype.displayScene = function() {
 
 	if(rootNode == null)
 		return "there is not root node";
-	
+
 		this.pickID=0;
-		
+
 	this.displayAux(rootNode.children,this.defaultMaterialID,"null");
 
 
@@ -1800,7 +1800,12 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         } else mat = materialID;
 
         let flag = false;
-		
+
+        if(node.pickedShader == 1){
+          this.scene.setActiveShader(this.scene.shader);
+          flag = true;
+        }
+
 		if(node.selectable){
 			this.pickID++;
 			this.scene.registerForPick(this.pickID,node);
@@ -1814,6 +1819,9 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         this.displayAux(node.children,mat,tex);
 
         this.scene.popMatrix();
+
+        if(flag )
+          this.scene.setActiveShader(this.scene.defaultShader);
 	}
   }
 }
@@ -1843,5 +1851,3 @@ MySceneGraph.prototype.updateAux= function(children){
 		}
 	}
 }
-
-

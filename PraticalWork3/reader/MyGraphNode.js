@@ -7,7 +7,8 @@ function MyGraphNode(graph, nodeID, selectable) {
 
     this.nodeID = nodeID;
 	this.selectable = selectable;
-	
+
+    this.pickedShader = 0;
     // IDs of child nodes.
     this.children = [];
 
@@ -25,9 +26,9 @@ function MyGraphNode(graph, nodeID, selectable) {
 
 	this.animMatrix = mat4.create();
     mat4.identity(this.animMatrix);
-	
+
 	this.prevTime =0;
-	
+
 	this.position;
 
 }
@@ -62,13 +63,13 @@ MyGraphNode.prototype.getChildren = function() {
 
 MyGraphNode.prototype.updateAnimations = function(currTime) {
 	let deltaTime;
-	
+
 	if(this.animations.length==0)
 		this.prevTime = currTime;
 	else
 		deltaTime = (currTime -this.prevTime)/1000;
-		
-		
+
+
 	for(var i=0; i<this.animations.length;i++){
 		var animation = this.graph.animations[this.animations[i]];
 		if(animation.duration >= deltaTime){
@@ -81,10 +82,9 @@ MyGraphNode.prototype.updateAnimations = function(currTime) {
 			mat4.multiply(this.transformMatrix,this.transformMatrix,this.animMatrix);
 			mat4.identity(this.animMatrix);
 			return;
-			
+
 			}
 		}
-			
-			
-	}
 
+
+	}
