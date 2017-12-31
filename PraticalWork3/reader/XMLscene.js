@@ -28,6 +28,7 @@ XMLscene.prototype.init = function(application) {
 
     this.gameCameraAnimation = null;
 
+    this.currentScene = 1;
     this.currentCamera = 0;
 
     this.enableTextures(true);

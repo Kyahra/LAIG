@@ -27,7 +27,6 @@ MyInterface.prototype.init = function(application) {
          changeCamera: this.updateCamera,
          quitServer: this.quitServer,
          theme: THEME.LEGACY,
-         loadTheme: this.loadTheme,
          scene: this.scene
      };
 
@@ -45,11 +44,10 @@ MyInterface.prototype.init = function(application) {
      configFolder.add(config, 'quitServer').name('Quit Server');
      configFolder.open();
 
-     configFolder.add(config, 'theme', {
-          'Theme 1': THEME.LEGACY,
-          'Theme 2': THEME.NORMAL
+     configFolder.add(this.scene, 'currentScene', {
+          'Normal': 1,
+          'Trippy': 2
      }).name('Theme');
-     configFolder.add(config, 'loadTheme').name('Load Theme');
 
      return true;
 
@@ -88,11 +86,3 @@ MyInterface.prototype.updateCamera = function(){
 MyInterface.prototype.quitServer = function(){
   getPrologRequest('quit');
 }
-
-
-/**
- * Loads theme.
- */
-MyInterface.prototype.loadTheme = function () {
-    this.scene.loadTheme(this.theme);
-};

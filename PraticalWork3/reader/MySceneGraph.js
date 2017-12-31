@@ -1369,15 +1369,19 @@ MySceneGraph.prototype.parseNodes = function(nodesNode) {
              // Retrieves selectable parameter
             var nodeSelectable = this.reader.getBoolean(children[i], 'selectable',false);
 
+      			if(	nodeSelectable==null)
+      				nodeSelectable= false;
 
-			if(	nodeSelectable==null)
-				nodeSelectable= false;
+            var nodeScene = this.reader.getInteger(children[i], 'scene', false);
+
+            if(	nodeScene==null)
+      				nodeScene= 0;
 
             this.log("Processing node " + nodeID + " - selectable - " + nodeSelectable);
 
 
             // Creates node.
-            this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable);
+            this.nodes[nodeID] = new MyGraphNode(this,nodeID, nodeSelectable, nodeScene);
 
 
             // Gathers child nodes.
@@ -1764,6 +1768,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
 	for(var i =0;i< children.length;i++){
 
+
+
 		if(children[i] instanceof MyGraphLeaf || children[i] instanceof MyPatch){
 
         if(materialID != null && materialID !=-1)
@@ -1791,6 +1797,8 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
         var node = this.nodes[children[i]];
 
+        if(node.nodeScene == this.scene.currentScene || node.nodeScene == 0){
+
         if (node.textureID != 'null'){
             tex = node.textureID;
         } else tex = textureID;
@@ -1805,6 +1813,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
           this.scene.setActiveShader(this.scene.shader);
           flag = true;
         }
+
 
 		if(node.selectable){
 			this.pickID++;
@@ -1822,6 +1831,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
         if(flag )
           this.scene.setActiveShader(this.scene.defaultShader);
+    }
 	}
   }
 }
