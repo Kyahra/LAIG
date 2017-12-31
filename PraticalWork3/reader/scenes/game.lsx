@@ -62,6 +62,36 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
+    <TEXTURE id="joker">
+        <file path="images/joker.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="serious">
+        <file path="images/serious.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="suicide">
+        <file path="images/suicide.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="suicide2">
+        <file path="images/suicide2.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="suicide3">
+        <file path="images/suicide3.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
+    <TEXTURE id="floorTrippy">
+        <file path="images/floorTrippy4.jpg" />
+        <amplif_factor s="1" t="1" />
+    </TEXTURE>
+
     <TEXTURE id="trippy">
         <file path="images/trippy.jpg" />
         <amplif_factor s="1" t="1" />
@@ -171,6 +201,7 @@
       			<NODEREF id="pieces"/>
             <NODEREF id="seats"/>
             <NODEREF id="floor"/>
+            <NODEREF id="floorTrippy"/>
             <NODEREF id="walls"/>
         </DESCENDANTS>
     </NODE>
@@ -183,10 +214,12 @@
           <DESCENDANTS>
             <NODEREF id="wall1" />
             <NODEREF id="wall2"/>
+            <NODEREF id="wall3"/>
+            <NODEREF id="wall4"/>
           </DESCENDANTS>
     </NODE>
 
-    <NODE id="wall1" selectable="false">
+    <NODE id="wall1" selectable="false" scene="1">
           <MATERIAL id="null" />
           <TEXTURE id="ball" />
 
@@ -200,12 +233,37 @@
     </NODE>
 
 
-    <NODE id="wall2" selectable="false">
+    <NODE id="wall2" selectable="false" scene="1">
       <MATERIAL id="null" />
       <TEXTURE id="ball" />
 
       <TRANSLATION x="-50" y="-20" z="-50" />
       <SCALE sx="120" sy="100" sz="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+    </NODE>
+
+    <NODE id="wall3" selectable="false" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="serious" />
+
+      <TRANSLATION x="-50" y="-20" z="50" />
+      <SCALE sx="1" sy="25" sz="100" />
+      <ROTATION axis="y" angle="90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+    </NODE>
+
+    <NODE id="wall4" selectable="false" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="joker" />
+
+      <TRANSLATION x="-50" y="-20" z="-50" />
+      <SCALE sx="120" sy="25" sz="0" />
 
       <DESCENDANTS>
         <LEAF  type="rectangle" args="0 1 1 0" />
@@ -221,6 +279,8 @@
           <DESCENDANTS>
             <NODEREF id="seat1" />
             <NODEREF id="seat2"/>
+            <NODEREF id="seat3"/>
+            <NODEREF id="seat4"/>
           </DESCENDANTS>
     </NODE>
 
@@ -230,15 +290,18 @@
 
           <TRANSLATION x="0" y="-10" z="-25"/>
           <ROTATION axis="x" angle="-90" />
+          <ROTATION axis="z" angle="40" />
 
           <DESCENDANTS>
             <NODEREF id="top" />
             <NODEREF id="legs"/>
+            <NODEREF id="top2" />
+            <NODEREF id="legs2"/>
           </DESCENDANTS>
     </NODE>
 
 
-    <NODE id="seat2" selectable="false" scene="2">
+    <NODE id="seat2" selectable="false">
           <MATERIAL id="null" />
           <TEXTURE id="null" />
 
@@ -248,8 +311,40 @@
           <DESCENDANTS>
             <NODEREF id="top" />
             <NODEREF id="legs"/>
+            <NODEREF id="top3" />
+            <NODEREF id="legs2"/>
           </DESCENDANTS>
     </NODE>
+
+    <NODE id="seat3" selectable="false" scene="2">
+          <MATERIAL id="null" />
+          <TEXTURE id="null" />
+
+          <TRANSLATION x="-25" y="-10" z="0"/>
+          <ROTATION axis="x" angle="-90" />
+          <ROTATION axis="z" angle="60" />
+
+          <DESCENDANTS>
+            <NODEREF id="top4" />
+            <NODEREF id="legs2"/>
+          </DESCENDANTS>
+    </NODE>
+
+    <NODE id="seat4" selectable="false" scene="2">
+          <MATERIAL id="null" />
+          <TEXTURE id="null" />
+
+          <TRANSLATION x="25" y="-10" z="0"/>
+          <ROTATION axis="x" angle="-90" />
+          <ROTATION axis="z" angle="-40" />
+
+          <DESCENDANTS>
+            <NODEREF id="top4" />
+            <NODEREF id="legs2"/>
+          </DESCENDANTS>
+    </NODE>
+
+
 
 
     <NODE id="top">
@@ -266,6 +361,52 @@
     <NODE id="legs">
       <MATERIAL id="null" />
       <TEXTURE id="gray" />
+
+      <TRANSLATION x="0" y="0" z="-10" />
+
+      <DESCENDANTS>
+        <NODEREF id="leg1" />
+        <NODEREF id="leg2" />
+        <NODEREF id="leg3" />
+        <NODEREF id="leg4" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="top2" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="suicide3" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="top3" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="suicide2" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="top4" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="suicide" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="legs2" scene ="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="black" />
 
       <TRANSLATION x="0" y="0" z="-10" />
 
@@ -907,6 +1048,21 @@
 
     </NODE>
 
+    <NODE id="floorTrippy" scene="2">
+      <MATERIAL id="plastic_material" />
+      <TEXTURE id="floorTrippy" />
+
+      <TRANSLATION x="-50" y="-20" z="50" />
+      <SCALE sx="150" sy="10" sz="100" />
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
 
 
 
@@ -922,7 +1078,9 @@
         <NODEREF id="board_struct"/>
         <NODEREF id="board_top"/>
         <NODEREF id="board_base"/>
+        <NODEREF id="board_base2"/>
         <NODEREF id="board_legs"/>
+        <NODEREF id="board_legs2"/>
         <NODEREF id="board_border"/>
         <NODEREF id="board_border2"/>
       </DESCENDANTS>
@@ -969,6 +1127,21 @@
     <NODE id="board_legs">
       <MATERIAL id="null" />
       <TEXTURE id="gray" />
+
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <NODEREF id="board_leg1" />
+        <NODEREF id="board_leg2" />
+        <NODEREF id="board_leg3" />
+        <NODEREF id="board_leg4" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="board_legs2" scene="2">
+      <MATERIAL id="null" />
+      <TEXTURE id="black" />
 
       <ROTATION axis="x" angle="-90" />
 
@@ -1034,6 +1207,20 @@
     <NODE id="board_base">
       <MATERIAL id="plastic_material" />
       <TEXTURE id="wood" />
+
+      <TRANSLATION x="-5" y="0" z="5" />
+      <SCALE sx="26" sy="1" sz="26" />
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="board_base2" scene="2">
+      <MATERIAL id="plastic_material" />
+      <TEXTURE id="trippy" />
 
       <TRANSLATION x="-5" y="0" z="5" />
       <SCALE sx="26" sy="1" sz="26" />

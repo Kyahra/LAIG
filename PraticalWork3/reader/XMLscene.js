@@ -90,8 +90,8 @@ XMLscene.prototype.initLights = function() {
 XMLscene.prototype.initCameras = function() {
   //this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
 
-    this.cameras[0] = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
-    this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(1, 25, 10),vec3.fromValues(0, 0, 0));
+    this.cameras[0] = new CGFcamera(0.4,0.1,500,vec3.fromValues(10, 10, 10),vec3.fromValues(0, 0, 0));
+    this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(0, 15, 3),vec3.fromValues(0, 0, 0));
 
     this.camera = this.cameras[0];
 
@@ -304,7 +304,7 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
         return;
 
     // *0.95 is to avoid flickering when the animation surpasses the expected camera position
-    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.6) {
+    if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.7) {
         this.changingCamera = false;
         this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
         //this.camera = this.cameras[this.currentCamera];
