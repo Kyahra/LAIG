@@ -144,14 +144,107 @@
             <NODEREF id="board"/>
       			<NODEREF id="colors"/>
       			<NODEREF id="pieces"/>
+            <NODEREF id="seat"/>
+            <NODEREF id="floor"/>
         </DESCENDANTS>
     </NODE>
+
+
+    <NODE id="seat" selectable="false">
+          <MATERIAL id="null" />
+          <TEXTURE id="red" />
+
+          <TRANSLATION x="0" y="-10" z="20"/>
+          <ROTATION axis="x" angle="-90" />
+
+          <DESCENDANTS>
+            <NODEREF id="top" />
+            <NODEREF id="legs"/>
+          </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="top">
+      <MATERIAL id="null" />
+      <TEXTURE id="red" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="legs">
+      <MATERIAL id="null" />
+      <TEXTURE id="white" />
+
+      <TRANSLATION x="0" y="0" z="-10" />
+
+      <DESCENDANTS>
+        <NODEREF id="leg1" />
+        <NODEREF id="leg2" />
+        <NODEREF id="leg3" />
+        <NODEREF id="leg4" />
+      </DESCENDANTS>
+
+    </NODE>
+
+
+    <NODE id="leg1">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="-2" y="2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="10 1 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg2">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="2" y="2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="10 1 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg3">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="-2" y="-2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="10 1 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="leg4">
+      <MATERIAL id="null" />
+      <TEXTURE id="null" />
+
+      <TRANSLATION x="2" y="-2" z="0" />
+
+      <DESCENDANTS>
+        <LEAF  type="cylinder" args="10 1 1 1 40 1 1" />
+      </DESCENDANTS>
+
+    </NODE>
+
 
 	<NODE id="pieces">
 		<MATERIAL id="null" />
     <TEXTURE id="null" />
 
-    <TRANSLATION x="0" y="20" z="0"/>
+    <TRANSLATION x="0" y="0.8" z="0"/>
     <ROTATION axis="x" angle="-90" />
 
 		<DESCENDANTS>
@@ -201,15 +294,18 @@
         </DESCENDANTS>
     </NODE>
 
-	<NODE id="piece_1" selectable="true">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
+
+    <NODE id="piece_1" selectable="true">
+          <MATERIAL id="null" />
+          <TEXTURE id="null" />
 
 
-        <DESCENDANTS>
-          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
-        </DESCENDANTS>
-    </NODE>
+          <DESCENDANTS>
+            <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
+          </DESCENDANTS>
+      </NODE>
+
+
 
 	<NODE id="piece_2" selectable="true">
         <MATERIAL id="null" />
@@ -633,6 +729,7 @@
         </DESCENDANTS>
     </NODE>
 
+
 	<NODE id="colors">
 		<MATERIAL id="null" />
         <TEXTURE id="null" />
@@ -705,6 +802,21 @@
         <DESCENDANTS>
            <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
+    </NODE>
+
+
+    <NODE id="floor">
+      <MATERIAL id="plastic_material" />
+      <TEXTURE id="white" />
+
+      <TRANSLATION x="-80" y="-30" z="30" />
+      <SCALE sx="100" sy="10" sz="126" />
+      <ROTATION axis="x" angle="-90" />
+
+      <DESCENDANTS>
+        <LEAF  type="rectangle" args="0 1 1 0" />
+      </DESCENDANTS>
+
     </NODE>
 
     <NODE id="board">
