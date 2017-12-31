@@ -205,8 +205,14 @@ XMLscene.prototype.update = function (currTime) {
     this.shader.setUniformsValues({timeFactor:this.time});
 
     if(typeof this.game != "undefined"){
-      this.gameTime +=  currTime-this.prevTime;
-      this.getTime(this.gameTime/1000);
+
+      this.roundTime +=  currTime-this.prevTime;
+      this.getTime(this.roundTime/1000);
+
+      if(this.seconds > 30){
+        this.game.currentPlayer = 1-this.game.currentPlayer;
+        this.roundTime = 0;
+      }
 
       document.getElementById('time').innerText = (this.hours) + ' : ' + this.minutes + " : " + this.seconds;
     }
@@ -243,6 +249,7 @@ XMLscene.prototype.getTime = function(secs) {
    }
 }
 
+
 XMLscene.prototype.handlePicking = function (){
 	if (this.pickMode == false) {
 		if (this.pickResults != null && this.pickResults.length > 0) {
@@ -277,6 +284,7 @@ XMLscene.prototype.newGame = function (gameMode,data){
 
 
   this.gameTime = 0;
+  this.roundTime = 0;
 
 	document.getElementById('overlay').style.display = 'block';
 

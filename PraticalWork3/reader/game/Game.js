@@ -133,6 +133,7 @@ class Game {
 		}
 
 		this.currentPlayer = 1-this.currentPlayer;
+    this.scene.roundTime = 0;
 
   }else {
     console.log('Invalid move... Try again.');
