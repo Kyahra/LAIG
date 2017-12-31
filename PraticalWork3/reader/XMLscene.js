@@ -43,6 +43,8 @@ XMLscene.prototype.init = function(application) {
 
 	  this.setPickEnabled(true);
     this.game = new Game();
+
+    this.shader = new CGFshader(this.gl,"shaders/MyShader.vert","shaders/MyShader.frag");
 }
 
 /**
@@ -169,7 +171,7 @@ XMLscene.prototype.display = function() {
 
         // Displays the scene.
         this.graph.displayScene();
-		
+
 
     }
 	else
@@ -202,6 +204,10 @@ XMLscene.prototype.update = function (currTime) {
       this.updateCameras(currTime-this.prevTime);
     }
 
+    this.time = (Math.cos(currTime/200))/ 2 + 0.5;
+
+    this.shader.setUniformsValues({timeFactor:this.time});
+
     this.prevTime = currTime;
 };
 
@@ -210,11 +216,18 @@ XMLscene.prototype.handlePicking = function (){
 		if (this.pickResults != null && this.pickResults.length > 0) {
 			for (var i=0; i< this.pickResults.length; i++) {
 				var obj = this.pickResults[i][0];
+
+        if(obj != null)
+          obj.pickedShader = 1;
+        console.log(obj);
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
-					if(this.game.running)
+
+					if(this.game.running){
 						this.game.picked(obj);
+          }
+
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
@@ -328,4 +341,3 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     this.camera = new CGFcamera(currCamera.fov, currCamera.near, currCamera.far,
         positionPosition, targetPosition);
 };
-
