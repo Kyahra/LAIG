@@ -219,7 +219,6 @@ XMLscene.prototype.handlePicking = function (){
 
         if(obj != null)
           obj.pickedShader = 1;
-        console.log(obj);
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
