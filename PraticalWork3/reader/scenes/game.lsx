@@ -150,7 +150,7 @@
     </NODE>
 
 
-    <NODE id="seat" selectable="true">
+    <NODE id="seat" selectable="false">
           <MATERIAL id="null" />
           <TEXTURE id="red" />
 
