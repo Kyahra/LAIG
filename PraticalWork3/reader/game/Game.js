@@ -111,7 +111,7 @@ class Game {
       let p1 =[0,0,0];
       let p2 =[delta_pos[0],0,5];
       let p3 =[delta_pos[0],delta_pos[2],5];
-      let p4 =[delta_pos[0],delta_pos[2],0.2];
+      let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
 
 
 		  for(let i =0; i <init_piece.length; i++){
