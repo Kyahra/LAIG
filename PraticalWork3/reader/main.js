@@ -19,7 +19,8 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 			 'primitives/MyPatch.js','animations/Animation.js',
 			 'animations/LinearAnimation.js','animations/CircularAnimation.js',
 			 'animations/ComboAnimation.js','animations/BezierAnimation.js','animations/cameraAnimation.js',
-			 'MyPrologInterface.js','game/Game.js','game/Board.js','animations/PauseAnimation.js',
+			 'MyPrologInterface.js','animations/PauseAnimation.js',
+       'game/Game.js','game/Board.js','game/GameCPU.js',
 			 'utils.js',
 
 main=function()
@@ -35,7 +36,7 @@ main=function()
     app.setScene(myScene);
     app.setInterface(myInterface);
 
-    //myInterface.setActiveCamera(myScene.camera);
+    myInterface.setActiveCamera(myScene.camera);
 
   	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
   	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)

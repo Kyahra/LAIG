@@ -35,7 +35,7 @@ MyInterface.prototype.init = function(application) {
      configFolder.add(config, 'gameMode', {
          'Human vs Human': GAMEMODE.HUMAN_VS_HUMAN,
          'Human vs CPU': GAMEMODE.HUMAN_VS_CPU,
-         'CPU vs CPU': GAMEMODE.CPU_VS_CPU,
+         'CPU vs CPU': GAMEMODE.CPU_VS_CPU
      }).name('Game Mode');
 
 

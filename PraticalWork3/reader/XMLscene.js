@@ -43,7 +43,7 @@ XMLscene.prototype.init = function(application) {
     this.axis = new CGFaxis(this);
 
 	  this.setPickEnabled(true);
-    this.game = new Game();
+
 
     this.shader = new CGFshader(this.gl,"shaders/MyShader.vert","shaders/MyShader.frag");
 }
@@ -224,9 +224,10 @@ XMLscene.prototype.handlePicking = function (){
 				{
 					var customId = this.pickResults[i][1];
 
-					if(this.game.running){
-						this.game.picked(obj);
-          }
+          if(this.game != null)
+					     if(this.game.running)
+						         this.game.picked(obj);
+
 
 				}
 			}
@@ -240,7 +241,9 @@ XMLscene.prototype.newGame = function (gameMode,data){
 
 	let board = JSON.parse(data.target.response);
 
-	this.game.newGame(this,gameMode,board);
+  if(gameMode == GAMEMODE.HUMAN_VS_HUMAN) this.game = new Game(this,board);
+  if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board);
+
 
 	document.getElementById('overlay').style.display = 'block';
 

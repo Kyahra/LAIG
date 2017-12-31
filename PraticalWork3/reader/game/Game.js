@@ -1,30 +1,24 @@
 class Game {
 
-    constructor() {
-		this.running = false;
-    }
+    constructor(scene,aux_board) {
+      this.scene = scene;
+      this.currentPlayer = 0;
+      this.colors = ['ivory','blue','red','green','black'];
+      this.players = [[0,1],[0,2]];
+      this.color_bases = [[[8,0,10],[8,0,12]],[[8,0,-10],[8,0,-12]]];
+      this.piece_bases = [[[-8,0,-10],[-6,0,-10],[-4,0,-10],[-2,0,-10]],[[-8,0,10],[-6,0,10],[-4,0,10],[-2,0,10]]];
+      this.board_aux= aux_board;
+      this.animationCounter =0;
+      this.board = new Board(scene,this);
+      this.running = true;
 
-    newGame(scene, gameMode,aux_board) {
-        this.scene = scene;
-        this.gameMode = gameMode;
-        this.currentPlayer = 0;
-        this.colors = ['ivory','blue','red','green','black'];
-    	  this.players = [[0,1],[0,2]];
-    	  this.color_bases = [[[6,0,10],[8,0,10]],[[6,0,-10],[8,0,-10]]];
-		    this.piece_bases = [[[-8,0,-10],[-6,0,-10],[-4,0,-10],[-2,0,-10]],[[-8,0,10],[-6,0,10],[-4,0,10],[-2,0,10]]];
-    	  this.board_aux= aux_board;
-        this.animationCounter =0;
-	      this.board = new Board(scene,this);
-		    this.scored = null;
-    		this.running = true;
-
-        for(let i=0; i <this.colors.length; i++){
-           let color_node = this.scene.graph.nodes[this.colors[i]];
-           mat4.identity(color_node.transformMatrix);
-           mat4.translate(color_node.transformMatrix,color_node.transformMatrix, color_node.position);
-           mat4.rotate(color_node.transformMatrix,color_node.transformMatrix,-Math.PI/2,[1,0,0]);
-        }
-    }
+      for(let i=0; i <this.colors.length; i++){
+         let color_node = this.scene.graph.nodes[this.colors[i]];
+         mat4.identity(color_node.transformMatrix);
+         mat4.translate(color_node.transformMatrix,color_node.transformMatrix, color_node.position);
+         mat4.rotate(color_node.transformMatrix,color_node.transformMatrix,-Math.PI/2,[1,0,0]);
+      }
+  }
 
 
 	picked(obj){
