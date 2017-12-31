@@ -88,10 +88,9 @@ XMLscene.prototype.initLights = function() {
  * Initializes the scene cameras.
  */
 XMLscene.prototype.initCameras = function() {
-  //this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
 
-    this.cameras[0] = new CGFcamera(0.4,0.1,500,vec3.fromValues(10, 10, 10),vec3.fromValues(0, 0, 0));
-    this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(0, 15, 3),vec3.fromValues(0, 0, 0));
+    this.cameras[0] = new CGFcamera(0.4,0.1,500,vec3.fromValues(15, 15, 15),vec3.fromValues(0, 0, 0));
+    this.cameras[1] = new CGFcamera(0.4,0.1,500,vec3.fromValues(1, 25, 10),vec3.fromValues(0, 0, 0));
 
     this.camera = this.cameras[0];
 
@@ -191,26 +190,58 @@ XMLscene.prototype.display = function() {
 
 XMLscene.prototype.update = function (currTime) {
 
-    if(this.prevTime == -1)
-    	this.graph.update(0);
-    else
-    	this.graph.update(currTime-this.prevTime);
 
     if(this.prevTime == -1){
       this.animateCamera(0);
-      this.updateCameras(0);
+      this.graph.update(0);
     }
     else {
       this.animateCamera(currTime-this.prevTime);
-      this.updateCameras(currTime-this.prevTime);
+      this.graph.update(currTime-this.prevTime);
     }
 
     this.time = (Math.cos(currTime/200))/ 2 + 0.5;
 
     this.shader.setUniformsValues({timeFactor:this.time});
 
+    if(typeof this.game != "undefined"){
+      this.gameTime +=  currTime-this.prevTime;
+      this.getTime(this.gameTime/1000);
+
+      document.getElementById('time').innerText = (this.hours) + ' : ' + this.minutes + " : " + this.seconds;
+    }
+
     this.prevTime = currTime;
 };
+
+XMLscene.prototype.getTime = function(secs) {
+   secs = Math.round(secs);
+   var hours = Math.floor(secs / (60 * 60));
+
+   var divisor_for_minutes = secs % (60 * 60);
+   var minutes = Math.floor(divisor_for_minutes / 60);
+
+   var divisor_for_seconds = divisor_for_minutes % 60;
+   var seconds = Math.ceil(divisor_for_seconds);
+
+   if (hours < 10) {
+       this.hours = "0" + hours;
+   } else {
+       this.hours = hours;
+   }
+
+   if (minutes < 10) {
+       this.minutes = "0" + minutes;
+   } else {
+       this.minutes = minutes;
+   }
+
+   if (seconds < 10) {
+       this.seconds = "0" + seconds;
+   } else {
+       this.seconds = seconds;
+   }
+}
 
 XMLscene.prototype.handlePicking = function (){
 	if (this.pickMode == false) {
@@ -245,6 +276,8 @@ XMLscene.prototype.newGame = function (gameMode,data){
   if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board);
 
 
+  this.gameTime = 0;
+
 	document.getElementById('overlay').style.display = 'block';
 
 	let scores = document.getElementsByClassName('score');
@@ -269,27 +302,6 @@ XMLscene.prototype.loadTheme = function (theme) {
     }
 };
 
-
-XMLscene.prototype.cameraChange = function () {
-
-    this.switchCamera = true;
-};
-
-
-XMLscene.prototype.updateCameras=function(time){
-
-    if(this.switchCamera)
-    {
-      this.gameCameraAnimation=new cameraAnimation(this,'player2');
-      //this.game.switchTurn=false;
-    }
-
-    if(this.gameCameraAnimation!=null)
-    {
-      this.gameCameraAnimation.updateAnimation(time);
-    }
-
-};
 
 
 XMLscene.prototype.nextCamera = function () {

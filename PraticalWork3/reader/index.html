@@ -19,15 +19,22 @@
             position: absolute;
             top: 25px;
             left: 25px;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 10px;
+            background: gray;
+            padding: 20px;
             -webkit-border-radius: 3px;
             -moz-border-radius: 3px;
             border-radius: 3px;
+            margin 1em;
         }
+
         #overlay span {
+<<<<<<< HEAD
             color: black;
             font-size: 110%;
+=======
+            color: white;
+            font-size: 100%;
+>>>>>>> aba7471b571824d538ea9e2cc912cd8d0539fbfc
             font-family: Sans-Serif;
         }
     </style>
@@ -37,16 +44,29 @@
 <script src="main.js"></script>
 
 <div id="overlay" hidden="hidden">
-    <div>
-        <span>Player 1:</span>
-		<span class="score"></span>
+
+    <div style="margin-bottom:0.5em;">
+        <span style="font-size: 80%;">  SCORE </span>
     </div>
 
     <div>
-        <span>Player 2:</span>
-		<span class="score"></span>
+        <span style="font-size: 80%;">Player 1 : </span>
+		    <span class="score"></span>
     </div>
 
+    <div style="margin-bottom:0.5em;">
+        <span style="font-size: 80%;">Player 2 :</span>
+		    <span class="score"></span>
+    </div>
+
+    <div style="margin-bottom:0.5em;">
+        <span info="score"></span>
+    </div>
+
+    <div>
+        <span style="font-size: 80%; font-weight:bold;"> Game Duration </span><br>
+        <span id="time" style="font-size: 80%;"></span><br>
+    </div>
 
 </div>
 </body>
