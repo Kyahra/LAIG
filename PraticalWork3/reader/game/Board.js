@@ -50,8 +50,8 @@ class Board {
         let p1 =[0,0,0];
         let p2 =[0,0,0.3];
 
-
-		mat4.translate(node.transformMatrix, node.transformMatrix, [x,z,0]);
+        mat4.identity(node.transformMatrix);
+		    mat4.translate(node.transformMatrix, node.transformMatrix, [x,z,0]);
 
         var anim = new LinearAnimation(this.scene, this.game.animationCounter,0.4, [p1,p2]);
         this.scene.graph.animations[this.game.animationCounter]= anim;
@@ -61,7 +61,7 @@ class Board {
 
         this.matrix[i][j][0] = node;
         node.board_position = [i,j];
-		node.position = [x,0,z];
+		    node.position = [x,0,z];
 
       }else
         this.matrix[i][j] =null;
