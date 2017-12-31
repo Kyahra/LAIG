@@ -1802,6 +1802,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
         let flag = false;
 
         if(node.pickedShader == 1){
+          console.log(node);
           this.scene.setActiveShader(this.scene.shader);
           flag = true;
         }

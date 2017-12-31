@@ -294,15 +294,18 @@
         </DESCENDANTS>
     </NODE>
 
-	<NODE id="piece_1" selectable="true">
-        <MATERIAL id="null" />
-        <TEXTURE id="null" />
+
+    <NODE id="piece_1" selectable="true">
+          <MATERIAL id="null" />
+          <TEXTURE id="null" />
 
 
-        <DESCENDANTS>
-          <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
-        </DESCENDANTS>
-    </NODE>
+          <DESCENDANTS>
+            <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
+          </DESCENDANTS>
+      </NODE>
+
+
 
 	<NODE id="piece_2" selectable="true">
         <MATERIAL id="null" />
@@ -726,6 +729,7 @@
         </DESCENDANTS>
     </NODE>
 
+
 	<NODE id="colors">
 		<MATERIAL id="null" />
         <TEXTURE id="null" />
@@ -799,8 +803,8 @@
            <LEAF  type="cylinder" args="0.2 0.5 0.5 1 40 1 1" />
         </DESCENDANTS>
     </NODE>
-  
-  
+
+
     <NODE id="floor">
       <MATERIAL id="plastic_material" />
       <TEXTURE id="white" />
