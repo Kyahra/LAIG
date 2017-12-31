@@ -134,9 +134,11 @@ class Game {
 
 		this.currentPlayer = 1-this.currentPlayer;
     this.scene.roundTime = 0;
+    document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
+    document.getElementById('info').innerText = '';
 
   }else {
-    console.log('Invalid move... Try again.');
+    document.getElementById('info').innerText = 'Invalid Move ... Try again ';
   }
 		this.moved_piece = null;
   }

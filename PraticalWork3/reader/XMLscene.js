@@ -211,6 +211,7 @@ XMLscene.prototype.update = function (currTime) {
 
       if(this.seconds > 30){
         this.game.currentPlayer = 1-this.game.currentPlayer;
+        document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
         this.roundTime = 0;
       }
 
@@ -291,6 +292,8 @@ XMLscene.prototype.newGame = function (gameMode,data){
 	let scores = document.getElementsByClassName('score');
     for (let score of scores)
 		score.innerHTML = '0';
+
+  document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
 };
 
 
