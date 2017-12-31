@@ -109,7 +109,7 @@ vec4 lighting(vec4 vertex, vec3 E, vec3 N) {
 void main() {
 
     // Transformed Vertex position
-    vec4 vertex = uMVMatrix * vec4(aVertexPosition+timeFactor*aVertexNormal*0.05, 1.0);
+    vec4 vertex = uMVMatrix * vec4(aVertexPosition+timeFactor*aVertexNormal*0.001, 1.0);
 
 
     // Transformed normal position
