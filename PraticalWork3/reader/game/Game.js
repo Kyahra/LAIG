@@ -17,6 +17,13 @@ class Game {
 	      this.board = new Board(scene,this);
 		    this.scored = null;
     		this.running = true;
+
+        for(let i=0; i <this.colors.length; i++){
+           let color_node = this.scene.graph.nodes[this.colors[i]];
+           mat4.identity(color_node.transformMatrix);
+           mat4.translate(color_node.transformMatrix,color_node.transformMatrix, color_node.position);
+           mat4.rotate(color_node.transformMatrix,color_node.transformMatrix,-Math.PI/2,[1,0,0]);
+        }
     }
 
 
@@ -104,7 +111,7 @@ class Game {
       let p1 =[0,0,0];
       let p2 =[delta_pos[0],0,5];
       let p3 =[delta_pos[0],delta_pos[2],5];
-      let p4 =[delta_pos[0],delta_pos[2],0.2];
+      let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
 
 
 		  for(let i =0; i <init_piece.length; i++){
