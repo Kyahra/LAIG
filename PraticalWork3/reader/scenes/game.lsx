@@ -14,7 +14,7 @@
 
 <!-- Illumination and clear colour -->
 <ILLUMINATION>
-    <ambient r="0.2" g="0.2" b="0.2" a="1" />
+    <ambient r="0" g="0" b="0" a="1" />
     <background r="0" g="0" b="0" a="1" />
 </ILLUMINATION>
 
@@ -25,32 +25,32 @@
         <enable value ="1" />
         <position  x="-13" y="10" z="-13" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+        <specular r="0.5" g="0.5" b="0.5" a="1.0" />
     </LIGHT>
 
 	<LIGHT id="light1">
         <enable value ="1" />
         <position x="13" y="10" z="-13" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+        <specular r="0.5" g="0.5" b="0.5" a="1.0" />
     </LIGHT>
 
 	<LIGHT id="light2">
         <enable value ="1" />
         <position x="-13" y="10" z="13" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+        <specular r="0.5" g="0.5" b="0.5" a="1.0" />
     </LIGHT>
 
     <LIGHT id="light3">
         <enable value ="1" />
         <position x="13" y="10" z="13" w="1" />
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-        <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+        <specular r="0.5" g="0.5" b="0.5" a="1.0" />
     </LIGHT>
 
 </LIGHTS>
@@ -97,14 +97,14 @@
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="floor">
-        <file path="images/floor.jpg" />
+    <TEXTURE id="seat">
+        <file path="images/ball.jpg" />
         <amplif_factor s="1" t="1" />
     </TEXTURE>
 
-    <TEXTURE id="floor2">
-        <file path="images/floor3.jpg" />
-        <amplif_factor s="1" t="1" />
+    <TEXTURE id="floor">
+        <file path="images/tiles.jpg" />
+        <amplif_factor s="0.1" t="0.1" />
     </TEXTURE>
 
     <TEXTURE id="gray">
@@ -113,8 +113,8 @@
     </TEXTURE>
 
     <TEXTURE id="ball">
-        <file path="images/ball.jpg" />
-        <amplif_factor s="1" t="1" />
+        <file path="images/wall.jpg" />
+        <amplif_factor s="0.5" t="0.5" />
     </TEXTURE>
 
     <TEXTURE id="board">
@@ -349,7 +349,7 @@
 
     <NODE id="top">
       <MATERIAL id="null" />
-      <TEXTURE id="ball" />
+      <TEXTURE id="seat" />
 
       <DESCENDANTS>
         <LEAF  type="cylinder" args="3 5 5 1 40 1 1" />
@@ -1036,7 +1036,7 @@
 
     <NODE id="floor">
       <MATERIAL id="plastic_material" />
-      <TEXTURE id="floor2" />
+      <TEXTURE id="floor" />
 
       <TRANSLATION x="-50" y="-20" z="50" />
       <SCALE sx="150" sy="10" sz="100" />
