@@ -282,6 +282,7 @@ XMLscene.prototype.newGame = function (gameMode,data){
 
   if(gameMode == GAMEMODE.HUMAN_VS_HUMAN) this.game = new Game(this,board);
   if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board);
+  if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board);
 
 
   this.gameTime = 0;

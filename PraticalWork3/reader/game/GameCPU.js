@@ -10,23 +10,27 @@ class GameCPU extends Game{
     }
 
     startGame(){
-      this.claimColorCPU(1);
-      this.claimColorCPU(1);
-      this.claimColorCPU(2);
-      this.claimColorCPU(2);
-
-
+      this.claimColor(1);
+      this.claimColor(1);
+      this.claimColor(2);
+      this.claimColor(2);
 
     }
 
     newTurn(){
+
+      if(this.gameOver){
+        console.log('gameOver');
+        return;
+      }
+
       this.currentPlayer = 1-this.currentPlayer;
       getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
 
     }
 
 
-    claimColorCPU(player){
+    claimColor(player){
       let idx = Math.floor(Math.random() * (this.colors.length-1));
 
       let color = this.colors[idx];
@@ -103,7 +107,7 @@ class GameCPU extends Game{
           if(player.includes(color))
             this.updateScore(duration,[x2,y2],init_hight);
           }
-          console.log(this.baord);
+
 
   }
 
