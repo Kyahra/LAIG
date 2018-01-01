@@ -126,7 +126,10 @@ parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 
 parse_input(getMove(Board,Player1,Player2),JSON):-
 	getMove(Board,Player1,Player2,X1,Y1,X2,Y2),
-	json([X1,Y1,X2,Y2],JSON).
+	json([0,X1,Y1,X2,Y2],JSON).
+
+parse_input(getMove(Board,Player1,Player2),JSON):-
+	json([1,0,0,0,0],JSON).
 
 parse_input(makeMove(Board,Player,X1,Y1,X2,Y2),NewBoard):-
 	makeMove(Board,Player,X1,Y1,X2,Y2,Tmp,NP),

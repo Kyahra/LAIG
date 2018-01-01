@@ -3,6 +3,7 @@ class GameCPU extends Game{
     constructor(scene,aux_board){
       super(scene,aux_board);
       this.running=false;
+      this.gameOver=0;
 
       this.startGame();
 
@@ -14,10 +15,12 @@ class GameCPU extends Game{
       this.claimColorCPU(2);
       this.claimColorCPU(2);
 
+      while(!this.gameOver){
       this.currentPlayer =0;
       getMove(this.board_aux,this.players[0],this.players[1],this.makeMove.bind(this));
       this.currentPlayer =1;
       getMove(this.board_aux,this.players[1],this.players[0],this.makeMove.bind(this));
+      }
 
     }
 
@@ -52,10 +55,13 @@ class GameCPU extends Game{
     makeMove(data){
       let response = JSON.parse(data.target.response);
 
-      let y1 = response[0];
-      let x1 = response[1];
-      let y2 = response[2];
-      let x2 = response[3];
+      this.gameOver =response[0];
+
+      if(!this.gameOver){
+      let y1 = response[1];
+      let x1 = response[2];
+      let y2 = response[3];
+      let x2 = response[4];
 
       updateBoard(this.board_aux,this.players[this.currentPlayer],y1,x1,y2,x2,this.updateAuxBoard.bind(this));
 
@@ -87,19 +93,21 @@ class GameCPU extends Game{
         init_piece[i].position = pos2;
     }
 
-/*
-    if(final_hight == 5){
+    /*
+        if(final_hight == 5){
 
-      let color = init_piece[init_piece.length-1].textureID[0];
-      let player = this.players[this.currentPlayer];
-      let duration = anim.duration;
+          let color = init_piece[init_piece.length-1].textureID[0];
+          let player = this.players[this.currentPlayer];
+          let duration = anim.duration;
 
-      if(player.includes(color))
-        this.updateScore(duration,final_pos,init_hight);
-    }*/
+          if(player.includes(color))
+            this.updateScore(duration,final_pos,init_hight);
+        }*/
 
 
-    }
+  }
+
+}
 
     updateAuxBoard(data){
       this.board_aux  = JSON.parse(data.target.response);
