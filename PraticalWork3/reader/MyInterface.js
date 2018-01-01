@@ -24,6 +24,7 @@ MyInterface.prototype.init = function(application) {
      let config = {
          newGame: this.requestNewConfig,
          gameMode: GAMEMODE.HUMAN_VS_HUMAN,
+         gameLevel: LEVEL.EASY,
          changeCamera: this.updateCamera,
          quitServer: this.quitServer,
          theme: THEME.LEGACY,
@@ -37,6 +38,11 @@ MyInterface.prototype.init = function(application) {
          'Human vs CPU': GAMEMODE.HUMAN_VS_CPU,
          'CPU vs CPU': GAMEMODE.CPU_VS_CPU
      }).name('Game Mode');
+
+     configFolder.add(config, 'gameLevel', {
+         'Easy': LEVEL.EASY,
+         'Hard': LEVEL.HARD
+     }).name('Difficulty');
 
 
      configFolder.add(config, 'newGame').name('New Game');
@@ -55,7 +61,7 @@ MyInterface.prototype.init = function(application) {
 
 MyInterface.prototype.requestNewConfig = function () {
 
-	getPrologRequest('initialize', this.scene.newGame.bind(this.scene,this.gameMode));
+	getPrologRequest('initialize', this.scene.newGame.bind(this.scene,this.gameMode,this.gameLevel));
 
 };
 

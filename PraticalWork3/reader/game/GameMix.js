@@ -1,6 +1,6 @@
 class GameMix extends GameCPU{
 
-    constructor(scene,aux_board){
+    constructor(scene,aux_board,level){
       super(scene,aux_board);
       this.running=true;
 
@@ -9,8 +9,6 @@ class GameMix extends GameCPU{
     startGame(){
       this.claimColor(1);
       this.claimColor(1);
-
-      console.log('yo');
 
       this.currentPlayer = 1;
 
@@ -32,6 +30,7 @@ class GameMix extends GameCPU{
 
       if(this.currentPlayer ==1) return;
 
+        if(this.level != LEVEL.EASY)  sleep(3000);
 
       getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
 

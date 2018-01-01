@@ -315,13 +315,13 @@ XMLscene.prototype.handlePicking = function (){
 }
 
 
-XMLscene.prototype.newGame = function (gameMode,data){
+XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
 
 	let board = JSON.parse(data.target.response);
 
   if(gameMode == GAMEMODE.HUMAN_VS_HUMAN) this.game = new Game(this,board);
-  if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board);
-  if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board);
+  if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board,gameLevel);
+  if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board,gameLevel);
 
 
   this.gameTime = 0;
