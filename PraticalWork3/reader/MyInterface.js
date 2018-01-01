@@ -28,6 +28,7 @@ MyInterface.prototype.init = function(application) {
          changeCamera: this.updateCamera,
          quitServer: this.quitServer,
          theme: THEME.LEGACY,
+         film: this.playFilm,
          scene: this.scene
      };
 
@@ -47,6 +48,7 @@ MyInterface.prototype.init = function(application) {
 
      configFolder.add(config, 'newGame').name('New Game');
      configFolder.add(config, 'changeCamera').name('Change Camera');
+     configFolder.add(config, 'film').name('Play Film');
      configFolder.add(config, 'quitServer').name('Quit Server');
      configFolder.open();
 
@@ -54,6 +56,8 @@ MyInterface.prototype.init = function(application) {
           'Normal': 1,
           'Trippy': 2
      }).name('Theme');
+
+
 
      return true;
 
@@ -86,8 +90,14 @@ MyInterface.prototype.addLightsGroup = function(lights) {
 
 MyInterface.prototype.updateCamera = function(){
    this.scene.nextCamera();
-   //this.scene.cameraChange();
+
 }
+
+MyInterface.prototype.playFilm = function(){
+   this.scene.game.playFilm();
+
+}
+
 
 MyInterface.prototype.quitServer = function(){
   getPrologRequest('quit');

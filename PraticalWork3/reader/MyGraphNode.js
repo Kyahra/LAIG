@@ -32,6 +32,8 @@ function MyGraphNode(graph, nodeID, selectable, nodeScene) {
 
 	this.position;
 
+  this.film =[];
+
 }
 
 /**
@@ -78,6 +80,7 @@ MyGraphNode.prototype.updateAnimations = function(currTime) {
 			break;
 		}
 		else{
+      this.film.push(this.animations[i]);
 			this.animations.shift();
 			this.prevTime = currTime;
 			mat4.multiply(this.transformMatrix,this.transformMatrix,this.animMatrix);
