@@ -15,13 +15,13 @@ class GameCPU extends Game{
       this.claimColorCPU(2);
       this.claimColorCPU(2);
 
-      while(!this.gameOver){
-      this.currentPlayer =0;
-      getMove(this.board_aux,this.players[0],this.players[1],this.makeMove.bind(this));
-      this.currentPlayer =1;
-      getMove(this.board_aux,this.players[1],this.players[0],this.makeMove.bind(this));
-      }
 
+
+    }
+
+    newTurn(){
+      getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
+      this.currentPlayer = 1-this.currentPlayer;
     }
 
 

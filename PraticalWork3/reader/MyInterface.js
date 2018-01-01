@@ -86,3 +86,19 @@ MyInterface.prototype.updateCamera = function(){
 MyInterface.prototype.quitServer = function(){
   getPrologRequest('quit');
 }
+
+MyInterface.prototype.processKeyboard = function(event) {
+
+	var x = event.which || event.keyCode;             // Get the Unicode value
+
+
+	if (x == 32){
+		if(this.scene.game instanceof GameCPU){
+      this.scene.game.newTurn();
+    }
+
+	}
+
+
+
+};
