@@ -231,7 +231,7 @@ XMLscene.prototype.updateTime = function(currTime){
         this.roundTime = 0;
       }
 
-      if(this.gameSeconds >= 5){
+      if(this.gameSeconds >= 30){
         this.game.gameOver();
         this.game = null;
         document.getElementById('info').innerText = 'Game Over';
@@ -336,8 +336,6 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
   if(gameMode == GAMEMODE.HUMAN_VS_HUMAN) this.game = new Game(this,board);
   if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board,gameLevel);
   if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board,gameLevel);
-
-  if(LEVEL.EASY)
 
 
   this.gameTime = 0;
