@@ -58,6 +58,11 @@ GAMEMODE = {
     CPU_VS_CPU: 2
 };
 
+LEVEL = {
+    EASY: 0,
+    HARD: 1
+};
+
 THEME = {
     LEGACY: 0,
     NORMAL: 1

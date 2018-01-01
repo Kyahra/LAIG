@@ -1,9 +1,10 @@
 class GameCPU extends Game{
 
-    constructor(scene,aux_board){
+    constructor(scene,aux_board,level){
       super(scene,aux_board);
       this.running=false;
       this.gameOver=0;
+      this.level = level;
 
       this.startGame();
 
@@ -23,6 +24,8 @@ class GameCPU extends Game{
         console.log('gameOver');
         return;
       }
+
+      if(this.level != LEVEL.EASY)  sleep(3000);
 
       this.currentPlayer = 1-this.currentPlayer;
       getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
