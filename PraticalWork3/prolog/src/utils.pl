@@ -88,11 +88,7 @@ humanPlay(Board,PosInit,PosFinal,P1,P2,NewBoard,NewPlayer):-
        nth0(0,PosFinal, Y2),
        nth0(1,PosFinal, X2),
        checkValidMove(Board,P1,P2,X1,Y1,X2,Y2),
-       setPosition(Board, B, 0, 0, X1, Y1, [x]),
-       index(Board,Y1,X1,InitPos),
-       index(Board,Y2,X2,FinalPos),
-       append(InitPos,FinalPos,Final),
-       updatePlayer(B,P1,Final,X2,Y2,NewBoard,NewPlayer).
+       makeMove(Board,P1,X1,Y1,X2,Y2,NewBoard,NewPlayer).
 
 checkValidMove(Board,P1,P2,X1,Y1,X2,Y2):-
       checkPiece(Board,P2,X1,Y1),
@@ -102,6 +98,26 @@ checkValidMove(Board,P1,P2,X1,Y1,X2,Y2):-
         checkPosition(Board,X2,Y2),
         checkNeutralTop(Board,P1,X1,Y1,X2,Y2),
         checkFinalStack(Board,X1,Y1,X2,Y2).
+
+getMove(Board,Player1,Player2,X1,Y1,X2,Y2):-
+  getValidMoves(Board,Player1,Player2,0,0,0,0,ValidMoves,NewValidMoves,Moves),
+
+  nth0(0,Moves,Top),
+  nth0(0,Moves,Top,Rest),
+  nth0(0,Top,X1),
+  nth0(0,Top,X1,RestY1),
+  nth0(0,RestY1,Y1),
+  nth0(0,RestY1,Y1,RestX2),
+  nth0(0,RestX2,X2),
+  nth0(0,RestX2,X2,RestY2),
+  nth0(0,RestY2,Y2).
+
+makeMove(Board,P1,X1,Y1,X2,Y2,NewBoard,NewPlayer):-
+  setPosition(Board, B, 0, 0, X1, Y1, [x]),
+  index(Board,Y1,X1,InitPos),
+  index(Board,Y2,X2,FinalPos),
+  append(InitPos,FinalPos,Final),
+  updatePlayer(B,P1,Final,X2,Y2,NewBoard,NewPlayer).
 
 isGameOver(Board,P1,P2,Over):-
   getValidMoves(Board,P1,P2,0,0,0,0,[],[],Moves),

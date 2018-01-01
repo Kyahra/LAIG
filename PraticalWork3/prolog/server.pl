@@ -124,6 +124,10 @@ parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 parse_input(humanPlay(Board,InitPos,FinalPos,P1,P2),NewBoard):-
 	matrix_to_json(Board,NewBoard).
 
+parse_input(getMove(Board,Player1,Player2),JSON):-
+	getMove(Board,Player1,Player2,X1,Y1,X2,Y2),
+	json([X1,Y1,X2,Y2],JSON).
+
 parse_input(isGameOver(Board,P1,P2),Over):-
 	isGameOver(Board,P1,P2,Tmp),
 	json(Tmp,Over).
