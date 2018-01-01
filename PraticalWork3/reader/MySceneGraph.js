@@ -1809,7 +1809,7 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
         let flag = false;
 
-        if(node.pickedShader == 1){
+        if(node.pickedShader == 1 ){
           this.scene.setActiveShader(this.scene.shader);
           flag = true;
         }

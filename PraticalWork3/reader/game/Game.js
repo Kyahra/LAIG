@@ -11,6 +11,7 @@ class Game {
       this.animationCounter =0;
       this.board = new Board(scene,this);
       this.running = true;
+      this.over = false;
 
       for(let i=0; i <this.colors.length; i++){
          let color_node = this.scene.graph.nodes[this.colors[i]];
@@ -18,6 +19,11 @@ class Game {
          mat4.translate(color_node.transformMatrix,color_node.transformMatrix, color_node.position);
          mat4.rotate(color_node.transformMatrix,color_node.transformMatrix,-Math.PI/2,[1,0,0]);
       }
+  }
+
+  gameOver(){
+
+    this.board.overBoard(this.board);
   }
 
 

@@ -204,7 +204,18 @@ XMLscene.prototype.update = function (currTime) {
 
     this.shader.setUniformsValues({timeFactor:this.time});
 
-    if(typeof this.game != "undefined"){
+    if(typeof this.game != "undefined")
+      this.updateTime(currTime);
+
+    this.prevTime = currTime;
+};
+
+XMLscene.prototype.updateTime = function(currTime){
+
+  if(this.game == null){
+    document.getElementById('time').innerText = (this.hours) + ' : ' + this.minutes + " : " + this.seconds;
+    document.getElementById('game_time').innerText = (this.gameHours) + ' : ' + this.gameMinutes + " : " + this.gameSeconds;
+  } else {
 
       this.roundTime +=  currTime-this.prevTime;
       this.getTime(this.roundTime/1000);
@@ -212,13 +223,16 @@ XMLscene.prototype.update = function (currTime) {
       this.gameTime +=  currTime-this.prevTime;
       this.getGameTime(this.gameTime/1000);
 
-      if(this.seconds > 30){
+
+
+      if(this.seconds >= 30){
         this.game.currentPlayer = 1-this.game.currentPlayer;
         document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
         this.roundTime = 0;
       }
 
-      if(this.gameSeconds > 30){
+      if(this.gameSeconds >= 5){
+        this.game.gameOver();
         this.game = null;
         document.getElementById('info').innerText = 'Game Over';
       }
@@ -227,8 +241,8 @@ XMLscene.prototype.update = function (currTime) {
       document.getElementById('game_time').innerText = (this.gameHours) + ' : ' + this.gameMinutes + " : " + this.gameSeconds;
     }
 
-    this.prevTime = currTime;
-};
+}
+
 
 XMLscene.prototype.getTime = function(secs) {
    secs = Math.round(secs);
@@ -322,6 +336,8 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
   if(gameMode == GAMEMODE.HUMAN_VS_HUMAN) this.game = new Game(this,board);
   if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board,gameLevel);
   if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board,gameLevel);
+
+  if(LEVEL.EASY)
 
 
   this.gameTime = 0;

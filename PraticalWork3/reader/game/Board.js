@@ -70,6 +70,50 @@ class Board {
 
 	}
 
+  overBoard(board_aux){
+  let counter = 0;
+
+  for(let i=0; i<board_aux.length; i++){
+    for(let j=0; j<board_aux[0].length; j++){
+
+    let color = board_aux[i][j];
+
+    if(color != "."){
+      let translation = this.translations[counter];
+      let x = translation[0];
+      let z = translation[1];
+
+      counter++;
+      let id = 'piece_' + counter;
+
+
+      let node = this.scene.graph.nodes[id];
+
+      node.textureID = color;
+
+      let p1 =[0,0,0];
+      let p2 =[0,0,0.3];
+
+      mat4.identity(node.transformMatrix);
+      mat4.translate(node.transformMatrix, node.transformMatrix, [10,10,0]);
+/*
+      var anim = new LinearAnimation(this.scene, this.game.animationCounter,0.4, [p1,p2]);
+      this.scene.graph.animations[this.game.animationCounter]= anim;
+      node.addAnimation(this.game.animationCounter);
+      this.game.animationCounter++;*/
+
+      this.matrix[i][j][0] = node;
+      node.board_position = [i,j];
+      node.position = [x,0,z];
+
+    }else
+      this.matrix[i][j] =null;
+    }
+  }
+
+}
+
+
 	insert(x,y,piece){
 		this.matrix[x][y].push(piece);
 	}
