@@ -20,8 +20,9 @@ class GameCPU extends Game{
     }
 
     newTurn(){
-      getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
       this.currentPlayer = 1-this.currentPlayer;
+      getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
+
     }
 
 
@@ -93,7 +94,6 @@ class GameCPU extends Game{
         init_piece[i].position = pos2;
     }
 
-    /*
         if(final_hight == 5){
 
           let color = init_piece[init_piece.length-1].textureID[0];
@@ -101,9 +101,9 @@ class GameCPU extends Game{
           let duration = anim.duration;
 
           if(player.includes(color))
-            this.updateScore(duration,final_pos,init_hight);
-        }*/
-
+            this.updateScore(duration,[x2,y2],init_hight);
+          }
+          console.log(this.baord);
 
   }
 

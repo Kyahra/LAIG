@@ -186,38 +186,7 @@ class Game {
 
 	  }
 
-  checkMoves1(data){
-    let cont  = JSON.parse(data.target.response);
 
-    let player1 = this.players[this.currentPlayer];
-    let player2 = this.players[1-this.currentPlayer];
-
-    if(!cont) isGameOver(this.board_aux,player1,player2,this.checkMoves2.bind(this));
-  }
-
-  checkMoves2(data){
-      let cont  = JSON.parse(data.target.response);
-
-      if(!cont) this.gameOver(); else this.currentPlayer = 1-this.currentPlayer;
-  }
-
-  gameOver(){
-    this.runnig = false;
-    console.log('GAME OVER');
-
-    let p1_points = this.players[0][0];
-    let p2_points = this.players[1][0];
-    console.log('Player 1: '+ p1_points + 'points.');
-    console.log('Player 2: '+ p2_points + 'points.');
-
-    if(p1_points >p2_points)
-      console.log('Player 1 Wins!');
-    else if(p2_points >p1_points)
-      console.log('Player 2 Wins!');
-    else
-      console.log('It is a Tie!');
-
-  }
 
 
 }

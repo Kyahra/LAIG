@@ -92,12 +92,10 @@ MyInterface.prototype.processKeyboard = function(event) {
 	var x = event.which || event.keyCode;             // Get the Unicode value
 
 
-	if (x == 32){
-		if(this.scene.game instanceof GameCPU){
+	if (x == 32)
+		if(this.scene.game instanceof GameCPU)
       this.scene.game.newTurn();
-    }
 
-	}
 
 
 
