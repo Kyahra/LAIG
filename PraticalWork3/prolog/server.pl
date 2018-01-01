@@ -128,9 +128,14 @@ parse_input(getMove(Board,Player1,Player2),JSON):-
 	getMove(Board,Player1,Player2,X1,Y1,X2,Y2),
 	json([X1,Y1,X2,Y2],JSON).
 
+parse_input(makeMove(Board,Player,X1,Y1,X2,Y2),NewBoard):-
+	makeMove(Board,Player,X1,Y1,X2,Y2,Tmp,NP),
+	matrix_to_json(Tmp,NewBoard).
+
 parse_input(isGameOver(Board,P1,P2),Over):-
 	isGameOver(Board,P1,P2,Tmp),
 	json(Tmp,Over).
+
 
 parse_input(handshake, handshake).
 parse_input(test(C,N), Res) :- test(C,Res,N).

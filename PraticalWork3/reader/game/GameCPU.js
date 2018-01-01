@@ -14,7 +14,10 @@ class GameCPU extends Game{
       this.claimColorCPU(2);
       this.claimColorCPU(2);
 
+      this.currentPlayer =0;
       getMove(this.board_aux,this.players[0],this.players[1],this.makeMove.bind(this));
+      this.currentPlayer =1;
+      getMove(this.board_aux,this.players[1],this.players[0],this.makeMove.bind(this));
 
     }
 
@@ -49,12 +52,13 @@ class GameCPU extends Game{
     makeMove(data){
       let response = JSON.parse(data.target.response);
 
-      let x1 = response[0];
-      let y1 = response[1];
-      let x2 = response[2];
-      let y2 = response[3];
+      let y1 = response[0];
+      let x1 = response[1];
+      let y2 = response[2];
+      let x2 = response[3];
 
-  
+      updateBoard(this.board_aux,this.players[this.currentPlayer],y1,x1,y2,x2,this.updateAuxBoard.bind(this));
+
       let init_piece = this.board.get(x1,y1);
       let end_piece = this.board.get(x2,y2);
       let init_hight = this.board.getHight([x2,y2]);
@@ -95,6 +99,10 @@ class GameCPU extends Game{
     }*/
 
 
+    }
+
+    updateAuxBoard(data){
+      this.board_aux  = JSON.parse(data.target.response);
     }
 
 

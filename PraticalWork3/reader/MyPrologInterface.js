@@ -57,3 +57,15 @@ function isGameOver(board, player1, player2, callback) {
 
     getPrologRequest(requestString, callback);
 }
+
+function updateBoard(board, player, x1, y1, x2, y2, callback) {
+    let requestString = 'makeMove('
+        + JSON.stringify(board).replace(/"/g, '') + ','
+        + JSON.stringify(player).replace(/"/g, '') + ','
+        + JSON.stringify(x1) + ','
+        + JSON.stringify(y1) + ','
+        + JSON.stringify(x2) + ','
+        + JSON.stringify(y2) + ')';
+
+    getPrologRequest(requestString, callback);
+}
