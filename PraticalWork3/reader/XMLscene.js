@@ -209,13 +209,22 @@ XMLscene.prototype.update = function (currTime) {
       this.roundTime +=  currTime-this.prevTime;
       this.getTime(this.roundTime/1000);
 
+      this.gameTime +=  currTime-this.prevTime;
+      this.getGameTime(this.gameTime/1000);
+
       if(this.seconds > 30){
         this.game.currentPlayer = 1-this.game.currentPlayer;
         document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
         this.roundTime = 0;
       }
 
+      if(this.gameSeconds > 30){
+        this.game = null;
+        document.getElementById('info').innerText = 'Game Over';
+      }
+
       document.getElementById('time').innerText = (this.hours) + ' : ' + this.minutes + " : " + this.seconds;
+      document.getElementById('game_time').innerText = (this.gameHours) + ' : ' + this.gameMinutes + " : " + this.gameSeconds;
     }
 
     this.prevTime = currTime;
@@ -247,6 +256,36 @@ XMLscene.prototype.getTime = function(secs) {
        this.seconds = "0" + seconds;
    } else {
        this.seconds = seconds;
+   }
+}
+
+
+XMLscene.prototype.getGameTime = function(secs) {
+   secs = Math.round(secs);
+   var hours = Math.floor(secs / (60 * 60));
+
+   var divisor_for_minutes = secs % (60 * 60);
+   var minutes = Math.floor(divisor_for_minutes / 60);
+
+   var divisor_for_seconds = divisor_for_minutes % 60;
+   var seconds = Math.ceil(divisor_for_seconds);
+
+   if (hours < 10) {
+       this.gameHours = "0" + hours;
+   } else {
+       this.gameHours = hours;
+   }
+
+   if (minutes < 10) {
+       this.gameMinutes = "0" + minutes;
+   } else {
+       this.gameMinutes = minutes;
+   }
+
+   if (seconds < 10) {
+       this.gameSeconds = "0" + seconds;
+   } else {
+       this.gameSeconds = seconds;
    }
 }
 
