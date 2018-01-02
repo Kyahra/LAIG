@@ -212,7 +212,7 @@ XMLscene.prototype.update = function (currTime) {
 
 XMLscene.prototype.updateTime = function(currTime){
 
-  if(this.game == null){
+  if(this.game.over){
     document.getElementById('time').innerText = (this.hours) + ' : ' + this.minutes + " : " + this.seconds;
     document.getElementById('game_time').innerText = (this.gameHours) + ' : ' + this.gameMinutes + " : " + this.gameSeconds;
   } else {
@@ -234,9 +234,9 @@ XMLscene.prototype.updateTime = function(currTime){
         this.roundTime = 0;
       }
 
-      if(this.gameSeconds >= 300){
+      if(this.gameSeconds >= 5){
         this.game.gameOver();
-        this.game = null;
+        this.game.over = true;
         document.getElementById('info').innerText = 'Game Over';
       }
 

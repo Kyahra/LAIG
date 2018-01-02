@@ -29,125 +29,136 @@ class Game {
 
 
 	picked(obj){
-		let color = obj.nodeID;
+
+    if(!this.over){
+
+      		let color = obj.nodeID;
 
 
-		if(this.colors.includes(color)){
-      obj.pickedShader = 0;
-			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
-    }
-		else{
-		  if(this.moved_piece == null)
-			this.moved_piece =obj;
-		  else{
+      		if(this.colors.includes(color)){
+            obj.pickedShader = 0;
+      			claimColor(color,this.colors,this.players[this.currentPlayer],this.claimedColor.bind(this,obj));
+          }
+      		else{
+      		  if(this.moved_piece == null)
+      			this.moved_piece =obj;
+      		  else{
 
-      this.moved_piece.pickedShader = 0;
-      obj.pickedShader = 0;
+            this.moved_piece.pickedShader = 0;
+            obj.pickedShader = 0;
 
-			let init_pos = this.moved_piece.board_position;
-			let final_pos = obj.board_position;
+      			let init_pos = this.moved_piece.board_position;
+      			let final_pos = obj.board_position;
 
-			let player1 = this.players[this.currentPlayer];
-			let player2 = this.players[1-this.currentPlayer];
+      			let player1 = this.players[this.currentPlayer];
+      			let player2 = this.players[1-this.currentPlayer];
 
-      if(init_pos != null && final_pos !=null){
-			   humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this,obj,init_pos,final_pos));
-         //isGameOver(this.board_aux,player1,player2,this.checkMoves1.bind(this));
-       }
-      else
-        this.moved_piece = null;
-		  }
-    }
+            if(init_pos != null && final_pos !=null){
+      			   humanPlay(this.board_aux,init_pos,final_pos,player1,player2,this.humanPlayed.bind(this,obj,init_pos,final_pos));
+               //isGameOver(this.board_aux,player1,player2,this.checkMoves1.bind(this));
+             }
+            else
+              this.moved_piece = null;
+      		  }
+          }
+      }
 	}
 
 	claimedColor(obj,data){
-		let response = JSON.parse(data.target.response);
 
-		let claimed = response[0];
+    if(!this.over){
 
-		if(claimed){
-			let colors = response[1];
-			let player = response[2];
-			this.colors = colors;
-			this.players[this.currentPlayer] =player;
+          let response = JSON.parse(data.target.response);
 
-			let init_pos = obj.position;
-			let final_pos = this.color_bases[this.currentPlayer][0];
-			let delta_pos = subtractPoints(init_pos,final_pos);
+      		let claimed = response[0];
 
-			this.color_bases[this.currentPlayer].splice(0,1);
+      		if(claimed){
+      			let colors = response[1];
+      			let player = response[2];
+      			this.colors = colors;
+      			this.players[this.currentPlayer] =player;
 
-			let p1 =[0,0,0];
-			let p2 =[2,0,0];
-		    let p3 =[2,-delta_pos[2],0];
-		    let p4 =[-2+delta_pos[0],-delta_pos[2],0]
+      			let init_pos = obj.position;
+      			let final_pos = this.color_bases[this.currentPlayer][0];
+      			let delta_pos = subtractPoints(init_pos,final_pos);
 
-			var anim = new LinearAnimation(this.scene, this.animationCounter, 11, [p1,p2,p3,p4]);
-			this.scene.graph.animations[this.animationCounter]= anim;
-			obj.addAnimation(this.animationCounter);
-			this.animationCounter++;
+      			this.color_bases[this.currentPlayer].splice(0,1);
 
-      console.log('Player ' + (this.currentPlayer +1) +' claimed ' + obj.nodeID + ' pieces.');
-		}
+      			let p1 =[0,0,0];
+      			let p2 =[2,0,0];
+      		    let p3 =[2,-delta_pos[2],0];
+      		    let p4 =[-2+delta_pos[0],-delta_pos[2],0]
 
+      			var anim = new LinearAnimation(this.scene, this.animationCounter, 11, [p1,p2,p3,p4]);
+      			this.scene.graph.animations[this.animationCounter]= anim;
+      			obj.addAnimation(this.animationCounter);
+      			this.animationCounter++;
 
+            console.log('Player ' + (this.currentPlayer +1) +' claimed ' + obj.nodeID + ' pieces.');
+      		}
+
+    }
 	}
 
 	humanPlayed(end_piece,init_pos,final_pos,data){
 
-		this.board_aux  = JSON.parse(data.target.response);
+    if(!this.over){
 
-		let init = this.board_aux[init_pos[0]][init_pos[1]];
+    		this.board_aux  = JSON.parse(data.target.response);
 
-		if(init == 'x'){
+    		let init = this.board_aux[init_pos[0]][init_pos[1]];
 
-			let init_piece = this.board.get(init_pos[0],init_pos[1]);
-			let init_hight = this.board.getHight(final_pos);
-			let final_hight = this.board.getHight(init_pos) + this.board.getHight(final_pos);
+    		if(init == 'x'){
 
-			this.board.clear(init_pos[0],init_pos[1]);
+    			let init_piece = this.board.get(init_pos[0],init_pos[1]);
+    			let init_hight = this.board.getHight(final_pos);
+    			let final_hight = this.board.getHight(init_pos) + this.board.getHight(final_pos);
 
-			let pos1 = this.moved_piece.position;
-			let pos2 = end_piece.position;
-			let delta_pos = subtractPoints(pos1,pos2);
+    			this.board.clear(init_pos[0],init_pos[1]);
 
-      let p1 =[0,0,0];
-      let p2 =[delta_pos[0],0,5];
-      let p3 =[delta_pos[0],delta_pos[2],5];
-      let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
+    			let pos1 = this.moved_piece.position;
+    			let pos2 = end_piece.position;
+    			let delta_pos = subtractPoints(pos1,pos2);
 
-
-		  for(let i =0; i <init_piece.length; i++){
-  			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
-  			this.scene.graph.animations[this.animationCounter]= anim;
-  			init_piece[i].addAnimation(this.animationCounter);
-  			this.animationCounter++;
-
-  		  this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
-  		  init_piece[i].board_position = final_pos;
-  		  init_piece[i].position = pos2;
-		}
+          let p1 =[0,0,0];
+          let p2 =[delta_pos[0],0,5];
+          let p3 =[delta_pos[0],delta_pos[2],5];
+          let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
 
 
-		if(final_hight == 5){
+    		  for(let i =0; i <init_piece.length; i++){
+      			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
+      			this.scene.graph.animations[this.animationCounter]= anim;
+      			init_piece[i].addAnimation(this.animationCounter);
+      			this.animationCounter++;
 
-      let color = init_piece[init_piece.length-1].textureID[0];
-      let player = this.players[this.currentPlayer];
-      let duration = anim.duration;
+      		  this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
+      		  init_piece[i].board_position = final_pos;
+      		  init_piece[i].position = pos2;
+    		}
 
-      if(player.includes(color))
-        this.updateScore(duration,final_pos,init_hight);
-		}
 
-		this.currentPlayer = 1-this.currentPlayer;
-    this.scene.roundTime = 0;
-    document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
-    document.getElementById('info').innerText = '';
+    		if(final_hight == 5){
 
-  }else {
-    document.getElementById('info').innerText = 'Invalid Move ... Try again ';
-  }
-		this.moved_piece = null;
+          let color = init_piece[init_piece.length-1].textureID[0];
+          let player = this.players[this.currentPlayer];
+          let duration = anim.duration;
+
+          if(player.includes(color))
+            this.updateScore(duration,final_pos,init_hight);
+    		}
+
+    		this.currentPlayer = 1-this.currentPlayer;
+        this.scene.roundTime = 0;
+        document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
+        document.getElementById('info').innerText = '';
+
+      }else {
+        document.getElementById('info').innerText = 'Invalid Move ... Try again ';
+      }
+    		this.moved_piece = null;
+
+    }
   }
 
 
