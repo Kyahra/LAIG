@@ -117,6 +117,11 @@ class Game {
       let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
 
 
+      	var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
+          let duration = anim.duration;
+      this.board.pause(init_pos,final_pos,duration);
+
+
 		  for(let i =0; i <init_piece.length; i++){
   			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
   			this.scene.graph.animations[this.animationCounter]= anim;
@@ -129,15 +134,17 @@ class Game {
 		}
 
 
+
 		if(final_hight == 5){
 
       let color = init_piece[init_piece.length-1].textureID[0];
       let player = this.players[this.currentPlayer];
-      let duration = anim.duration;
 
       if(player.includes(color))
         this.updateScore(duration,final_pos,init_hight);
 		}
+
+
 
 		this.currentPlayer = 1-this.currentPlayer;
     this.scene.roundTime = 0;
@@ -160,6 +167,8 @@ class Game {
 
     		let final_piece = this.board.get(position[0],position[1]);
 
+
+
     		let init_pos = final_piece[0].position;
     		let final_pos = this.piece_bases[this.currentPlayer][0];
     		let delta_pos = subtractPoints(init_pos,final_pos);
@@ -167,6 +176,7 @@ class Game {
     		this.piece_bases[this.currentPlayer].splice(0,1);
 
     		for(let i =0; i <init_hight;i++){
+          final_piece[i].animations.pop();
 
     			var anim = new PauseAnimation(this.scene, this.animationCounter, duration);
     			this.scene.graph.animations[this.animationCounter]= anim;
