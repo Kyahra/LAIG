@@ -138,5 +138,24 @@ class Board {
       }
    }
 
+   pause(init_pos,final_pos,duration){
+    let x1 = init_pos[0];
+    let x2 = final_pos[0];
+    let y1 = init_pos[1];
+    let y2 = final_pos[1];
+
+     for(let i=0; i <this.matrix.length; i++)
+      for(let j=0; j<this.matrix[0].length; j++){
+        if(!(i==x1 && j==y1) && this.matrix[i][j] != null){
+          for(let k =0; k < this.matrix[i][j].length; k++){
+          var anim = new PauseAnimation(this.scene, this.game.animationCounter, duration);
+    			this.scene.graph.animations[this.game.animationCounter]= anim;
+    			this.matrix[i][j][k].addAnimation(this.game.animationCounter);
+    			this.game.animationCounter++;
+        }
+        }
+      }
+   }
+
 
 }
