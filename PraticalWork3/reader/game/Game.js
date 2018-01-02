@@ -125,8 +125,6 @@ class Game {
           let p3 =[delta_pos[0],delta_pos[2],5];
           let p4 =[delta_pos[0],delta_pos[2],0.2*init_hight];
 
-<<<<<<< HEAD
-=======
       	var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
           let duration = anim.duration;
       this.board.pause(init_pos,final_pos,duration);
@@ -137,51 +135,30 @@ class Game {
   			this.scene.graph.animations[this.animationCounter]= anim;
   			init_piece[i].addAnimation(this.animationCounter);
   			this.animationCounter++;
->>>>>>> 262194d16a4090a7a838d03d14041af2b0b6b5da
 
-    		  for(let i =0; i <init_piece.length; i++){
-      			var anim = new BezierAnimation(this.scene, this.animationCounter, 10, [p1,p2,p3,p4]);
-      			this.scene.graph.animations[this.animationCounter]= anim;
-      			init_piece[i].addAnimation(this.animationCounter);
-      			this.animationCounter++;
+
 
       		  this.board.insert(final_pos[0],final_pos[1],init_piece[i]);
       		  init_piece[i].board_position = final_pos;
       		  init_piece[i].position = pos2;
     		}
 
-<<<<<<< HEAD
-
-    		if(final_hight == 5){
-=======
 
 		if(final_hight == 5){
 
       let color = init_piece[init_piece.length-1].textureID[0];
       let player = this.players[this.currentPlayer];
->>>>>>> 262194d16a4090a7a838d03d14041af2b0b6b5da
 
-          let color = init_piece[init_piece.length-1].textureID[0];
-          let player = this.players[this.currentPlayer];
-          let duration = anim.duration;
 
-<<<<<<< HEAD
-          if(player.includes(color))
-            this.updateScore(duration,final_pos,init_hight);
-    		}
-=======
+
 
 
 		this.currentPlayer = 1-this.currentPlayer;
     this.scene.roundTime = 0;
     document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
     document.getElementById('info').innerText = '';
->>>>>>> 262194d16a4090a7a838d03d14041af2b0b6b5da
 
-    		this.currentPlayer = 1-this.currentPlayer;
-        this.scene.roundTime = 0;
-        document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
-        document.getElementById('info').innerText = '';
+
 
       }else {
         document.getElementById('info').innerText = 'Invalid Move ... Try again ';
