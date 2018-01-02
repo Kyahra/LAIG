@@ -29,7 +29,7 @@ class GameMix extends GameCPU{
       }
 
       if(this.currentPlayer ==1){
-        document.getElementById('turn').innerText = 'Merda';
+        document.getElementById('turn').innerText = 'Your turn';
         return;
       }
 
@@ -42,7 +42,6 @@ class GameMix extends GameCPU{
     makeMove(data){
       super.makeMove(data);
       this.currentPlayer = 1;
-      document.getElementById('turn').innerText = 'Your turn';
     }
 
 

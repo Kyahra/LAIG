@@ -204,7 +204,7 @@ XMLscene.prototype.update = function (currTime) {
 
     this.shader.setUniformsValues({timeFactor:this.time});
 
-    if(typeof this.game != "undefined")
+    if(typeof this.game != "undefined" && !this.game.over)
       this.updateTime(currTime);
 
     this.prevTime = currTime;
@@ -234,8 +234,7 @@ XMLscene.prototype.updateTime = function(currTime){
         this.roundTime = 0;
       }
 
-      if(this.gameSeconds >= 5){
-        this.game.gameOver();
+      if(this.gameSeconds >= 30){
         this.game.over = true;
         document.getElementById('info').innerText = 'Game Over';
       }
@@ -314,15 +313,16 @@ XMLscene.prototype.handlePicking = function (){
 				var obj = this.pickResults[i][0];
 
         if(obj != null)
-          obj.pickedShader = 1;
+
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
 
-          if(this.game != null)
-					     if(this.game.running)
-						         this.game.picked(obj);
-
+				if(!this.game.over)
+					if(this.game.running){
+						obj.pickedShader = 1;
+						this.game.picked(obj);
+					}	
 
 				}
 			}
@@ -361,14 +361,12 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
 XMLscene.prototype.loadTheme = function (theme) {
     if (theme == THEME.NORMAL) {
         let filename = getUrlVars()['file'] || "game.lsx";
-        //this.lights = [];
         this.cameras = [];
         this.graph = new MySceneGraph(filename, this);
     }
     else {
         let filename = getUrlVars()['file'] || "game2.lsx";
         this.cameras = [];
-        //this.lights = [];
         this.graph = new MySceneGraph(filename, this);
     }
 };
@@ -393,7 +391,6 @@ XMLscene.prototype.animateCamera = function (deltaTime) {
     if (this.timeElapsed > this.CAMERA_ANIMATION_TIME * 0.7) {
         this.changingCamera = false;
         this.currentCamera = (this.currentCamera + 1) % this.cameras.length;
-        //this.camera = this.cameras[this.currentCamera];
         return;
     }
 
