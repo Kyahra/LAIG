@@ -23,12 +23,15 @@ class GameMix extends GameCPU{
     newTurn(){
 
       if(this.gameOver){
-        console.log('gameOver');
+        document.getElementById('info').innerText = 'Game Over ';
         this.running = false;
         return;
       }
 
-      if(this.currentPlayer ==1) return;
+      if(this.currentPlayer ==1){
+        document.getElementById('turn').innerText = 'Your turn';
+        return;
+      }
 
         if(this.level != LEVEL.EASY)  sleep(3000);
 
