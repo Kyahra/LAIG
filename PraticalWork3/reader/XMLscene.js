@@ -227,11 +227,14 @@ XMLscene.prototype.updateTime = function(currTime){
 
       if(this.seconds >= 30){
         this.game.currentPlayer = 1-this.game.currentPlayer;
-        document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
+
+        if(this.gameMode == GAMEMODE.HUMAN_VS_HUMAN)
+          document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
+        document.getElementById('info').innerText = 'You have lost your turn';
         this.roundTime = 0;
       }
 
-      if(this.gameSeconds >= 30){
+      if(this.gameSeconds >= 300){
         this.game.gameOver();
         this.game = null;
         document.getElementById('info').innerText = 'Game Over';
@@ -337,6 +340,7 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
   if(gameMode == GAMEMODE.CPU_VS_CPU) this.game = new GameCPU(this,board,gameLevel);
   if(gameMode == GAMEMODE.HUMAN_VS_CPU) this.game = new GameMix(this,board,gameLevel);
 
+  this.gameMode = gameMode;
 
   this.gameTime = 0;
   this.roundTime = 0;
@@ -347,7 +351,9 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
     for (let score of scores)
 		score.innerHTML = '0';
 
-  document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
+  if(this.gameMode == GAMEMODE.HUMAN_VS_HUMAN)
+      document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
+  //document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
 };
 
 

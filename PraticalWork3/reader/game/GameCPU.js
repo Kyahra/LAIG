@@ -21,7 +21,7 @@ class GameCPU extends Game{
     newTurn(){
 
       if(this.gameOver){
-        console.log('gameOver');
+        document.getElementById('info').innerText = 'Game Over ';
         return;
       }
 
