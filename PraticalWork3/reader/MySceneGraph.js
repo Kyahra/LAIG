@@ -1809,19 +1809,17 @@ MySceneGraph.prototype.displayAux = function(children,materialID,textureID){
 
         let flag = false;
 
-      /*  if(node.pickedShader == 1 ){
-          this.scene.setActiveShader(this.scene.shader);
-          flag = true;
-        }*/
 
         if(typeof this.scene.game != "undefined"){
           if(this.scene.game != null){
             if(node.pickedShader == 1 ){
-              node.pickedShader = 0;
               this.scene.setActiveShader(this.scene.shader);
               flag = true;
             }
           }
+        }else{
+          if(node.pickedShader == 1 )
+            node.pickedShader = 0;
         }
 
 
