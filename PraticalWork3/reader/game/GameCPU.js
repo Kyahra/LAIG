@@ -29,6 +29,8 @@ class GameCPU extends Game{
 
       this.currentPlayer = 1-this.currentPlayer;
       getMove(this.board_aux,this.players[this.currentPlayer],this.players[1-this.currentPlayer],this.makeMove.bind(this));
+	  document.getElementById('turn').innerText = 'Player ' + (this.currentPlayer + 1);
+      document.getElementById('info').innerText = '';
 
     }
 
