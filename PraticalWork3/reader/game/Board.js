@@ -96,11 +96,7 @@ class Board {
 
       mat4.identity(node.transformMatrix);
       mat4.translate(node.transformMatrix, node.transformMatrix, [10,10,0]);
-/*
-      var anim = new LinearAnimation(this.scene, this.game.animationCounter,0.4, [p1,p2]);
-      this.scene.graph.animations[this.game.animationCounter]= anim;
-      node.addAnimation(this.game.animationCounter);
-      this.game.animationCounter++;*/
+
 
       this.matrix[i][j][0] = node;
       node.board_position = [i,j];
@@ -129,6 +125,18 @@ class Board {
 	 get(x,y){
 		return this.matrix[x][y];
 	 }
+
+   playFilm(){
+     for(let i=0; i <this.matrix.length; i++)
+      for(let j=0; j<this.matrix[0].length; j++){
+        if(this.matrix[i][j] != null){
+          let piece = this.matrix[i][j][0];
+          let film = piece.film;
+          piece.film =[];
+          piece.animations = film;
+        }
+      }
+   }
 
 
 }

@@ -8,6 +8,7 @@ class Game {
       this.color_bases = [[[8,0,10],[8,0,12]],[[8,0,-10],[8,0,-12]]];
       this.piece_bases = [[[-8,0,-10],[-6,0,-10],[-4,0,-10],[-2,0,-10]],[[-8,0,10],[-6,0,10],[-4,0,10],[-2,0,10]]];
       this.board_aux= aux_board;
+      this.initial_board=aux_board;
       this.animationCounter =0;
       this.board = new Board(scene,this);
       this.running = true;
@@ -191,6 +192,12 @@ class Game {
     	   this.board.clear(position[0],position[1]);
 
 	  }
+
+  playFilm(){
+      this.board.initBoard(this.initial_board);
+      this.board.playFilm();
+
+  }
 
 
 
