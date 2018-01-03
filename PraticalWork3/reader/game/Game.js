@@ -13,6 +13,7 @@ class Game {
       this.board = new Board(scene,this);
       this.running = true;
       this.over = false;
+      this.computer_playing = false;
 
       for(let i=0; i <this.colors.length; i++){
          let color_node = this.scene.graph.nodes[this.colors[i]];
@@ -20,6 +21,8 @@ class Game {
          mat4.translate(color_node.transformMatrix,color_node.transformMatrix, color_node.position);
          mat4.rotate(color_node.transformMatrix,color_node.transformMatrix,-Math.PI/2,[1,0,0]);
       }
+      document.getElementById('turn').innerText = 'Player 1';
+
   }
 
 	picked(obj){
@@ -53,8 +56,8 @@ class Game {
         this.moved_piece = null;
 		  }
     }
-	
-		
+
+
 	}
 
 	claimedColor(obj,data){

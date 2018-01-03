@@ -228,8 +228,8 @@ XMLscene.prototype.updateTime = function(currTime){
       if(this.seconds >= 30){
         this.game.currentPlayer = 1-this.game.currentPlayer;
 
-    
-        document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
+
+    document.getElementById('turn').innerText = 'Player ' + (this.game.currentPlayer + 1);
 		document.getElementById('info').innerText = 'You have lost your turn';
         this.roundTime = 0;
       }
@@ -322,7 +322,7 @@ XMLscene.prototype.handlePicking = function (){
 					if(this.game.running){
 						obj.pickedShader = 1;
 						this.game.picked(obj);
-					}	
+					}
 
 				}
 			}
@@ -350,7 +350,7 @@ XMLscene.prototype.newGame = function (gameMode,gameLevel,data){
     for (let score of scores)
 		score.innerHTML = '0';
 
-  
+
 };
 
 

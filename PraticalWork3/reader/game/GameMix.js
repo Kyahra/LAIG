@@ -15,12 +15,17 @@ class GameMix extends GameCPU{
     }
 
     picked(obj){
-      if(this.currentPlayer ==1 && !this.gameOver)
+      if(this.currentPlayer ==1 && !this.gameOver){
+        this.computer_playing = false;
         super.picked(obj);
+        this.computer_playing = true;
+      }
 
     }
 
     newTurn(){
+
+      this.computer_playing = true;
 
       if(this.gameOver){
         document.getElementById('info').innerText = 'Game Over ';
@@ -32,6 +37,8 @@ class GameMix extends GameCPU{
         document.getElementById('turn').innerText = 'Your turn';
         return;
       }
+
+      this.computer_playing = true;
 
         if(this.level != LEVEL.EASY)  sleep(3000);
 
